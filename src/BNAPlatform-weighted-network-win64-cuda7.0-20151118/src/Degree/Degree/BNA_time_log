@@ -1,0 +1,18 @@
+Degree	D:\dataTumor\rt_21318_spa1.681%_cor0.700.csrCPU	kernel time	0s
+Degree	D:\dataTumor\rt_21318_spa4.090%_cor0.600.csrCPU	kernel time	0s
+Degree	D:\dataTumor\rt_21318_spa8.230%_cor0.500.csrCPU	kernel time	0s
+Degree	CPU	total time	0.233s
+
+Degree	D:\data_test\N0001_4DVolume_25218_spa1.031%_cor0.500.csrCPU	kernel time	0.006s
+Degree	D:\data_test\N0002_4DVolume_25218_spa1.057%_cor0.500.csrCPU	kernel time	0.006s
+Degree	D:\data_test\N0003_4DVolume_25218_spa0.518%_cor0.500.csrCPU	kernel time	0.003s
+Degree	CPU	total time	0.211s
+
+Degree	D:\Programming\testdata\fMRI\G0001_25218_spa1.000%_cor0.510_weighted.csrCPU	kernel time	0.008s
+Degree	D:\Programming\testdata\fMRI\G0002_25218_spa1.000%_cor0.490_weighted.csrCPU	kernel time	0.008s
+Degree	D:\Programming\testdata\fMRI\K0001_25218_spa1.000%_cor0.559_weighted.csrCPU	kernel time	0.007s
+Degree	D:\Programming\testdata\fMRI\K0002_25218_spa1.000%_cor0.432_weighted.csrCPU	kernel time	0.007s
+Degree	D:\Programming\testdata\fMRI\L0001_25218_spa1.000%_cor0.698_weighted.csrCPU	kernel time	0.007s
+Degree	D:\Programming\testdata\fMRI\L0002_25218_spa1.000%_cor0.541_weighted.csrCPU	kernel time	0.007s
+Degree	CPU	total time	0.606s
+

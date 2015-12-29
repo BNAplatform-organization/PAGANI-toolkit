@@ -1,0 +1,26 @@
+﻿生成启动时间为 2015/4/13 18:45:02。
+     1>项目“C:\YuduLi\BNAPlatform-weighted-network-win64-cuda7.0-20150413\src\Cp\Cp\Cp.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I..\..\common /Zi /nologo /W3 /WX- /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt ..\..\common\Timer.cpp Cp_1.cpp Cp_2.cpp Cp_main.cpp Maslov.cpp
+         Maslov.cpp
+     1>Maslov.cpp(18): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+     1>Maslov.cpp(62): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+         Cp_main.cpp
+         Cp_2.cpp
+     1>Cp_2.cpp(123): warning C4244: “+=”: 从“double”转换到“float”，可能丢失数据
+         Cp_1.cpp
+     1>Cp_1.cpp(125): warning C4244: “+=”: 从“double”转换到“float”，可能丢失数据
+         Timer.cpp
+         正在生成代码...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\YuduLi\BNAPlatform-weighted-network-win64-cuda7.0-20150413\src\x64\Debug\Cp.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\YuduLi\BNAPlatform-weighted-network-win64-cuda7.0-20150413\src\x64\Debug\Cp.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\YuduLi\BNAPlatform-weighted-network-win64-cuda7.0-20150413\src\x64\Debug\Cp.lib" /MACHINE:X64 x64\Debug\Timer.obj
+         x64\Debug\Cp_1.obj
+         x64\Debug\Cp_2.obj
+         x64\Debug\Cp_main.obj
+         x64\Debug\Maslov.obj
+         Cp.vcxproj -> C:\YuduLi\BNAPlatform-weighted-network-win64-cuda7.0-20150413\src\x64\Debug\Cp.exe
+     1>已完成生成项目“C:\YuduLi\BNAPlatform-weighted-network-win64-cuda7.0-20150413\src\Cp\Cp\Cp.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:04.84
