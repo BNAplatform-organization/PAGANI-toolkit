@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/new/sigma">
+        <file alias="sigma">qrc/smallworldsigma.jpg</file>
+    </qresource>
+    <qresource prefix="/new/gamma">
+        <file alias="gamma">qrc/clusteringcoefficientgamma.jpg</file>
+    </qresource>
+    <qresource prefix="/new/lambda">
+        <file alias="lambda">qrc/characteristicpathlengthlambda.jpg</file>
+    </qresource>
+</RCC>
