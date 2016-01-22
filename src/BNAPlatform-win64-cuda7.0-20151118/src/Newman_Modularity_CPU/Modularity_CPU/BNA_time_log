@@ -1,0 +1,10 @@
+Modularity	E:\BNAlauncher\test_new\unweighted\N0001_25218_spa1.000%_cor0.504.csrCPU	kernel time	24392.7s
+Modularity	RandomCPU	(Maslov+kernel) time	0s
+Modularity	E:\BNAlauncher\test_new\paper\unweighted\N0001_25218_spa1.000%_cor0.504.csrCPU	kernel time	14683.5s
+Modularity	RandomCPU	(Maslov+kernel) time	0s
+Modularity	E:\BNAlauncher\test_new\paper\unweighted\N0001_25218_spa2.000%_cor0.433.csrCPU	kernel time	16275.2s
+Modularity	RandomCPU	(Maslov+kernel) time	0s
+Modularity	E:\BNAlauncher\test_new\paper\unweighted\N0001_25218_spa3.000%_cor0.389.csrCPU	kernel time	18667.1s
+Modularity	RandomCPU	(Maslov+kernel) time	0s
+Modularity	CPU	total time	3436.5s
+

@@ -1,30 +1,30 @@
-﻿生成启动时间为 2015/12/19 17:33:13。
-     1>项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_Lp.vcxproj”在节点 2 上(Rebuild 个目标)。
+﻿生成启动时间为 2015/12/30 11:42:46。
+     1>项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_Lp.vcxproj”在节点 9 上(Rebuild 个目标)。
      1>_PrepareForClean:
          正在删除文件“x64\Release\CUBFW_Lp.lastbuildstate”。
        CudaClean:
-         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmpbd464d886d54438d8a1e05f256142850.cmd"
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmpaf0cf67bd00a4cfcb5aac3cb6da5ffd3.cmd"
          "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile      -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\CUBFW_ph1.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_ph1.cu" -clean
          
          E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile      -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\CUBFW_ph1.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_ph1.cu" -clean 
          CUBFW_ph1.cu
          正在删除文件“x64\Release\CUBFW_ph1.cu.deps”。
        CudaClean:
-         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp5f58df0958b34dc4a16589e7f79e4dc1.cmd"
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmpe816cee222294ca191670c589d2e9264.cmd"
          "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile      -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\CUBFW_ph2.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_ph2.cu" -clean
          
          E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile      -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\CUBFW_ph2.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_ph2.cu" -clean 
          CUBFW_ph2.cu
          正在删除文件“x64\Release\CUBFW_ph2.cu.deps”。
        CudaClean:
-         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp27d0aabd0f284d94b62892f2e05e7b1b.cmd"
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmpa0f9ad01dc9045879895719ced558b65.cmd"
          "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile      -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\CUBFW_ph3.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_ph3.cu" -clean
          
          E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile      -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\CUBFW_ph3.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_ph3.cu" -clean 
          CUBFW_ph3.cu
          正在删除文件“x64\Release\CUBFW_ph3.cu.deps”。
        CudaClean:
-         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp9925f55f53ed47c895e020c525bb560e.cmd"
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp43604fd088e34afa83203d7566fb7ee7.cmd"
          "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile      -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\cuTranspose.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\cuTranspose.cu" -clean
          
          E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile      -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\cuTranspose.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\cuTranspose.cu" -clean 
@@ -43,7 +43,7 @@
          E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\cl.exe /E /nologo /showIncludes /TP /D__CUDACC__ /DWIN32 /DWIN64 /DNDEBUG /D_CONSOLE /D_MBCS /I..\..\..\common /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I. /FIcuda_runtime.h /c E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\cuTranspose.cu 
        CudaBuild:
          Compiling CUDA source file CUBFW_ph1.cu...
-         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmpe71e3bfec17745898eb2d1090f7c8e77.cmd"
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmpcef7dddd459a458ca985a52eb29107ca.cmd"
          "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile -cudart static     -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\CUBFW_ph1.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_ph1.cu"
          
          E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile -cudart static     -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\CUBFW_ph1.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_ph1.cu" 
@@ -124,7 +124,7 @@
          CUBFW_ph1.cu
        CudaBuild:
          Compiling CUDA source file CUBFW_ph2.cu...
-         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmpdc48639b59d2481f89c711fe9b6bc7ae.cmd"
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmpa1fbad7791bd4223916ddfde38a8abed.cmd"
          "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile -cudart static     -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\CUBFW_ph2.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_ph2.cu"
          
          E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile -cudart static     -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\CUBFW_ph2.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_ph2.cu" 
@@ -205,7 +205,7 @@
          CUBFW_ph2.cu
        CudaBuild:
          Compiling CUDA source file CUBFW_ph3.cu...
-         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp23f3c9e8ee2240b184e5ce70cb6f9b9b.cmd"
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmpc99909261ea745ffbee870247c23521b.cmd"
          "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile -cudart static     -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\CUBFW_ph3.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_ph3.cu"
          
          E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile -cudart static     -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\CUBFW_ph3.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\CUBFW_ph3.cu" 
@@ -286,7 +286,7 @@
          CUBFW_ph3.cu
        CudaBuild:
          Compiling CUDA source file cuTranspose.cu...
-         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp35d6ebfa91b741d0973858a42ffa3626.cmd"
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp4711fac670b14b43be2585badf6ee628.cmd"
          "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile -cudart static     -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\cuTranspose.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\cuTranspose.cu"
          
          E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile -cudart static     -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\cuTranspose.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Lp\CUBFW_Lp\CUBFW_Lp\cuTranspose.cu" 
@@ -414,4 +414,4 @@
 
 生成成功。
 
-已用时间 00:00:50.28
+已用时间 00:00:45.39

@@ -26,4 +26,5 @@ FORMS    += mainwindow.ui \
 
 RESOURCES += \
     z-transformation.qrc \
-    smallworldproperty.qrc
+    smallworldproperty.qrc \
+    windowicon.qrc

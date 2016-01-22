@@ -15,6 +15,7 @@ extern QString file_name_transimit;
 bool both_metrics=0;
 bool average_ordinary=0;
 bool average_fisher=0;
+bool nodal_metrics=0;
 string to_save_cormatrix="n";
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -197,6 +198,7 @@ void MainWindow::on_pushButtonSave_clicked()
         //组合之外的统统选n
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->mask_threshold->text().isEmpty()
+                || ui->lineEdit_Mask_File->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_average->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_save_cormatrix->text().isEmpty()
                 //|| ui->lineEditCUCorMat_threshold_type->text().isEmpty()
@@ -209,6 +211,8 @@ void MainWindow::on_pushButtonSave_clicked()
         if(both_metrics==0)
             script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
+              ' ' <<
+             ui->lineEdit_Mask_File->text().toStdString() <<
               ' ' <<
               ui->mask_threshold->text().toStdString() <<
               ' ' <<
@@ -225,6 +229,8 @@ void MainWindow::on_pushButtonSave_clicked()
             script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
+              ui->lineEdit_Mask_File->text().toStdString() <<
+               ' ' <<
               ui->mask_threshold->text().toStdString() <<
               ' ' <<
               "bn" <<
@@ -243,6 +249,8 @@ void MainWindow::on_pushButtonSave_clicked()
             script << (operating_system == os_win32 ? ".\\exefiles\\CUCorMat.exe " : "./exefiles/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
+              ui->lineEdit_Mask_File->text().toStdString() <<
+               ' ' <<
               ui->mask_threshold->text().toStdString() <<
               ' ' <<
               "bf" <<
@@ -283,6 +291,7 @@ void MainWindow::on_pushButtonSave_clicked()
                   ' ' <<
               0 <<' ' <<"n"<<
               std::endl;
+         nodal_metrics=true;
 
     }
     if ((!ui->checkLp->isChecked())&&(!ui->checkLp_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_lambda->isChecked()))
@@ -316,6 +325,7 @@ void MainWindow::on_pushButtonSave_clicked()
                   ' ' <<
               0 <<' ' <<"gn"<<
               std::endl;
+         nodal_metrics=true;
 
     }
     if ((ui->checkLp->isChecked())&&(!ui->checkLp_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_lambda->isChecked()))
@@ -356,6 +366,7 @@ void MainWindow::on_pushButtonSave_clicked()
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"nl"<<
               std::endl;
+         nodal_metrics=true;
     }
     if ((ui->checkLp->isChecked())&&(ui->checkLp_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_lambda->isChecked()))
     {
@@ -375,6 +386,7 @@ void MainWindow::on_pushButtonSave_clicked()
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"gnl"<<
               std::endl;
+         nodal_metrics=true;
     }
         /*
         if (ui->checkLp->isChecked()&&(!ui->checkLp_NodalMetrics->isChecked())) {
@@ -438,6 +450,7 @@ void MainWindow::on_pushButtonSave_clicked()
               ' ' <<
              0 <<' '<<"n"<<
               std::endl;
+         nodal_metrics=true;
     }
     if (!ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
     {
@@ -469,6 +482,7 @@ void MainWindow::on_pushButtonSave_clicked()
               ' ' <<
              0 <<' '<<"gn"<<
               std::endl;
+         nodal_metrics=true;
     }
     if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
     {
@@ -505,6 +519,7 @@ void MainWindow::on_pushButtonSave_clicked()
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"nk"<<
               std::endl;
+         nodal_metrics=true;
     }
     if (ui->checkCP->isChecked()&&(ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
     {
@@ -523,6 +538,7 @@ void MainWindow::on_pushButtonSave_clicked()
               ' ' <<
               ui->lineEditLp_num_of_random_networks->text().toStdString() <<' '<<"gnk"<<
               std::endl;
+         nodal_metrics=true;
     }
 
     /*
@@ -617,6 +633,7 @@ void MainWindow::on_pushButtonSave_clicked()
                          ' ' <<
                          ui->lineEditLp_num_of_random_networks->text().toStdString() <<
                          std::endl;
+         nodal_metrics=true;
 
     }
     if (ui->checkPC_CPU->isChecked()) {
@@ -628,6 +645,7 @@ void MainWindow::on_pushButtonSave_clicked()
                         unweighted <<
                         ' ' <<
                             std::endl;
+             nodal_metrics=true;
     }
     if (ui->checkDegree->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()) {
@@ -637,6 +655,7 @@ void MainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles\\Degree.exe " : "./exefiles/Degree ") <<
               unweighted <<
               std::endl;
+         nodal_metrics=true;
     }
     if (ui->checkCUBC->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()) {
@@ -646,6 +665,7 @@ void MainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles\\CUBC.exe " : "./exefiles/CUBC ") <<
               unweighted <<
               std::endl;
+         nodal_metrics=true;
     }
     if (ui->checkCUEC->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()) {
@@ -655,8 +675,10 @@ void MainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles\\CUEC.exe " : "./exefiles/CUBC ") <<
               unweighted <<
               std::endl;
+        nodal_metrics=true;
     }
-    if (ui->checkConvertNII->isChecked()) {
+    if (nodal_metrics==true) {
+        nodal_metrics=false;
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEdit_Mask_File->text().isEmpty()
                 || ui->mask_threshold->text().isEmpty()) {
@@ -680,6 +702,7 @@ void MainWindow::on_pushButtonSave_clicked()
         //组合之外的统统选n
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->mask_threshold->text().isEmpty()
+                || ui->lineEdit_Mask_File->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_average->text().isEmpty()
                 //|| ui->lineEditCUCorMat_to_save_cormatrix->text().isEmpty()
                 //|| ui->lineEditCUCorMat_threshold_type->text().isEmpty()
@@ -693,6 +716,8 @@ void MainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
+              ui->lineEdit_Mask_File->text().toStdString() <<
+               ' ' <<
               ui->mask_threshold->text().toStdString() <<
               ' ' <<
               "n" <<
@@ -710,6 +735,8 @@ void MainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
+              ui->lineEdit_Mask_File->text().toStdString() <<
+               ' ' <<
               ui->mask_threshold->text().toStdString() <<
               ' ' <<
               "bn" <<
@@ -727,6 +754,8 @@ void MainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUCorMat.exe " : "./exefiles_weighted/CUCormat ") <<
               ui->lineEdit_Working_Directory->text().toStdString() <<
               ' ' <<
+              ui->lineEdit_Mask_File->text().toStdString() <<
+               ' ' <<
               ui->mask_threshold->text().toStdString() <<
               ' ' <<
               "bf" <<
@@ -818,6 +847,7 @@ void MainWindow::on_pushButtonSave_clicked()
                    ' ' <<
                0 <<' ' <<"n"<<
                std::endl;
+          nodal_metrics=true;
 
      }
      if ((!ui->checkLp->isChecked())&&(!ui->checkLp_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_lambda->isChecked()))
@@ -844,6 +874,7 @@ void MainWindow::on_pushButtonSave_clicked()
          if (ui->lineEdit_Working_Directory->text().isEmpty()) {
              QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
              return;
+              nodal_metrics=true;
          }
          script << (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe " : "./exefiles/CUBFW_Lp ") <<
            //    ui->lineEdit_Working_Directory->text().toStdString() <<
@@ -891,6 +922,7 @@ void MainWindow::on_pushButtonSave_clicked()
                ' ' <<
                ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"nl"<<
                std::endl;
+          nodal_metrics=true;
      }
      if ((ui->checkLp->isChecked())&&(ui->checkLp_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_lambda->isChecked()))
      {
@@ -910,6 +942,7 @@ void MainWindow::on_pushButtonSave_clicked()
                ' ' <<
                ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<"gnl"<<
                std::endl;
+          nodal_metrics=true;
      }
 
 
@@ -943,6 +976,7 @@ void MainWindow::on_pushButtonSave_clicked()
                ' ' <<
                0 <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"n"<<
                std::endl;
+          nodal_metrics=true;
      }
      if (!ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
      {
@@ -977,6 +1011,7 @@ void MainWindow::on_pushButtonSave_clicked()
                ' ' <<
                0 <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"gn"<<
                std::endl;
+          nodal_metrics=true;
      }
      if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
      {
@@ -1015,6 +1050,7 @@ void MainWindow::on_pushButtonSave_clicked()
                ' ' <<
                ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"nk"<<
                std::endl;
+          nodal_metrics=true;
      }
      if (ui->checkCP->isChecked()&&(ui->checkCP_NodalMetrics->isChecked())&&(ui->checkSmallWordProperty_gamma->isChecked()))
      {
@@ -1034,6 +1070,7 @@ void MainWindow::on_pushButtonSave_clicked()
                ' ' <<
                ui->lineEditLp_num_of_random_networks->text().toStdString() <<' ' <<(s_Cp == "Onnela" ? "2 " : " 1 ")<<' '<<"gnk"<<
                std::endl;
+          nodal_metrics=true;
      }
 
      /*if (ui->checkCP->isChecked()&&(!ui->checkCP_NodalMetrics->isChecked())) {
@@ -1117,6 +1154,7 @@ void MainWindow::on_pushButtonSave_clicked()
                  ' ' <<
                  ui->lineEditLp_num_of_random_networks->text().toStdString() <<
                  std::endl;
+            nodal_metrics=true;
     }
     if (ui->checkPC_CPU->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()) {
@@ -1127,6 +1165,7 @@ void MainWindow::on_pushButtonSave_clicked()
                         weighted <<
                         ' ' <<
                             std::endl;
+             nodal_metrics=true;
     }
     if (ui->checkDegree->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()) {
@@ -1136,15 +1175,18 @@ void MainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\Degree.exe " : "./exefiles_weighted/Degree ") <<
              weighted <<
               std::endl;
+         nodal_metrics=true;
     }
     if (ui->checkCUBC->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()) {
             QMessageBox::information(this, "Error", "Empty parameter(s).", QMessageBox::Ok, QMessageBox::Ok);
             return;
+
         }
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUBC.exe " : "./exefiles_weighted/CUBC ") <<
              weighted <<
               std::endl;
+    nodal_metrics=true;
     }
     if (ui->checkCUEC->isChecked()) {
         if (ui->lineEdit_Working_Directory->text().isEmpty()) {
@@ -1154,8 +1196,10 @@ void MainWindow::on_pushButtonSave_clicked()
         script << (operating_system == os_win32 ? ".\\exefiles_weighted\\CUEC.exe " : "./exefiles_weighted/CUBC ") <<
               weighted <<
               std::endl;
+        nodal_metrics=true;
     }
-    if (ui->checkConvertNII->isChecked()) {
+    if (nodal_metrics==true) {
+        nodal_metrics=false;
         if (ui->lineEdit_Working_Directory->text().isEmpty()
                 || ui->lineEdit_Mask_File->text().isEmpty()
                 || ui->mask_threshold->text().isEmpty()) {
@@ -1258,7 +1302,7 @@ void MainWindow::on_pushButtonLoad_clicked()
     ui->checkDegree->setChecked(false);
     ui->checkCUBC->setChecked(false);
     ui->checkCUEC->setChecked(false);
-    ui->checkConvertNII->setChecked(false);
+  //  ui->checkConvertNII->setChecked(false);
     ui->checkSmallWordProperty->setChecked(false);
     }
     bool flag_unweighted=false;
@@ -1363,32 +1407,33 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->checkCUCorMat->setChecked(true);
                  emit mySignalMgrayBoxCUCorMat(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-                ui->mask_threshold->setText(tokens[2].c_str());
-                if(tokens[3] == "n")
+                ui->lineEdit_Mask_File->setText(tokens[2].c_str());
+                ui->mask_threshold->setText(tokens[3].c_str());
+                if(tokens[4] == "n")
                 {
                 ui->CheckCUCorMat_to_average->setChecked(false);
                 ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(false);
                 ui->ordinary->setChecked(false);
                 ui->fisher->setChecked(false);
-                }else if(tokens[3] == "bf")
+                }else if(tokens[4] == "bf")
                 {
                 ui->CheckCUCorMat_to_average->setChecked(true);
                 ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(true);
                 ui->ordinary->setChecked(false);
                 ui->fisher->setChecked(true);
-                }else if(tokens[3] == "bn")
+                }else if(tokens[4] == "bn")
                 {
                 ui->CheckCUCorMat_to_average->setChecked(true);
                 ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(true);
                 ui->ordinary->setChecked(true);
                 ui->fisher->setChecked(false);
                 }
-                ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(tokens[4] == "y");
-                ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(tokens[5] == "r");
-                std::string token6;
-                for (size_t i = 6; i < tokens.size(); ++i)
-                    token6 += tokens[i] + " ";
-                ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText(token6.c_str());
+                ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(tokens[5] == "y");
+                ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(tokens[6] == "r");
+                std::string token7;
+                for (size_t i = 7; i < tokens.size(); ++i)
+                    token7 += tokens[i] + " ";
+                ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText(token7.c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\CUBFW_Lp.exe" : "./exefiles/CUBFW_Lp")) {
            string unweighted=tokens[1].substr(0,tokens[1].length()-11);
@@ -1502,9 +1547,9 @@ void MainWindow::on_pushButtonLoad_clicked()
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles\\ConvertNII.exe" : "./exefiles/ConvertNII")) {
              string unweighted=tokens[1].substr(0,tokens[1].length()-11);
             if (tokens.size() == 4) {
-                ui->checkConvertNII->setChecked(true);
-                emit mySignalMgrayBoxConvertNII(true);
-                ui->lineEdit_Working_Directory->setText(unweighted.c_str());
+            //    ui->checkConvertNII->setChecked(true);
+           //     emit mySignalMgrayBoxConvertNII(true);
+           //     ui->lineEdit_Working_Directory->setText(unweighted.c_str());
                 ui->lineEdit_Mask_File->setText(tokens[2].c_str());
                 ui->mask_threshold->setText(tokens[3].c_str());
             }
@@ -1517,32 +1562,33 @@ void MainWindow::on_pushButtonLoad_clicked()
                 ui->checkCUCorMat->setChecked(true);
                  emit mySignalMgrayBoxCUCorMat(true);
                 ui->lineEdit_Working_Directory->setText(tokens[1].c_str());
-                ui->mask_threshold->setText(tokens[2].c_str());
-                if(tokens[3] == "n")
+                ui->lineEdit_Mask_File->setText(tokens[2].c_str());
+                ui->mask_threshold->setText(tokens[3].c_str());
+                if(tokens[4] == "n")
                 {
                 ui->CheckCUCorMat_to_average->setChecked(false);
                 ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(false);
                 ui->ordinary->setChecked(false);
                 ui->fisher->setChecked(false);
-                }else if(tokens[3] == "bf")
+                }else if(tokens[4] == "bf")
                 {
                 ui->CheckCUCorMat_to_average->setChecked(true);
                 ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(true);
                 ui->ordinary->setChecked(false);
                 ui->fisher->setChecked(true);
-                }else if(tokens[3] == "bn")
+                }else if(tokens[4] == "bn")
                 {
                 ui->CheckCUCorMat_to_average->setChecked(true);
                 ui->groupBoxCUCorMat_to_average_groupBox->setEnabled(true);
                 ui->ordinary->setChecked(true);
                 ui->fisher->setChecked(false);
                 }
-                ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(tokens[4] == "y");
-                ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(tokens[5] == "r");
-                std::string token6;
-                for (size_t i = 6; i < tokens.size(); ++i)
-                    token6 += tokens[i] + " ";
-                ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText(token6.c_str());
+                ui->radioButtonCUCorMat_to_save_cormatrix->setChecked(tokens[5] == "y");
+                ui->comboBoxCUCorMat_threshold_type->setCurrentIndex(tokens[6] == "r");
+                std::string token7;
+                for (size_t i = 7; i < tokens.size(); ++i)
+                    token7 += tokens[i] + " ";
+                ui->lineEditCUCorMat_threshold_for_correlation_coefficient->setText(token7.c_str());
             }
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\CUBFW_Lp.exe" : "./exefiles_weighted/CUBFW_Lp")) {
             string weighted=tokens[1].substr(0,tokens[1].length()-9);
@@ -1639,9 +1685,9 @@ void MainWindow::on_pushButtonLoad_clicked()
         } else if (tokens[0] == (operating_system == os_win32 ? ".\\exefiles_weighted\\ConvertNII.exe" : "./exefiles_weighted/ConvertNII")) {
             string weighted=tokens[1].substr(0,tokens[1].length()-9);
             if (tokens.size() == 4) {
-                ui->checkConvertNII->setChecked(true);
-                emit mySignalMgrayBoxConvertNII(true);
-                ui->lineEdit_Working_Directory->setText(weighted.c_str());
+            //    ui->checkConvertNII->setChecked(true);
+             //   emit mySignalMgrayBoxConvertNII(true);
+            //    ui->lineEdit_Working_Directory->setText(weighted.c_str());
                 ui->lineEdit_Mask_File->setText(tokens[2].c_str());
                 ui->mask_threshold->setText(tokens[3].c_str());
             }
@@ -1953,7 +1999,7 @@ void MainWindow::on_switchButton_currentIndexChanged(int index)
 
     ui->checkCUBC->setChecked(false);
     ui->checkCUBC->setEnabled(false);
-    ui->checkCUBC->setToolTip("This algorithm can currently be used in unweighted networks");
+    ui->checkCUBC->setToolTip("This algorithm currently can only be used in unweighted networks");
     }
 }
 

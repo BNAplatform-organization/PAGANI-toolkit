@@ -1,0 +1,38 @@
+﻿生成启动时间为 2015/12/30 11:42:21。
+     1>项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Louvain_Modularity\Louvain_Modularity\Louvain_Modularity.vcxproj”在节点 8 上(Rebuild 个目标)。
+     1>_PrepareForClean:
+         正在删除文件“x64\Release\Louvain_Modularity.lastbuildstate”。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(346,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+       InitializeBuildStatus:
+         正在创建“x64\Release\Louvain_Modularity.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I..\..\common /Zi /nologo /W3 /WX- /O2 /Oi /GL /D _USING_V110_SDK71_ /D _MBCS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc110.pdb" /Gd /TP /errorReport:prompt L_Modularity_CPU.cpp Maslov.cpp Timer.cpp
+         L_Modularity_CPU.cpp
+     1>L_Modularity_CPU.cpp(113): warning C4244: “=”: 从“double”转换到“real_t”，可能丢失数据
+     1>L_Modularity_CPU.cpp(151): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+     1>L_Modularity_CPU.cpp(179): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+     1>L_Modularity_CPU.cpp(205): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+     1>L_Modularity_CPU.cpp(468): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+     1>L_Modularity_CPU.cpp(496): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+     1>L_Modularity_CPU.cpp(527): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+     1>L_Modularity_CPU.cpp(603): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+     1>L_Modularity_CPU.cpp(639): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+     1>L_Modularity_CPU.cpp(810): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+         Maslov.cpp
+     1>Maslov.cpp(20): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+         Timer.cpp
+       Link:
+         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\..\bin\Louvain_Modularity.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\..\..\bin\Louvain_Modularity.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\..\bin\Louvain_Modularity.lib" /MACHINE:X64 x64\Release\L_Modularity_CPU.obj
+         x64\Release\Maslov.obj
+         x64\Release\Timer.obj
+         正在生成代码
+         已完成代码的生成
+         Louvain_Modularity.vcxproj -> E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Louvain_Modularity\Louvain_Modularity\..\..\..\bin\Louvain_Modularity.exe
+       FinalizeBuildStatus:
+         正在删除文件“x64\Release\Louvain_Modularity.unsuccessfulbuild”。
+         正在对“x64\Release\Louvain_Modularity.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Louvain_Modularity\Louvain_Modularity\Louvain_Modularity.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:06.44

@@ -1,5 +1,5 @@
-﻿生成启动时间为 2015/12/7 21:14:29。
-     1>项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Louvain_Modularity\Louvain_Modularity\Louvain_Modularity.vcxproj”在节点 9 上(Rebuild 个目标)。
+﻿生成启动时间为 2015/12/30 11:42:44。
+     1>项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Louvain_Modularity\Louvain_Modularity\Louvain_Modularity.vcxproj”在节点 4 上(Rebuild 个目标)。
      1>_PrepareForClean:
          正在删除文件“x64\Release\Louvain_Modularity.lastbuildstate”。
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(346,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
@@ -36,4 +36,4 @@
 
 生成成功。
 
-已用时间 00:00:07.40
+已用时间 00:00:09.50

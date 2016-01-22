@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CUEC", "CUEC\CUEC.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SmallWorldProperty", "SmallWorldProperty\SmallWorldProperty.vcxproj", "{7E3F01B7-3DA9-4BA0-A527-0DFBE1504DD4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CUmodularity", "Newman_Modularity_GPU\CUmodularity\CUmodularity\CUmodularity.vcxproj", "{51279C02-12BA-43D9-8E63-D3EE6D1B3C46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -152,6 +154,18 @@ Global
 		{7E3F01B7-3DA9-4BA0-A527-0DFBE1504DD4}.Release|Win32.Build.0 = Release|Win32
 		{7E3F01B7-3DA9-4BA0-A527-0DFBE1504DD4}.Release|x64.ActiveCfg = Release|Win32
 		{7E3F01B7-3DA9-4BA0-A527-0DFBE1504DD4}.Release|x64.Build.0 = Release|Win32
+		{51279C02-12BA-43D9-8E63-D3EE6D1B3C46}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{51279C02-12BA-43D9-8E63-D3EE6D1B3C46}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{51279C02-12BA-43D9-8E63-D3EE6D1B3C46}.Debug|Win32.ActiveCfg = Debug|Win32
+		{51279C02-12BA-43D9-8E63-D3EE6D1B3C46}.Debug|Win32.Build.0 = Debug|Win32
+		{51279C02-12BA-43D9-8E63-D3EE6D1B3C46}.Debug|x64.ActiveCfg = Debug|x64
+		{51279C02-12BA-43D9-8E63-D3EE6D1B3C46}.Debug|x64.Build.0 = Debug|x64
+		{51279C02-12BA-43D9-8E63-D3EE6D1B3C46}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{51279C02-12BA-43D9-8E63-D3EE6D1B3C46}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{51279C02-12BA-43D9-8E63-D3EE6D1B3C46}.Release|Win32.ActiveCfg = Release|Win32
+		{51279C02-12BA-43D9-8E63-D3EE6D1B3C46}.Release|Win32.Build.0 = Release|Win32
+		{51279C02-12BA-43D9-8E63-D3EE6D1B3C46}.Release|x64.ActiveCfg = Release|x64
+		{51279C02-12BA-43D9-8E63-D3EE6D1B3C46}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,181 @@
+﻿生成启动时间为 2015/12/5 13:47:53。
+     1>项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\CUEC\CUEC\CUEC.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>_PrepareForClean:
+         正在删除文件“Release\CUEC.lastbuildstate”。
+       CudaClean:
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmpfd5339b6d4604f37a4ddab1702780a05.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir Release -maxrregcount=0  --machine 32 --compile      -DWIN32 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o Release\CUEC_unweighted.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\CUEC\CUEC\CUEC_unweighted.cu" -clean
+         
+         E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\CUEC\CUEC>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir Release -maxrregcount=0  --machine 32 --compile      -DWIN32 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o Release\CUEC_unweighted.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\CUEC\CUEC\CUEC_unweighted.cu" -clean 
+         CUEC_unweighted.cu
+         正在删除文件“Release\CUEC_unweighted.cu.deps”。
+       InitializeBuildStatus:
+         正在对“Release\CUEC.unsuccessfulbuild”执行 Touch 任务。
+       AddCudaCompileDeps:
+         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\cl.exe /E /nologo /showIncludes /TP /D__CUDACC__ /DWIN32 /DNDEBUG /D_CONSOLE /D_MBCS /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I. /FIcuda_runtime.h /c E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\CUEC\CUEC\CUEC_unweighted.cu 
+       CudaBuild:
+         Compiling CUDA source file CUEC_unweighted.cu...
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmpb2518b578fb542c2b4fa39fe0f7c3885.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir Release -maxrregcount=0  --machine 32 --compile -cudart static     -DWIN32 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o Release\CUEC_unweighted.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\CUEC\CUEC\CUEC_unweighted.cu"
+         
+         E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\CUEC\CUEC>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir Release -maxrregcount=0  --machine 32 --compile -cudart static     -DWIN32 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o Release\CUEC_unweighted.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\CUEC\CUEC\CUEC_unweighted.cu" 
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(76): warning : variable "i" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(76): warning : variable "j" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(85): warning : variable "cudaStat" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(86): warning : variable "stat" was set but never used
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(113): warning : variable "temp2" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(234): warning : integer conversion resulted in a change of sign
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(250): warning : integer conversion resulted in a change of sign
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(27): warning : variable "ITERNUMBER" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(28): warning : variable "BETA_Adjust" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(30): warning : variable "LAMBDA" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(31): warning : variable "MIN_GROUP" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(33): warning : variable "threadnumx" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(34): warning : variable "threadnumy" was declared but never referenced
+         
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(917): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(1921): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(2857): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(3802): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(4747): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(5772): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(6719): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(7652): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(8526): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(9492): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(10478): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(76): warning : variable "i" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(76): warning : variable "j" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(85): warning : variable "cudaStat" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(86): warning : variable "stat" was set but never used
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(113): warning : variable "temp2" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(234): warning : integer conversion resulted in a change of sign
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(250): warning : integer conversion resulted in a change of sign
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(27): warning : variable "ITERNUMBER" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(28): warning : variable "BETA_Adjust" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(30): warning : variable "LAMBDA" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(31): warning : variable "MIN_GROUP" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(33): warning : variable "threadnumx" was declared but never referenced
+         
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(34): warning : variable "threadnumy" was declared but never referenced
+         
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         CUEC_unweighted.cu
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(67): warning C4244: “初始化”: 从“double”转换到“long”，可能丢失数据
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(85): warning C4101: “cudaStat”: 未引用的局部变量
+     1>E:/cudaintergrated/cuda_test_project/cuda_newest/BNAPlatform-win64-cuda7.0-20151118/src/CUEC/CUEC/CUEC_unweighted.cu(284): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+       ClCompile:
+         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Timer.cpp
+         Timer.cpp
+       Link:
+         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Release\CUEC.exe" /NOLOGO /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\lib\Win32" cudart.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Release\CUEC.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Release\CUEC.lib" /MACHINE:X86 /SAFESEH Release\CUEC_unweighted.cu.obj
+         Release\Timer.obj
+     1>CUEC_unweighted.cu.obj : error LNK2001: 无法解析的外部符号 _cublasCreate_v2@4
+     1>CUEC_unweighted.cu.obj : error LNK2001: 无法解析的外部符号 _cublasDestroy_v2@4
+     1>CUEC_unweighted.cu.obj : error LNK2001: 无法解析的外部符号 _cublasDnrm2_v2@20
+     1>CUEC_unweighted.cu.obj : error LNK2001: 无法解析的外部符号 _cublasDscal_v2@20
+     1>CUEC_unweighted.cu.obj : error LNK2001: 无法解析的外部符号 _cublasDcopy_v2@24
+     1>CUEC_unweighted.cu.obj : error LNK2001: 无法解析的外部符号 _cusparseCreate@4
+     1>CUEC_unweighted.cu.obj : error LNK2001: 无法解析的外部符号 _cusparseDestroy@4
+     1>CUEC_unweighted.cu.obj : error LNK2001: 无法解析的外部符号 _cusparseCreateMatDescr@4
+     1>CUEC_unweighted.cu.obj : error LNK2001: 无法解析的外部符号 _cusparseDestroyMatDescr@4
+     1>CUEC_unweighted.cu.obj : error LNK2001: 无法解析的外部符号 _cusparseSetMatType@8
+     1>CUEC_unweighted.cu.obj : error LNK2001: 无法解析的外部符号 _cusparseSetMatIndexBase@8
+     1>CUEC_unweighted.cu.obj : error LNK2001: 无法解析的外部符号 _cusparseDcsrmv@52
+     1>E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Release\CUEC.exe : fatal error LNK1120: 12 个无法解析的外部命令
+     1>已完成生成项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\CUEC\CUEC\CUEC.vcxproj”(Rebuild 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:10.67

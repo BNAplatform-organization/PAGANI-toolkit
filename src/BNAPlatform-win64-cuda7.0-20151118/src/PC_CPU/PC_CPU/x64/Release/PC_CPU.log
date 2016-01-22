@@ -1,0 +1,23 @@
+﻿生成启动时间为 2015/12/30 11:42:20。
+     1>项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\PC_CPU\PC_CPU\PC_CPU.vcxproj”在节点 6 上(Rebuild 个目标)。
+     1>_PrepareForClean:
+         正在删除文件“x64\Release\PC_CPU.lastbuildstate”。
+       InitializeBuildStatus:
+         正在创建“x64\Release\PC_CPU.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I..\..\common /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc110.pdb" /Gd /TP /errorReport:prompt main.cpp
+         main.cpp
+     1>main.cpp(44): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+       Link:
+         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\..\bin\PC_CPU.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\..\..\bin\PC_CPU.pdb" /SUBSYSTEM:CONSOLE,"5.02" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\..\bin\PC_CPU.lib" /MACHINE:X64 x64\Release\main.obj
+         正在生成代码
+         已完成代码的生成
+         PC_CPU.vcxproj -> E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\PC_CPU\PC_CPU\..\..\..\bin\PC_CPU.exe
+       FinalizeBuildStatus:
+         正在删除文件“x64\Release\PC_CPU.unsuccessfulbuild”。
+         正在对“x64\Release\PC_CPU.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\PC_CPU\PC_CPU\PC_CPU.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:03.57

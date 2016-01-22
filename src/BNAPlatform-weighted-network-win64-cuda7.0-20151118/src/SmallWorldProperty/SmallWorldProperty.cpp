@@ -52,8 +52,14 @@ int main(int argc, char * argv[])
 	cout<<swcpFileNumber<<" files within gamma value to be processed."<<endl;
 
 	closedir(dp);
-	if(swlpFileNumber==0||swcpFileNumber==0)
-		exit(1);
+	if(swlpFileNumber==0)
+	{
+		cerr<<"Lack lambda files. Please run lambda algorithm before executing small world algorithm."<<endl;
+	}
+	if(swcpFileNumber==0)
+	{
+	   cerr<<"Lack gamma files. Please run gamma algorithm before executing small world algorithm."<<endl;
+	}
 	cout<<"Matching...."<<endl;
 	string *swlpfilename = new string[swlpFileNumber];
 	string *swcpfilename = new string[swcpFileNumber];

@@ -1,0 +1,39 @@
+﻿生成启动时间为 2015/12/5 12:13:07。
+     1>项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Newman_Modularity_CPU\Modularity_CPU\Modularity_CPU.vcxproj”在节点 8 上(Rebuild 个目标)。
+     1>_PrepareForClean:
+         正在删除文件“Release\Newman_Modularity_CPU.lastbuildstate”。
+       InitializeBuildStatus:
+         正在创建“Release\Newman_Modularity_CPU.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\common /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\common\Timer.cpp ..\..\Maslov\Maslov\Maslov.cpp Modularity_CPU.cpp
+         Timer.cpp
+         Maslov.cpp
+     1>..\..\Maslov\Maslov\Maslov.cpp(20): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+         Modularity_CPU.cpp
+     1>Modularity_CPU.cpp(100): warning C4244: “初始化”: 从“__int64”转换到“unsigned int”，可能丢失数据
+     1>Modularity_CPU.cpp(101): warning C4244: “初始化”: 从“__int64”转换到“unsigned int”，可能丢失数据
+     1>Modularity_CPU.cpp(102): warning C4244: “初始化”: 从“__int64”转换到“unsigned int”，可能丢失数据
+     1>Modularity_CPU.cpp(103): warning C4244: “初始化”: 从“__int64”转换到“unsigned int”，可能丢失数据
+     1>Modularity_CPU.cpp(105): warning C4244: “初始化”: 从“__int64”转换到“unsigned int”，可能丢失数据
+     1>Modularity_CPU.cpp(122): warning C4244: “初始化”: 从“__int64”转换到“unsigned int”，可能丢失数据
+     1>Modularity_CPU.cpp(183): warning C4244: “初始化”: 从“__int64”转换到“unsigned int”，可能丢失数据
+     1>Modularity_CPU.cpp(184): warning C4244: “参数”: 从“__int64”转换到“size_t”，可能丢失数据
+     1>Modularity_CPU.cpp(185): warning C4244: “初始化”: 从“__int64”转换到“unsigned int”，可能丢失数据
+     1>Modularity_CPU.cpp(265): warning C4244: “=”: 从“__int64”转换到“double”，可能丢失数据
+     1>Modularity_CPU.cpp(320): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+     1>Modularity_CPU.cpp(322): warning C4244: “=”: 从“__int64”转换到“double”，可能丢失数据
+       Link:
+         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Release\Newman_Modularity_CPU.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Release\Newman_Modularity_CPU.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Release\Newman_Modularity_CPU.lib" /MACHINE:X86 /SAFESEH Release\Timer.obj
+         Release\Maslov.obj
+         Release\Modularity_CPU.obj
+         正在生成代码
+         已完成代码的生成
+         Modularity_CPU.vcxproj -> E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Release\Newman_Modularity_CPU.exe
+       FinalizeBuildStatus:
+         正在删除文件“Release\Newman_Modularity_CPU.unsuccessfulbuild”。
+         正在对“Release\Newman_Modularity_CPU.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Newman_Modularity_CPU\Modularity_CPU\Modularity_CPU.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:05.58

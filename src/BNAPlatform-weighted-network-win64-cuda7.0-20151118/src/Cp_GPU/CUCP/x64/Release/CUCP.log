@@ -1,9 +1,9 @@
-﻿生成启动时间为 2015/12/7 21:14:29。
+﻿生成启动时间为 2015/12/30 11:42:45。
      1>项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Cp_GPU\CUCP\CUCP.vcxproj”在节点 8 上(Rebuild 个目标)。
      1>_PrepareForClean:
          正在删除文件“x64\Release\CUCP.lastbuildstate”。
        CudaClean:
-         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmped75a80dd4da48709d5bd2a98d341703.cmd"
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp922b8d6333c045369b2760220b93e9d9.cmd"
          "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile      -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\Cp.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Cp_GPU\CUCP\Cp.cu" -clean
          
          E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Cp_GPU\CUCP>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile      -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\Cp.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Cp_GPU\CUCP\Cp.cu" -clean 
@@ -16,7 +16,7 @@
          E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\cl.exe /E /nologo /showIncludes /TP /D__CUDACC__ /DWIN32 /DWIN64 /DNDEBUG /D_CONSOLE /D_MBCS /I..\..\common /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I. /FIcuda_runtime.h /c E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Cp_GPU\CUCP\Cp.cu 
        CudaBuild:
          Compiling CUDA source file Cp.cu...
-         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp8e09e435cdd246f5afd4960cf2c90a23.cmd"
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmpf8767a0e42c84e20b0b0e1590280d1e8.cmd"
          "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile -cudart static     -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\Cp.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Cp_GPU\CUCP\Cp.cu"
          
          E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Cp_GPU\CUCP>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"     --keep-dir x64\Release -maxrregcount=0  --machine 64 --compile -cudart static     -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /Zi  /MD  " -o x64\Release\Cp.cu.obj "E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\Cp_GPU\CUCP\Cp.cu" 
@@ -134,4 +134,4 @@
 
 生成成功。
 
-已用时间 00:00:53.49
+已用时间 00:00:19.03
