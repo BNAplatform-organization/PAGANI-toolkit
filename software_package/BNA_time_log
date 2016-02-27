@@ -1,0 +1,32 @@
+Cp	E:/BNAlauncher/test_new/paper/weighted\N0001_25218_spa0.007%_cor0.900_weighted.csrCPU	kernel time	2.01341s
+Cp	RandomCPU	(Maslov+kernel) time	8.21093e-007s
+Cp	E:/BNAlauncher/test_new/paper/weighted\N0001_25218_spa1.000%_cor0.504_weighted.csrCPU	kernel time	7.86304s
+Cp	RandomCPU	(Maslov+kernel) time	4.10546e-007s
+BFW_Lp	E:/BNAlauncher/test_new/paper/unweighted\N0001_25218_spa0.007%_cor0.900.csrGPU	kernel time	1.45341s
+Modularity	E:/BNAlauncher/test_new/paper/unweighted\N0001_25218_spa0.007%_cor0.900.csrCPU	kernel time	32129.8s
+Modularity	RandomCPU	(Maslov+kernel) time	32085.9s
+Modularity	E:/BNAlauncher/test_new/paper/unweighted\N0001_25218_spa0.100%_cor0.705.csrCPU	kernel time	32104.1s
+BFW_Lp	E:/BNAlauncher/test_new/paper/unweighted\N0001_25218_spa0.007%_cor0.900.csrGPU	kernel time	1.39095s
+BFW_Lp	RandomGPU	(Maslov+kernel) time	4.10546e-007s
+BFW_Lp	E:/BNAlauncher/test_new/paper/unweighted\N0001_25218_spa0.100%_cor0.705.csrGPU	kernel time	9.65388s
+BFW_Lp	RandomGPU	(Maslov+kernel) time	4.10546e-007s
+BFW_Lp	E:/BNAlauncher/test_new/paper/unweighted\N0001_25218_spa0.007%_cor0.900.csrGPU	kernel time	1.3784s
+BFW_Lp	RandomGPU	(Maslov+kernel) time	4.10546e-007s
+BFW_Lp	GPU	total time	1.675s
+
+Cp	E:/BNAlauncher/test_new/paper/unweighted\N0001_25218_spa0.007%_cor0.900.csrCPU	kernel time	0.795717s
+Cp	RandomCPU	(Maslov+kernel) time	3.69492e-006s
+Cp	CPU	total time	0.851s
+
+BFW_Lp	E:/BNAlauncher/test_new/paper/weighted\N0001_25218_spa0.007%_cor0.900_weighted.csrGPU	kernel time	1.37767s
+BFW_Lp	RandomGPU	(Maslov+kernel) time	8.21093e-007s
+BFW_Lp	E:/BNAlauncher/test_new/paper/weighted\N0001_25218_spa1.000%_cor0.504_weighted.csrGPU	kernel time	230.199s
+BFW_Lp	RandomGPU	(Maslov+kernel) time	4.10546e-007s
+BFW_Lp	E:/BNAlauncher/test_new/paper/weighted\N0001_25218_spa0.007%_cor0.900_weighted.csrGPU	kernel time	1.68648s
+BFW_Lp	RandomGPU	(Maslov+kernel) time	8.21093e-007s
+BFW_Lp	GPU	total time	2.187s
+
+Cp	E:/BNAlauncher/test_new/paper/weighted\N0001_25218_spa0.007%_cor0.900_weighted.csrCPU	kernel time	2.49229s
+Cp	RandomCPU	(Maslov+kernel) time	1.23164e-006s
+Cp	CPU	total time	2.541s
+
