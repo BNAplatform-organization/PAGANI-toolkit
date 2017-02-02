@@ -1,0 +1,479 @@
+﻿生成启动时间为 2016/9/28 20:22:41。
+     1>项目“E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\CuCorMat-scalability-cor-dense2csr.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>CudaClean:
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp7f36414911e74a49bd07fff0bb4d121c.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\softwareforwork\VS2012\VC\bin"  -I"C:\Program Files (x86)\Visual Leak Detector\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile   -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd  " -o Debug\CorMat-cor-dense2csr.cu.obj "E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\CorMat-cor-dense2csr.cu" -clean
+         
+         E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\softwareforwork\VS2012\VC\bin"  -I"C:\Program Files (x86)\Visual Leak Detector\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile   -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd  " -o Debug\CorMat-cor-dense2csr.cu.obj "E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\CorMat-cor-dense2csr.cu" -clean 
+         CorMat-cor-dense2csr.cu
+       CudaClean:
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp3e6d7726bb3342b88d0d537929ce630e.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\softwareforwork\VS2012\VC\bin"  -I"C:\Program Files (x86)\Visual Leak Detector\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile   -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd  " -o Debug\CorMat-cor-spa2rth.cu.obj "E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\CorMat-cor-spa2rth.cu" -clean
+         
+         E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -ccbin "E:\softwareforwork\VS2012\VC\bin"  -I"C:\Program Files (x86)\Visual Leak Detector\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile   -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd  " -o Debug\CorMat-cor-spa2rth.cu.obj "E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\CorMat-cor-spa2rth.cu" -clean 
+         CorMat-cor-spa2rth.cu
+       AddCudaCompileDeps:
+         E:\softwareforwork\VS2012\VC\bin\cl.exe /E /nologo /showIncludes /TP /D__CUDACC__ /DWIN32 /D_DEBUG /D_CONSOLE /D_MBCS /I"C:\Program Files (x86)\Visual Leak Detector\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I. /FIcuda_runtime.h /c E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\CorMat-cor-dense2csr.cu 
+       AddCudaCompileDeps:
+         E:\softwareforwork\VS2012\VC\bin\cl.exe /E /nologo /showIncludes /TP /D__CUDACC__ /DWIN32 /D_DEBUG /D_CONSOLE /D_MBCS /I"C:\Program Files (x86)\Visual Leak Detector\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I. /FIcuda_runtime.h /c E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\CorMat-cor-spa2rth.cu 
+       CudaBuild:
+         Compiling CUDA source file CorMat-cor-dense2csr.cu...
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp2239ed7f467e412bb4bd6d722647f0cb.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\softwareforwork\VS2012\VC\bin"  -I"C:\Program Files (x86)\Visual Leak Detector\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd  " -o Debug\CorMat-cor-dense2csr.cu.obj "E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\CorMat-cor-dense2csr.cu"
+         
+         E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\softwareforwork\VS2012\VC\bin"  -I"C:\Program Files (x86)\Visual Leak Detector\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd  " -o Debug\CorMat-cor-dense2csr.cu.obj "E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\CorMat-cor-dense2csr.cu" 
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-dense2csr.cu(86): warning : variable "cudaStat" was declared but never referenced
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(917): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(1921): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(2857): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(3802): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(4747): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(5772): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(6719): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(7652): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(8526): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(9492): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(10478): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-dense2csr.cu(86): warning : variable "cudaStat" was declared but never referenced
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         CorMat-cor-dense2csr.cu
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-dense2csr.cu(410): warning C4244: “初始化”: 从“double”转换到“real__t”，可能丢失数据
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-dense2csr.cu(452): warning C4244: “=”: 从“double”转换到“real__t”，可能丢失数据
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-dense2csr.cu(86): warning C4101: “cudaStat”: 未引用的局部变量
+       CudaBuild:
+         Compiling CUDA source file CorMat-cor-spa2rth.cu...
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp93d2cf5204c54000a793472cdae68448.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\softwareforwork\VS2012\VC\bin"  -I"C:\Program Files (x86)\Visual Leak Detector\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd  " -o Debug\CorMat-cor-spa2rth.cu.obj "E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\CorMat-cor-spa2rth.cu"
+         
+         E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\softwareforwork\VS2012\VC\bin"  -I"C:\Program Files (x86)\Visual Leak Detector\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd  " -o Debug\CorMat-cor-spa2rth.cu.obj "E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\CorMat-cor-spa2rth.cu" 
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(105): warning : variable "kk" was declared but never referenced
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(153): warning : missing return statement at end of non-void function "CorMat_spa2rth"
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(84): warning : variable "cudaStat" was declared but never referenced
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(917): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(1921): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(2857): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(3802): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(4747): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(5772): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(6719): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(7652): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(8526): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(9492): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(10478): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(105): warning : variable "kk" was declared but never referenced
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(153): warning : missing return statement at end of non-void function "CorMat_spa2rth"
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(84): warning : variable "cudaStat" was declared but never referenced
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/allocator/allocator_traits.h(271): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         CorMat-cor-spa2rth.cu
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/allocator/allocator_traits.h(264): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(66): warning C4018: “<”: 有符号/无符号不匹配
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(68): warning C4244: “=”: 从“double”转换到“__int64”，可能丢失数据
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(79): warning C4244: “初始化”: 从“double”转换到“uint__t”，可能丢失数据
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(95): warning C4244: “return”: 从“cublasStatus_t”转换到“real__t”，可能丢失数据
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(112): warning C4244: “return”: 从“cublasStatus_t”转换到“real__t”，可能丢失数据
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(120): warning C4305: “参数”: 从“double”到“float”截断
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(122): warning C4305: “参数”: 从“double”到“float”截断
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(135): warning C4018: “<”: 有符号/无符号不匹配
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(138): warning C4244: “=”: 从“double”转换到“real__t”，可能丢失数据
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(151): warning C4244: “return”: 从“cublasStatus_t”转换到“real__t”，可能丢失数据
+     1>E:/githubsynchronizefiles/PAGANI-SOFTWARE/PAGANI_software/CuCorMat-scalability-cor-dense2csr/CorMat-cor-spa2rth.cu(84): warning C4101: “cudaStat”: 未引用的局部变量
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/internal_functional.h(322): warning C4244: “=”: 从“float”转换到“unsigned int”，可能丢失数据
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/function.h(60): 参见对正在编译的函数 模板 实例化“void thrust::detail::unary_transform_functor<UnaryFunction>::operator ()<thrust::detail::tuple_of_iterator_references<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>>(Tuple)”的引用
+                 with
+                 [
+                     UnaryFunction=ax_functor<float,unsigned int>,
+                     T0=unsigned int &,
+                     T1=unsigned int &,
+                     T2=thrust::null_type,
+                     T3=thrust::null_type,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type,
+                     Tuple=thrust::detail::tuple_of_iterator_references<unsigned int &,unsigned int &,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/function.h(60): 参见对正在编译的函数 模板 实例化“void thrust::detail::unary_transform_functor<UnaryFunction>::operator ()<thrust::detail::tuple_of_iterator_references<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>>(Tuple)”的引用
+                 with
+                 [
+                     UnaryFunction=ax_functor<float,unsigned int>,
+                     T0=unsigned int &,
+                     T1=unsigned int &,
+                     T2=thrust::null_type,
+                     T3=thrust::null_type,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type,
+                     Tuple=thrust::detail::tuple_of_iterator_references<unsigned int &,unsigned int &,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/detail/sequential/for_each.h(83): 参见对正在编译的函数 模板 实例化“Result thrust::detail::wrapped_function<Function,Result>::operator ()<thrust::detail::tuple_of_iterator_references<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>>(const Argument &) const”的引用
+                 with
+                 [
+                     Result=void,
+                     Function=thrust::detail::unary_transform_functor<ax_functor<float,unsigned int>>,
+                     T0=thrust::device_reference<unsigned int>,
+                     T1=thrust::device_reference<unsigned int>,
+                     T2=thrust::null_type,
+                     T3=thrust::null_type,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type,
+                     Argument=thrust::detail::tuple_of_iterator_references<thrust::device_reference<unsigned int>,thrust::device_reference<unsigned int>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/detail/sequential/for_each.h(83): 参见对正在编译的函数 模板 实例化“Result thrust::detail::wrapped_function<Function,Result>::operator ()<thrust::detail::tuple_of_iterator_references<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>>(const Argument &) const”的引用
+                 with
+                 [
+                     Result=void,
+                     Function=thrust::detail::unary_transform_functor<ax_functor<float,unsigned int>>,
+                     T0=thrust::device_reference<unsigned int>,
+                     T1=thrust::device_reference<unsigned int>,
+                     T2=thrust::null_type,
+                     T3=thrust::null_type,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type,
+                     Argument=thrust::detail::tuple_of_iterator_references<thrust::device_reference<unsigned int>,thrust::device_reference<unsigned int>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/for_each.inl(71): 参见对正在编译的函数 模板 实例化“InputIterator thrust::system::detail::sequential::for_each_n<thrust::detail::seq_t,InputIterator,Size,UnaryFunction>(thrust::system::detail::sequential::execution_policy<Derived> &,InputIterator,Size,UnaryFunction)”的引用
+                 with
+                 [
+                     InputIterator=thrust::zip_iterator<thrust::tuple<thrust::detail::normal_iterator<thrust::device_ptr<unsigned int>>,thrust::detail::normal_iterator<thrust::device_ptr<unsigned int>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     Size=int,
+                     UnaryFunction=thrust::detail::unary_transform_functor<ax_functor<float,unsigned int>>,
+                     Derived=thrust::detail::seq_t
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/for_each.inl(152): 参见对正在编译的函数 模板 实例化“InputIterator thrust::for_each_n<DerivedPolicy,RandomAccessIterator,Size,UnaryFunction>(const thrust::detail::execution_policy_base<DerivedPolicy> &,InputIterator,Size,UnaryFunction)”的引用
+                 with
+                 [
+                     InputIterator=thrust::zip_iterator<thrust::tuple<thrust::detail::normal_iterator<thrust::device_ptr<unsigned int>>,thrust::detail::normal_iterator<thrust::device_ptr<unsigned int>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     DerivedPolicy=thrust::detail::seq_t,
+                     RandomAccessIterator=thrust::zip_iterator<thrust::tuple<thrust::detail::normal_iterator<thrust::device_ptr<unsigned int>>,thrust::detail::normal_iterator<thrust::device_ptr<unsigned int>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     Size=int,
+                     UnaryFunction=thrust::detail::unary_transform_functor<ax_functor<float,unsigned int>>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/iterator/iterator_facade.h(309): 编译类 模板 成员函数“thrust::reference<Element,Pointer> thrust::iterator_facade<Derived,Value,System,Traversal,Reference,Difference>::operator *(void) const”时
+                 with
+                 [
+                     Element=int,
+                     Pointer=thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>,
+                     Derived=thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,
+                     Value=int,
+                     System=thrust::system::cuda::detail::tag,
+                     Traversal=thrust::random_access_traversal_tag,
+                     Reference=thrust::reference<int,thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,
+                     Difference=int
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/iterator/iterator_facade.h(328): 参见对正在编译的函数 模板 实例化“thrust::reference<Element,Pointer> thrust::iterator_facade<Derived,Value,System,Traversal,Reference,Difference>::operator *(void) const”的引用
+                 with
+                 [
+                     Element=int,
+                     Pointer=thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>,
+                     Derived=thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,
+                     Value=int,
+                     System=thrust::system::cuda::detail::tag,
+                     Traversal=thrust::random_access_traversal_tag,
+                     Reference=thrust::reference<int,thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,
+                     Difference=int
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/iterator/iterator_adaptor.h(121): 参见对正在编译的类 模板 实例化“thrust::iterator_facade<Derived,Value,System,Traversal,Reference,Difference>”的引用
+                 with
+                 [
+                     Derived=thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,
+                     Value=int,
+                     System=thrust::system::cuda::detail::tag,
+                     Traversal=thrust::random_access_traversal_tag,
+                     Reference=thrust::reference<int,thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,
+                     Difference=int
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/iterator/detail/normal_iterator.h(36): 参见对正在编译的类 模板 实例化“thrust::iterator_adaptor<Derived,Base>”的引用
+                 with
+                 [
+                     Derived=thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,
+                     Base=thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/tuple.inl(371): 参见对正在编译的类 模板 实例化“thrust::detail::normal_iterator<Pointer>”的引用
+                 with
+                 [
+                     Pointer=thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/tuple.inl(257): 参见对正在编译的类 模板 实例化“thrust::detail::cons<HT,TT>”的引用
+                 with
+                 [
+                     HT=thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,
+                     TT=thrust::detail::map_tuple_to_cons<thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>::type
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/tuple.h(197): 参见对正在编译的类 模板 实例化“thrust::detail::cons<HT,TT>”的引用
+                 with
+                 [
+                     HT=thrust::detail::normal_iterator<thrust::pointer<__int64,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,
+                     TT=thrust::detail::cons<thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::detail::map_tuple_to_cons<thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>::type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/tuple.h(90): 参见对正在编译的类 模板 实例化“thrust::tuple<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>”的引用
+                 with
+                 [
+                     T0=thrust::detail::normal_iterator<thrust::pointer<__int64,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,
+                     T1=thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,
+                     T2=thrust::null_type,
+                     T3=thrust::null_type,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/iterator/detail/zip_iterator_base.h(329): 参见对正在编译的类 模板 实例化“thrust::tuple_size<T>”的引用
+                 with
+                 [
+                     T=thrust::tuple<thrust::detail::normal_iterator<thrust::pointer<__int64,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/iterator/detail/zip_iterator_base.h(365): 参见对正在编译的类 模板 实例化“thrust::detail::zip_iterator_base_ns::tuple_of_iterator_references<IteratorTuple>”的引用
+                 with
+                 [
+                     IteratorTuple=thrust::tuple<thrust::detail::normal_iterator<thrust::pointer<__int64,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/iterator/zip_iterator.h(140): 参见对正在编译的类 模板 实例化“thrust::detail::zip_iterator_base<IteratorTuple>”的引用
+                 with
+                 [
+                     IteratorTuple=thrust::tuple<thrust::detail::normal_iterator<thrust::pointer<__int64,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/tuple.inl(256): 参见对正在编译的类 模板 实例化“thrust::zip_iterator<IteratorTuple>”的引用
+                 with
+                 [
+                     IteratorTuple=thrust::tuple<thrust::detail::normal_iterator<thrust::pointer<__int64,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/tuple.inl(257): 参见对正在编译的类 模板 实例化“thrust::detail::cons<HT,TT>”的引用
+                 with
+                 [
+                     HT=thrust::zip_iterator<thrust::tuple<thrust::detail::normal_iterator<thrust::pointer<__int64,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     TT=thrust::detail::cons<thrust::detail::wrapped_function<thrust::system::detail::generic::detail::binary_search_functor<thrust::detail::normal_iterator<thrust::device_ptr<__int64>>,thrust::system::detail::generic::detail::binary_search_less,thrust::system::detail::generic::detail::ubf>,void>,thrust::detail::cons<unsigned int,thrust::detail::map_tuple_to_cons<thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>::type>>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/tuple.h(197): 参见对正在编译的类 模板 实例化“thrust::detail::cons<HT,TT>”的引用
+                 with
+                 [
+                     HT=thrust::system::cuda::detail::bulk_::detail::cursor<0>,
+                     TT=thrust::detail::cons<thrust::zip_iterator<thrust::tuple<thrust::detail::normal_iterator<thrust::pointer<__int64,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::cons<thrust::detail::wrapped_function<thrust::system::detail::generic::detail::binary_search_functor<thrust::detail::normal_iterator<thrust::device_ptr<__int64>>,thrust::system::detail::generic::detail::binary_search_less,thrust::system::detail::generic::detail::ubf>,void>,thrust::detail::cons<unsigned int,thrust::detail::map_tuple_to_cons<thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>::type>>>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/closure.hpp(70): 参见对正在编译的类 模板 实例化“thrust::tuple<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>”的引用
+                 with
+                 [
+                     T0=thrust::system::cuda::detail::bulk_::detail::cursor<0>,
+                     T1=thrust::zip_iterator<thrust::tuple<thrust::detail::normal_iterator<thrust::pointer<__int64,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     T2=thrust::detail::wrapped_function<thrust::system::detail::generic::detail::binary_search_functor<thrust::detail::normal_iterator<thrust::device_ptr<__int64>>,thrust::system::detail::generic::detail::binary_search_less,thrust::system::detail::generic::detail::ubf>,void>,
+                     T3=unsigned int,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_task.hpp(61): 参见对正在编译的类 模板 实例化“thrust::system::cuda::detail::bulk_::detail::closure<Function,Tuple>”的引用
+                 with
+                 [
+                     Function=thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,
+                     Tuple=thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::detail::normal_iterator<thrust::pointer<__int64,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::system::detail::generic::detail::binary_search_functor<thrust::detail::normal_iterator<thrust::device_ptr<__int64>>,thrust::system::detail::generic::detail::binary_search_less,thrust::system::detail::generic::detail::ubf>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_task.hpp(202): 参见对正在编译的类 模板 实例化“thrust::system::cuda::detail::bulk_::detail::task_base<ExecutionGroup,Closure>”的引用
+                 with
+                 [
+                     ExecutionGroup=thrust::system::cuda::detail::bulk_::parallel_group<thrust::system::cuda::detail::bulk_::concurrent_group<>>,
+                     Closure=thrust::system::cuda::detail::bulk_::detail::closure<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::detail::normal_iterator<thrust::pointer<__int64,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::system::detail::generic::detail::binary_search_functor<thrust::detail::normal_iterator<thrust::device_ptr<__int64>>,thrust::system::detail::generic::detail::binary_search_less,thrust::system::detail::generic::detail::ubf>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>
+                 ]
+                 c:\users\lerond\appdata\local\temp\tmpxft_00002afc_00000000-2_CorMat-cor-spa2rth.cudafe1.stub.c(209): 参见对正在编译的类 模板 实例化“thrust::system::cuda::detail::bulk_::detail::cuda_task<Group,Closure>”的引用
+                 with
+                 [
+                     Group=thrust::system::cuda::detail::bulk_::parallel_group<thrust::system::cuda::detail::bulk_::concurrent_group<>>,
+                     Closure=thrust::system::cuda::detail::bulk_::detail::closure<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::detail::normal_iterator<thrust::pointer<__int64,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::detail::normal_iterator<thrust::pointer<int,thrust::system::cuda::detail::tag,thrust::use_default,thrust::use_default>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::system::detail::generic::detail::binary_search_functor<thrust::detail::normal_iterator<thrust::device_ptr<__int64>>,thrust::system::detail::generic::detail::binary_search_less,thrust::system::detail::generic::detail::ubf>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>
+                 ]
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/tuple.inl(375): warning C4503: “thrust::iterator_facade<Derived,Value,System,Traversal,Reference,Difference>”: 超出修饰名的长度，名称被截断
+                 with
+                 [
+                     Derived=thrust::zip_iterator<thrust::tuple<thrust::zip_iterator<thrust::tuple<thrust::detail::normal_iterator<thrust::pointer<float,thrust::detail::seq_t,thrust::use_default,thrust::use_default>>,int *,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::permutation_iterator<thrust::zip_iterator<thrust::tuple<thrust::detail::normal_iterator<thrust::device_ptr<float>>,int *,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::transform_iterator<thrust::system::detail::sequential::radix_sort_detail::bucket_functor<8,float>,thrust::detail::normal_iterator<thrust::pointer<float,thrust::detail::seq_t,thrust::use_default,thrust::use_default>>,thrust::use_default,thrust::use_default>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     Value=thrust::tuple<thrust::tuple<float,int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>,thrust::tuple<float,int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>,
+                     System=thrust::detail::unrelated_systems<thrust::detail::seq_t,thrust::detail::unrelated_systems<thrust::detail::unrelated_systems<thrust::system::cuda::detail::tag,thrust::system::cpp::detail::tag,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion>,thrust::detail::seq_t,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion>,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion>,
+                     Traversal=thrust::random_access_traversal_tag,
+                     Reference=thrust::detail::tuple_of_iterator_references<thrust::detail::tuple_of_iterator_references<thrust::reference<float,thrust::pointer<float,thrust::detail::seq_t,thrust::use_default,thrust::use_default>>,int &,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>,thrust::detail::tuple_of_iterator_references<thrust::device_reference<float>,int &,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>,
+                     Difference=int
+                 ]
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/tuple.inl(375): warning C4503: “thrust::iterator_facade<Derived,Value,System,Traversal,Reference,Difference>”: 超出修饰名的长度，名称被截断
+                 with
+                 [
+                     Derived=thrust::zip_iterator<thrust::tuple<thrust::zip_iterator<thrust::tuple<thrust::detail::normal_iterator<thrust::pointer<float,thrust::detail::seq_t,thrust::use_default,thrust::use_default>>,int *,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::permutation_iterator<thrust::zip_iterator<thrust::tuple<thrust::detail::normal_iterator<thrust::device_ptr<float>>,int *,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::transform_iterator<thrust::system::detail::sequential::radix_sort_detail::bucket_functor<4,float>,thrust::detail::normal_iterator<thrust::pointer<float,thrust::detail::seq_t,thrust::use_default,thrust::use_default>>,thrust::use_default,thrust::use_default>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     Value=thrust::tuple<thrust::tuple<float,int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>,thrust::tuple<float,int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>,
+                     System=thrust::detail::unrelated_systems<thrust::detail::seq_t,thrust::detail::unrelated_systems<thrust::detail::unrelated_systems<thrust::system::cuda::detail::tag,thrust::system::cpp::detail::tag,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion>,thrust::detail::seq_t,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion>,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion,thrust::detail::minimum_type_detail::any_conversion>,
+                     Traversal=thrust::random_access_traversal_tag,
+                     Reference=thrust::detail::tuple_of_iterator_references<thrust::detail::tuple_of_iterator_references<thrust::reference<float,thrust::pointer<float,thrust::detail::seq_t,thrust::use_default,thrust::use_default>>,int &,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>,thrust::detail::tuple_of_iterator_references<thrust::device_reference<float>,int &,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>,
+                     Difference=int
+                 ]
+     1>e:\githubsynchronizefiles\pagani-software\pagani_software\cucormat-scalability-cor-dense2csr\cormat-cor-spa2rth.cu(153): warning C4715: “CorMat_spa2rth”: 不是所有的控件路径都返回值
+       ClCompile:
+         E:\softwareforwork\VS2012\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "CorMat-cor-dense2csr.cpp"
+         CorMat-cor-dense2csr.cpp
+     1>e:\githubsynchronizefiles\pagani-software\pagani_software\cucormat-scalability-cor-dense2csr\cormat-cor-dense2csr.cpp(44): warning C4305: “-=”: 从“double”到“real__t”截断
+     1>e:\githubsynchronizefiles\pagani-software\pagani_software\cucormat-scalability-cor-dense2csr\cormat-cor-dense2csr.cpp(45): warning C4244: “=”: 从“double”转换到“real__t”，可能丢失数据
+     1>e:\githubsynchronizefiles\pagani-software\pagani_software\cucormat-scalability-cor-dense2csr\cormat-cor-dense2csr.cpp(146): warning C4244: “初始化”: 从“short”转换到“char”，可能丢失数据
+     1>e:\githubsynchronizefiles\pagani-software\pagani_software\cucormat-scalability-cor-dense2csr\cormat-cor-dense2csr.cpp(225): warning C4244: “=”: 从“double”转换到“real__t”，可能丢失数据
+     1>e:\githubsynchronizefiles\pagani-software\pagani_software\cucormat-scalability-cor-dense2csr\cormat-cor-dense2csr.cpp(272): warning C4244: “=”: 从“double”转换到“real__t”，可能丢失数据
+     1>e:\githubsynchronizefiles\pagani-software\pagani_software\cucormat-scalability-cor-dense2csr\cormat-cor-dense2csr.cpp(282): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+                 e:\softwareforwork\vs2012\vc\include\stdlib.h(909) : 参见“itoa”的声明
+     1>e:\githubsynchronizefiles\pagani-software\pagani_software\cucormat-scalability-cor-dense2csr\cormat-cor-dense2csr.cpp(67): warning C4101: “time”: 未引用的局部变量
+     1>e:\githubsynchronizefiles\pagani-software\pagani_software\cucormat-scalability-cor-dense2csr\cormat-cor-dense2csr.cpp(484): warning C4244: “=”: 从“double”转换到“real__t”，可能丢失数据
+     1>e:\githubsynchronizefiles\pagani-software\pagani_software\cucormat-scalability-cor-dense2csr\cormat-cor-dense2csr.cpp(499): warning C4244: “=”: 从“double”转换到“real__t”，可能丢失数据
+       Link:
+         E:\softwareforwork\VS2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\Debug\CuCorMat-sca-cor-dense2csr.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\lib\Win32" cudart.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\Debug\CuCorMat-sca-cor-dense2csr.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\Debug\CuCorMat-sca-cor-dense2csr.lib" /MACHINE:X86 "Debug\CorMat-cor-dense2csr.cu.obj"
+         "Debug\CorMat-cor-spa2rth.cu.obj"
+         "Debug\CorMat-cor-dense2csr.obj"
+     1>LINK : fatal error LNK1104: 无法打开文件“cusparse.lib”
+     1>已完成生成项目“E:\githubsynchronizefiles\PAGANI-SOFTWARE\PAGANI_software\CuCorMat-scalability-cor-dense2csr\CuCorMat-scalability-cor-dense2csr.vcxproj”(Rebuild 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:01:22.10

@@ -1,0 +1,5 @@
+Note: all modification is conpared to CuCorMat-sca-Pspearman
+alteration 1. Batch_size equals to 1024;
+mark 2. threadnum should be modified!!
+mark3. all program is designed for L = 2048 at most; whether or not L > 1024 ?
+mark4. debug1. preprocess tiecount size_t; L>1024.

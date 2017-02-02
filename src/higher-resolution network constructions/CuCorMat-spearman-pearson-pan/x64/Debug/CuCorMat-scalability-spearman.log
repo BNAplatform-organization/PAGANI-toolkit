@@ -1,0 +1,547 @@
+﻿生成启动时间为 2016/12/12 15:17:39。
+     1>项目“E:\project\CuCorMat-spearman\CuCorMat-scalability-spearman.vcxproj”在节点 2 上(Build 个目标)。
+     1>AddCudaCompileDeps:
+         E:\softwareforwork\VS2012\VC\bin\x86_amd64\cl.exe /E /nologo /showIncludes /TP /D__CUDACC__ /DWIN32 /DWIN64 /D_DEBUG /D_CONSOLE /D_MBCS /I"C:\Program Files (x86)\Visual Leak Detector\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I. /FIcuda_runtime.h /c E:\project\CuCorMat-spearman\CorMat-spear-preprocessing.cu 
+       CudaBuild:
+         Compiling CUDA source file CorMat-spear-preprocessing.cu...
+         cmd.exe /C "C:\Users\Lerond\AppData\Local\Temp\tmp7c1f40872ea94263831fc78e30dcdd16.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\softwareforwork\VS2012\VC\bin\x86_amd64"  -I"C:\Program Files (x86)\Visual Leak Detector\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd  " -o x64\Debug\CorMat-spear-preprocessing.cu.obj "E:\project\CuCorMat-spearman\CorMat-spear-preprocessing.cu"
+         
+         E:\project\CuCorMat-spearman>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "E:\softwareforwork\VS2012\VC\bin\x86_amd64"  -I"C:\Program Files (x86)\Visual Leak Detector\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd  " -o x64\Debug\CorMat-spear-preprocessing.cu.obj "E:\project\CuCorMat-spearman\CorMat-spear-preprocessing.cu" 
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:/project/CuCorMat-spearman/CorMat-spear-preprocessing.cu(74): warning : variable "I" was declared but never referenced
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(917): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(1921): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(2857): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(3802): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(4747): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(5772): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(6719): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(7652): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(8526): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(9492): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(10478): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>E:/project/CuCorMat-spearman/CorMat-spear-preprocessing.cu(74): warning : variable "I" was declared but never referenced
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/algorithm/sort.hpp(36): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         CorMat-spear-preprocessing.cu
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/execution_policy.hpp(241): warning C4267: “参数”: 从“size_t”转换到“thrust::system::cuda::detail::bulk_::parallel_group<>::size_type”，可能丢失数据
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/execution_policy.hpp(303): warning C4267: “参数”: 从“size_t”转换到“thrust::system::cuda::detail::bulk_::parallel_group<>::size_type”，可能丢失数据
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/execution_policy.hpp(319): warning C4267: “参数”: 从“size_t”转换到“thrust::system::cuda::detail::bulk_::parallel_group<>::size_type”，可能丢失数据
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/execution_policy.hpp(439): warning C4267: “参数”: 从“size_t”转换到“thrust::system::cuda::detail::bulk_::concurrent_group<>::size_type”，可能丢失数据
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/allocator/allocator_traits.h(51): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/execution_policy.hpp(250): warning C4267: “参数”: 从“size_t”转换到“thrust::system::cuda::detail::bulk_::parallel_group<ExecutionAgent>::size_type”，可能丢失数据
+                 with
+                 [
+                     ExecutionAgent=thrust::system::cuda::detail::bulk_::concurrent_group<>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/execution_policy.hpp(625): 参见对正在编译的函数 模板 实例化“thrust::system::cuda::detail::bulk_::parallel_group<ExecutionAgent> thrust::system::cuda::detail::bulk_::par<thrust::system::cuda::detail::bulk_::concurrent_group<>>(ExecutionAgent,size_t)”的引用
+                 with
+                 [
+                     ExecutionAgent=thrust::system::cuda::detail::bulk_::concurrent_group<>
+                 ]
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_launcher/cuda_launcher.hpp(155): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_launcher/cuda_launcher.hpp(148): 编译类 模板 成员函数“int thrust::system::cuda::detail::bulk_::detail::cuda_launcher_base<block_size_,ExecutionGroup,Closure>::choose_group_size(int)”时
+                 with
+                 [
+                     block_size_=0,
+                     ExecutionGroup=thrust::system::cuda::detail::bulk_::parallel_group<thrust::system::cuda::detail::bulk_::concurrent_group<>>,
+                     Closure=thrust::system::cuda::detail::bulk_::detail::closure<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_launcher/cuda_launcher.hpp(305): 参见对正在编译的函数 模板 实例化“int thrust::system::cuda::detail::bulk_::detail::cuda_launcher_base<block_size_,ExecutionGroup,Closure>::choose_group_size(int)”的引用
+                 with
+                 [
+                     block_size_=0,
+                     ExecutionGroup=thrust::system::cuda::detail::bulk_::parallel_group<thrust::system::cuda::detail::bulk_::concurrent_group<>>,
+                     Closure=thrust::system::cuda::detail::bulk_::detail::closure<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_launcher/cuda_launcher.hpp(228): 参见对正在编译的类 模板 实例化“thrust::system::cuda::detail::bulk_::detail::cuda_launcher_base<block_size_,ExecutionGroup,Closure>”的引用
+                 with
+                 [
+                     block_size_=0,
+                     ExecutionGroup=thrust::system::cuda::detail::bulk_::parallel_group<thrust::system::cuda::detail::bulk_::concurrent_group<>>,
+                     Closure=thrust::system::cuda::detail::bulk_::detail::closure<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/choose_sizes.inl(41): 参见对正在编译的类 模板 实例化“thrust::system::cuda::detail::bulk_::detail::cuda_launcher<ExecutionGroup,Closure>”的引用
+                 with
+                 [
+                     ExecutionGroup=thrust::system::cuda::detail::bulk_::parallel_group<thrust::system::cuda::detail::bulk_::concurrent_group<>>,
+                     Closure=thrust::system::cuda::detail::bulk_::detail::closure<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/choose_sizes.inl(96): 参见对正在编译的函数 模板 实例化“thrust::pair<T1,T2> thrust::system::cuda::detail::bulk_::detail::choose_sizes<thrust::system::cuda::detail::bulk_::detail::closure<Function,Tuple>>(thrust::system::cuda::detail::bulk_::parallel_group<ExecutionAgent>,Closure)”的引用
+                 with
+                 [
+                     T1=int,
+                     T2=int,
+                     Function=thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,
+                     Tuple=thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>,
+                     ExecutionAgent=thrust::system::cuda::detail::bulk_::concurrent_group<>,
+                     Closure=thrust::system::cuda::detail::bulk_::detail::closure<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/for_each.inl(125): 参见对正在编译的函数 模板 实例化“thrust::pair<T1,T2> thrust::system::cuda::detail::bulk_::choose_sizes<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::system::cuda::detail::bulk_::detail::cursor<0>,RandomAccessIterator,thrust::detail::wrapped_function<Function,Result>,unsigned int>(thrust::system::cuda::detail::bulk_::parallel_group<ExecutionAgent>,thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,Arg1,Arg2,Arg3,Arg4)”的引用
+                 with
+                 [
+                     T1=int,
+                     T2=int,
+                     RandomAccessIterator=thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     Function=thrust::detail::unary_transform_functor<normalize_functor<float>>,
+                     Result=void,
+                     ExecutionAgent=thrust::system::cuda::detail::bulk_::concurrent_group<>,
+                     Arg1=thrust::system::cuda::detail::bulk_::detail::cursor<0>,
+                     Arg2=thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     Arg3=thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,
+                     Arg4=unsigned int
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/iterator/iterator_facade.h(379): 编译类 模板 成员函数“thrust::device_ptr<T> &thrust::iterator_facade<Derived,Value,System,Traversal,Reference,Difference>::operator +=(__int64)”时
+                 with
+                 [
+                     T=int,
+                     Derived=thrust::device_ptr<int>,
+                     Value=int,
+                     System=thrust::system::cuda::detail::tag,
+                     Traversal=thrust::random_access_traversal_tag,
+                     Reference=thrust::device_reference<int>,
+                     Difference=__int64
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/iterator/iterator_adaptor.h(203): 参见对正在编译的函数 模板 实例化“thrust::device_ptr<T> &thrust::iterator_facade<Derived,Value,System,Traversal,Reference,Difference>::operator +=(__int64)”的引用
+                 with
+                 [
+                     T=int,
+                     Derived=thrust::device_ptr<int>,
+                     Value=int,
+                     System=thrust::system::cuda::detail::tag,
+                     Traversal=thrust::random_access_traversal_tag,
+                     Reference=thrust::device_reference<int>,
+                     Difference=__int64
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/iterator/iterator_adaptor.h(121): 参见对正在编译的类 模板 实例化“thrust::iterator_facade<Derived,Value,System,Traversal,Reference,Difference>”的引用
+                 with
+                 [
+                     Derived=thrust::device_ptr<int>,
+                     Value=int,
+                     System=thrust::system::cuda::detail::tag,
+                     Traversal=thrust::random_access_traversal_tag,
+                     Reference=thrust::device_reference<int>,
+                     Difference=__int64
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/pointer.h(120): 参见对正在编译的类 模板 实例化“thrust::iterator_adaptor<Derived,Base,Value,System,Traversal,Reference,Difference>”的引用
+                 with
+                 [
+                     Derived=thrust::device_ptr<int>,
+                     Base=int *,
+                     Value=int,
+                     System=thrust::system::cuda::detail::tag,
+                     Traversal=thrust::random_access_traversal_tag,
+                     Reference=thrust::device_reference<int>,
+                     Difference=__int64
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/device_ptr.h(62): 参见对正在编译的类 模板 实例化“thrust::pointer<Element,Tag,Reference,Derived>”的引用
+                 with
+                 [
+                     Element=int,
+                     Tag=thrust::system::cuda::detail::tag,
+                     Reference=thrust::device_reference<int>,
+                     Derived=thrust::device_ptr<int>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/device_malloc_allocator.h(75): 参见对正在编译的类 模板 实例化“thrust::device_ptr<T>”的引用
+                 with
+                 [
+                     T=int
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/allocator/allocator_traits.h(145): 参见对正在编译的类 模板 实例化“thrust::device_malloc_allocator<T>”的引用
+                 with
+                 [
+                     T=int
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/contiguous_storage.h(39): 参见对正在编译的类 模板 实例化“thrust::detail::allocator_traits<Alloc>”的引用
+                 with
+                 [
+                     Alloc=thrust::device_malloc_allocator<int>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/vector_base.h(46): 参见对正在编译的类 模板 实例化“thrust::detail::contiguous_storage<T,Alloc>”的引用
+                 with
+                 [
+                     T=int,
+                     Alloc=thrust::device_malloc_allocator<int>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/device_vector.h(52): 参见对正在编译的类 模板 实例化“thrust::detail::vector_base<T,Alloc>”的引用
+                 with
+                 [
+                     T=int,
+                     Alloc=thrust::device_malloc_allocator<int>
+                 ]
+                 E:/project/CuCorMat-spearman/CorMat-spear-preprocessing.cu(204): 参见对正在编译的类 模板 实例化“thrust::device_vector<T,Alloc>”的引用
+                 with
+                 [
+                     T=int,
+                     Alloc=thrust::device_malloc_allocator<int>
+                 ]
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/execution_policy.hpp(250): warning C4267: “参数”: 从“size_t”转换到“thrust::system::cuda::detail::bulk_::parallel_group<ExecutionAgent,size_>::size_type”，可能丢失数据
+                 with
+                 [
+                     ExecutionAgent=thrust::system::cuda::detail::bulk_::concurrent_group<thrust::system::cuda::detail::bulk_::agent<0x07>,0x080>,
+                     size_=0x00
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/execution_policy.hpp(311): 参见对正在编译的函数 模板 实例化“thrust::system::cuda::detail::bulk_::parallel_group<ExecutionAgent,size_> thrust::system::cuda::detail::bulk_::par<ExecutionAgent>(ExecutionAgent,size_t)”的引用
+                 with
+                 [
+                     ExecutionAgent=thrust::system::cuda::detail::bulk_::concurrent_group<thrust::system::cuda::detail::bulk_::agent<0x07>,0x080>,
+                     size_=0x00
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/reduce.inl(126): 参见对正在编译的函数 模板 实例化“thrust::system::cuda::detail::bulk_::async_launch<ExecutionAgent> thrust::system::cuda::detail::bulk_::par<thrust::system::cuda::detail::bulk_::concurrent_group<thrust::system::cuda::detail::bulk_::agent<grainsize_>,size_>>(cudaStream_t,thrust::system::cuda::detail::bulk_::concurrent_group<thrust::system::cuda::detail::bulk_::agent<grainsize_>,size_>,size_t)”的引用
+                 with
+                 [
+                     ExecutionAgent=thrust::system::cuda::detail::bulk_::parallel_group<thrust::system::cuda::detail::bulk_::concurrent_group<thrust::system::cuda::detail::bulk_::agent<0x07>,0x080>,0x00>,
+                     grainsize_=0x07,
+                     size_=0x080
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/reduce.inl(204): 参见对正在编译的函数 模板 实例化“OutputType thrust::system::cuda::detail::reduce_detail::tuned_reduce<thrust::system::cuda::detail::tag,InputIterator,OutputType,BinaryFunction>(thrust::system::cuda::detail::execution_policy<thrust::system::cuda::detail::tag> &,InputIterator,InputIterator,OutputType,BinaryFunction)”的引用
+                 with
+                 [
+                     OutputType=float,
+                     InputIterator=thrust::transform_iterator<square<float>,thrust::device_ptr<real__t>,float,thrust::use_default>,
+                     BinaryFunction=thrust::plus<float>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/reduce.inl(259): 参见对正在编译的函数 模板 实例化“float thrust::system::cuda::detail::reduce_detail::reduce<thrust::system::cuda::detail::tag,InputIterator,OutputType,BinaryFunction>(thrust::system::cuda::detail::execution_policy<thrust::system::cuda::detail::tag> &,InputIterator,InputIterator,OutputType,BinaryFunction)”的引用
+                 with
+                 [
+                     InputIterator=thrust::transform_iterator<square<float>,thrust::device_ptr<real__t>,float,thrust::use_default>,
+                     OutputType=float,
+                     BinaryFunction=thrust::plus<float>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/tuple.h(239): 编译类 模板 成员函数“thrust::tuple<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>::tuple(const thrust::device_ptr<T> &,const thrust::device_ptr<T> &)”时
+                 with
+                 [
+                     T0=thrust::device_ptr<real__t>,
+                     T1=thrust::device_ptr<real__t>,
+                     T2=thrust::null_type,
+                     T3=thrust::null_type,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type,
+                     T=real__t
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/tuple.inl(644): 参见对正在编译的函数 模板 实例化“thrust::tuple<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>::tuple(const thrust::device_ptr<T> &,const thrust::device_ptr<T> &)”的引用
+                 with
+                 [
+                     T0=thrust::device_ptr<real__t>,
+                     T1=thrust::device_ptr<real__t>,
+                     T2=thrust::null_type,
+                     T3=thrust::null_type,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type,
+                     T=real__t
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/tuple.h(90): 参见对正在编译的类 模板 实例化“thrust::tuple<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>”的引用
+                 with
+                 [
+                     T0=thrust::device_ptr<real__t>,
+                     T1=thrust::device_ptr<real__t>,
+                     T2=thrust::null_type,
+                     T3=thrust::null_type,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/iterator/detail/zip_iterator_base.h(329): 参见对正在编译的类 模板 实例化“thrust::tuple_size<T>”的引用
+                 with
+                 [
+                     T=thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/iterator/detail/zip_iterator_base.h(365): 参见对正在编译的类 模板 实例化“thrust::detail::zip_iterator_base_ns::tuple_of_iterator_references<IteratorTuple>”的引用
+                 with
+                 [
+                     IteratorTuple=thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/iterator/zip_iterator.h(140): 参见对正在编译的类 模板 实例化“thrust::detail::zip_iterator_base<IteratorTuple>”的引用
+                 with
+                 [
+                     IteratorTuple=thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/tuple.inl(256): 参见对正在编译的类 模板 实例化“thrust::zip_iterator<IteratorTuple>”的引用
+                 with
+                 [
+                     IteratorTuple=thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/tuple.inl(257): 参见对正在编译的类 模板 实例化“thrust::detail::cons<HT,TT>”的引用
+                 with
+                 [
+                     HT=thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     TT=thrust::detail::cons<thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,thrust::detail::cons<unsigned int,thrust::detail::map_tuple_to_cons<thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>::type>>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/tuple.h(197): 参见对正在编译的类 模板 实例化“thrust::detail::cons<HT,TT>”的引用
+                 with
+                 [
+                     HT=thrust::system::cuda::detail::bulk_::detail::cursor<0>,
+                     TT=thrust::detail::cons<thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::cons<thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,thrust::detail::cons<unsigned int,thrust::detail::map_tuple_to_cons<thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>::type>>>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/closure.hpp(70): 参见对正在编译的类 模板 实例化“thrust::tuple<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>”的引用
+                 with
+                 [
+                     T0=thrust::system::cuda::detail::bulk_::detail::cursor<0>,
+                     T1=thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     T2=thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,
+                     T3=unsigned int,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_task.hpp(61): 参见对正在编译的类 模板 实例化“thrust::system::cuda::detail::bulk_::detail::closure<Function,Tuple>”的引用
+                 with
+                 [
+                     Function=thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,
+                     Tuple=thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_task.hpp(202): 参见对正在编译的类 模板 实例化“thrust::system::cuda::detail::bulk_::detail::task_base<ExecutionGroup,Closure>”的引用
+                 with
+                 [
+                     ExecutionGroup=thrust::system::cuda::detail::bulk_::parallel_group<thrust::system::cuda::detail::bulk_::concurrent_group<>>,
+                     Closure=thrust::system::cuda::detail::bulk_::detail::closure<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>
+                 ]
+                 c:\users\lerond\appdata\local\temp\tmpxft_00006a04_00000000-2_CorMat-spear-preprocessing.cudafe1.stub.c(73): 参见对正在编译的类 模板 实例化“thrust::system::cuda::detail::bulk_::detail::cuda_task<Group,Closure>”的引用
+                 with
+                 [
+                     Group=thrust::system::cuda::detail::bulk_::parallel_group<thrust::system::cuda::detail::bulk_::concurrent_group<>>,
+                     Closure=thrust::system::cuda::detail::bulk_::detail::closure<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>
+                 ]
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_launcher/cuda_launcher.hpp(85): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_launcher/cuda_launcher.hpp(84): 编译类 模板 成员函数“int thrust::system::cuda::detail::bulk_::detail::cuda_launcher_base<block_size_,ExecutionGroup,Closure>::max_active_blocks_per_multiprocessor(const thrust::system::cuda::detail::bulk_::detail::device_properties_t &,const thrust::system::cuda::detail::bulk_::detail::function_attributes_t &,int,int)”时
+                 with
+                 [
+                     block_size_=0,
+                     ExecutionGroup=thrust::system::cuda::detail::bulk_::parallel_group<thrust::system::cuda::detail::bulk_::concurrent_group<>>,
+                     Closure=thrust::system::cuda::detail::bulk_::detail::closure<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_launcher/cuda_launcher.hpp(96): 参见对正在编译的函数 模板 实例化“int thrust::system::cuda::detail::bulk_::detail::cuda_launcher_base<block_size_,ExecutionGroup,Closure>::max_active_blocks_per_multiprocessor(const thrust::system::cuda::detail::bulk_::detail::device_properties_t &,const thrust::system::cuda::detail::bulk_::detail::function_attributes_t &,int,int)”的引用
+                 with
+                 [
+                     block_size_=0,
+                     ExecutionGroup=thrust::system::cuda::detail::bulk_::parallel_group<thrust::system::cuda::detail::bulk_::concurrent_group<>>,
+                     Closure=thrust::system::cuda::detail::bulk_::detail::closure<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>
+                 ]
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/pair.inl(46): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_launcher/cuda_launcher.hpp(101): 参见对正在编译的函数 模板 实例化“thrust::pair<T1,T2>::pair<size_t,int>(const thrust::pair<size_t,T2> &)”的引用
+                 with
+                 [
+                     T1=int,
+                     T2=int
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_launcher/cuda_launcher.hpp(101): 参见对正在编译的函数 模板 实例化“thrust::pair<T1,T2>::pair<size_t,int>(const thrust::pair<size_t,T2> &)”的引用
+                 with
+                 [
+                     T1=int,
+                     T2=int
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_launcher/cuda_launcher.hpp(94): 编译类 模板 成员函数“thrust::pair<T1,T2> thrust::system::cuda::detail::bulk_::detail::cuda_launcher_base<block_size_,ExecutionGroup,Closure>::dynamic_smem_occupancy_limit(const thrust::system::cuda::detail::bulk_::detail::device_properties_t &,const thrust::system::cuda::detail::bulk_::detail::function_attributes_t &,int,int)”时
+                 with
+                 [
+                     T1=int,
+                     T2=int,
+                     block_size_=0,
+                     ExecutionGroup=thrust::system::cuda::detail::bulk_::parallel_group<thrust::system::cuda::detail::bulk_::concurrent_group<>>,
+                     Closure=thrust::system::cuda::detail::bulk_::detail::closure<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/bulk/detail/cuda_launcher/cuda_launcher.hpp(119): 参见对正在编译的函数 模板 实例化“thrust::pair<T1,T2> thrust::system::cuda::detail::bulk_::detail::cuda_launcher_base<block_size_,ExecutionGroup,Closure>::dynamic_smem_occupancy_limit(const thrust::system::cuda::detail::bulk_::detail::device_properties_t &,const thrust::system::cuda::detail::bulk_::detail::function_attributes_t &,int,int)”的引用
+                 with
+                 [
+                     T1=int,
+                     T2=int,
+                     block_size_=0,
+                     ExecutionGroup=thrust::system::cuda::detail::bulk_::parallel_group<thrust::system::cuda::detail::bulk_::concurrent_group<>>,
+                     Closure=thrust::system::cuda::detail::bulk_::detail::closure<thrust::system::cuda::detail::for_each_n_detail::for_each_kernel,thrust::tuple<thrust::system::cuda::detail::bulk_::detail::cursor<0>,thrust::zip_iterator<thrust::tuple<thrust::device_ptr<real__t>,thrust::device_ptr<real__t>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,thrust::detail::wrapped_function<thrust::detail::unary_transform_functor<normalize_functor<float>>,void>,unsigned int,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>
+                 ]
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/detail/generic/sequence.inl(48): warning C4244: “return”: 从“__int64”转换到“int”，可能丢失数据
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/internal_functional.h(322): 参见对正在编译的函数 模板 实例化“T thrust::system::detail::generic::sequence_detail::sequence_functor<T>::operator ()<__int64>(Index) const”的引用
+                 with
+                 [
+                     T=int,
+                     Index=__int64
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/internal_functional.h(322): 参见对正在编译的函数 模板 实例化“T thrust::system::detail::generic::sequence_detail::sequence_functor<T>::operator ()<__int64>(Index) const”的引用
+                 with
+                 [
+                     T=int,
+                     Index=__int64
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/function.h(60): 参见对正在编译的函数 模板 实例化“void thrust::detail::unary_transform_functor<UnaryFunction>::operator ()<thrust::detail::tuple_of_iterator_references<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>>(Tuple)”的引用
+                 with
+                 [
+                     UnaryFunction=thrust::system::detail::generic::sequence_detail::sequence_functor<int>,
+                     T0=__int64,
+                     T1=int &,
+                     T2=thrust::null_type,
+                     T3=thrust::null_type,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type,
+                     Tuple=thrust::detail::tuple_of_iterator_references<__int64,int &,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/function.h(60): 参见对正在编译的函数 模板 实例化“void thrust::detail::unary_transform_functor<UnaryFunction>::operator ()<thrust::detail::tuple_of_iterator_references<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>>(Tuple)”的引用
+                 with
+                 [
+                     UnaryFunction=thrust::system::detail::generic::sequence_detail::sequence_functor<int>,
+                     T0=__int64,
+                     T1=int &,
+                     T2=thrust::null_type,
+                     T3=thrust::null_type,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type,
+                     Tuple=thrust::detail::tuple_of_iterator_references<__int64,int &,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/detail/sequential/for_each.h(83): 参见对正在编译的函数 模板 实例化“Result thrust::detail::wrapped_function<Function,Result>::operator ()<thrust::detail::tuple_of_iterator_references<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>>(const Argument &) const”的引用
+                 with
+                 [
+                     Result=void,
+                     Function=thrust::detail::unary_transform_functor<thrust::system::detail::generic::sequence_detail::sequence_functor<int>>,
+                     T0=__int64,
+                     T1=thrust::device_reference<int>,
+                     T2=thrust::null_type,
+                     T3=thrust::null_type,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type,
+                     Argument=thrust::detail::tuple_of_iterator_references<__int64,thrust::device_reference<int>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/detail/sequential/for_each.h(83): 参见对正在编译的函数 模板 实例化“Result thrust::detail::wrapped_function<Function,Result>::operator ()<thrust::detail::tuple_of_iterator_references<T0,T1,T2,T3,T4,T5,T6,T7,T8,T9>>(const Argument &) const”的引用
+                 with
+                 [
+                     Result=void,
+                     Function=thrust::detail::unary_transform_functor<thrust::system::detail::generic::sequence_detail::sequence_functor<int>>,
+                     T0=__int64,
+                     T1=thrust::device_reference<int>,
+                     T2=thrust::null_type,
+                     T3=thrust::null_type,
+                     T4=thrust::null_type,
+                     T5=thrust::null_type,
+                     T6=thrust::null_type,
+                     T7=thrust::null_type,
+                     T8=thrust::null_type,
+                     T9=thrust::null_type,
+                     Argument=thrust::detail::tuple_of_iterator_references<__int64,thrust::device_reference<int>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/detail/for_each.inl(71): 参见对正在编译的函数 模板 实例化“InputIterator thrust::system::detail::sequential::for_each_n<thrust::detail::seq_t,InputIterator,Size,UnaryFunction>(thrust::system::detail::sequential::execution_policy<Derived> &,InputIterator,Size,UnaryFunction)”的引用
+                 with
+                 [
+                     InputIterator=thrust::zip_iterator<thrust::tuple<thrust::counting_iterator<__int64,thrust::use_default,thrust::use_default,__int64>,thrust::detail::normal_iterator<thrust::device_ptr<int>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     Size=__int64,
+                     UnaryFunction=thrust::detail::unary_transform_functor<thrust::system::detail::generic::sequence_detail::sequence_functor<int>>,
+                     Derived=thrust::detail::seq_t
+                 ]
+                 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\thrust/system/cuda/detail/for_each.inl(152): 参见对正在编译的函数 模板 实例化“InputIterator thrust::for_each_n<DerivedPolicy,RandomAccessIterator,Size,UnaryFunction>(const thrust::detail::execution_policy_base<DerivedPolicy> &,InputIterator,Size,UnaryFunction)”的引用
+                 with
+                 [
+                     InputIterator=thrust::zip_iterator<thrust::tuple<thrust::counting_iterator<__int64,thrust::use_default,thrust::use_default,__int64>,thrust::detail::normal_iterator<thrust::device_ptr<int>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     DerivedPolicy=thrust::detail::seq_t,
+                     RandomAccessIterator=thrust::zip_iterator<thrust::tuple<thrust::counting_iterator<__int64,thrust::use_default,thrust::use_default,__int64>,thrust::detail::normal_iterator<thrust::device_ptr<int>>,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type,thrust::null_type>>,
+                     Size=__int64,
+                     UnaryFunction=thrust::detail::unary_transform_functor<thrust::system::detail::generic::sequence_detail::sequence_functor<int>>
+                 ]
+       Link:
+         E:\softwareforwork\VS2012\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\project\CuCorMat-spearman\x64\Debug\CuCorMat-sca-spear.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win64" /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\lib\x64" cudart.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\project\CuCorMat-spearman\x64\Debug\CuCorMat-sca-spear.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\project\CuCorMat-spearman\x64\Debug\CuCorMat-sca-spear.lib" /MACHINE:X64 "x64\Debug\CorMat-spear-2dense2csr.cu.obj"
+         "x64\Debug\CorMat-spear-1spa2rth.cu.obj"
+         "x64\Debug\CorMat-spear-preprocessing.cu.obj"
+         "x64\Debug\CorMat-spear-dense2csr.obj"
+         CuCorMat-scalability-spearman.vcxproj -> E:\project\CuCorMat-spearman\x64\Debug\CuCorMat-sca-spear.exe
+       PostBuildEvent:
+         echo copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\cudart*.dll" "E:\project\CuCorMat-spearman\x64\Debug\"
+         copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\cudart*.dll" "E:\project\CuCorMat-spearman\x64\Debug\"
+         :VCEnd
+         copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\cudart*.dll" "E:\project\CuCorMat-spearman\x64\Debug\"
+         C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\cudart32_70.dll
+         C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\cudart64_70.dll
+         已复制         2 个文件。
+     1>已完成生成项目“E:\project\CuCorMat-spearman\CuCorMat-scalability-spearman.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:34.85
