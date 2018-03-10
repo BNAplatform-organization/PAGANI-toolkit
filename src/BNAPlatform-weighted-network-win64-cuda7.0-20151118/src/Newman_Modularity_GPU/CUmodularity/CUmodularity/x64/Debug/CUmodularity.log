@@ -1,0 +1,146 @@
+﻿生成启动时间为 2015/9/23 19:23:42。
+     1>项目“D:\Programming\BNAplatform\BNAPlatform-win64-cuda7.0-20150413\src\Newman_Modularity_GPU\CUmodularity\CUmodularity\CUmodularity.vcxproj”在节点 4 上(Build 个目标)。
+     1>AddCudaCompileDeps:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\cl.exe /E /nologo /showIncludes /TP /D__CUDACC__ /DWIN32 /DWIN64 /D_DEBUG /D_CONSOLE /D_MBCS /I..\..\..\common /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /I. /FIcuda_runtime.h /c D:\Programming\BNAplatform\BNAPlatform-win64-cuda7.0-20150413\src\Newman_Modularity_GPU\CUmodularity\modularity_GPU.cu 
+       CudaBuild:
+         Compiling CUDA source file ..\modularity_GPU.cu...
+         cmd.exe /C "C:\Users\Duhx\AppData\Local\Temp\tmp397ba68c182e49e8aa197798782893dd.cmd"
+         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd  " -o x64\Debug\modularity_GPU.cu.obj "D:\Programming\BNAplatform\BNAPlatform-win64-cuda7.0-20150413\src\Newman_Modularity_GPU\CUmodularity\modularity_GPU.cu"
+         
+         D:\Programming\BNAplatform\BNAPlatform-win64-cuda7.0-20150413\src\Newman_Modularity_GPU\CUmodularity\CUmodularity>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I..\..\..\common -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd  " -o x64\Debug\modularity_GPU.cu.obj "D:\Programming\BNAplatform\BNAPlatform-win64-cuda7.0-20150413\src\Newman_Modularity_GPU\CUmodularity\modularity_GPU.cu" 
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(224): warning : variable "j" was declared but never referenced
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(245): warning : variable "cudaStat" was declared but never referenced
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(258): warning : variable "temp2" was declared but never referenced
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(330): warning : variable "j" was declared but never referenced
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(331): warning : variable "temp1" was declared but never referenced
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(331): warning : variable "temp2" was declared but never referenced
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(547): warning : integer conversion resulted in a change of sign
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(563): warning : integer conversion resulted in a change of sign
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(26): warning : variable "ITERNUMBER" was declared but never referenced
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(917): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(1921): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(2857): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(3802): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(4747): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(5772): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(6719): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(7652): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(8526): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(9492): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions_decls.h(10478): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\device_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(775): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include\device_functions.h(1632): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(224): warning : variable "j" was declared but never referenced
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(245): warning : variable "cudaStat" was declared but never referenced
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(258): warning : variable "temp2" was declared but never referenced
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(330): warning : variable "j" was declared but never referenced
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(331): warning : variable "temp1" was declared but never referenced
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(331): warning : variable "temp2" was declared but never referenced
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(547): warning : integer conversion resulted in a change of sign
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(563): warning : integer conversion resulted in a change of sign
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(26): warning : variable "ITERNUMBER" was declared but never referenced
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(877): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(1850): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(2728): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(3651): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(4595): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(5521): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(6421): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(7314): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>c:\program files\nvidia gpu computing toolkit\cuda\v7.0\include\math_functions.h(8227): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         modularity_GPU.cu
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(233): warning C4244: “参数”: 从“__int64”转换到“unsigned int”，可能丢失数据
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(267): warning C4244: “参数”: 从“__int64”转换到“unsigned int”，可能丢失数据
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(278): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(299): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(304): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(306): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(245): warning C4101: “cudaStat”: 未引用的局部变量
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(337): warning C4800: “cublasStatus_t”: 将值强制为布尔值“true”或“false”(性能警告)
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(331): warning C4101: “temp1”: 未引用的局部变量
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(331): warning C4101: “temp2”: 未引用的局部变量
+     1>D:/Programming/BNAplatform/BNAPlatform-win64-cuda7.0-20150413/src/Newman_Modularity_GPU/CUmodularity/modularity_GPU.cu(481): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I..\..\..\common /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include" /Zi /nologo /W3 /WX- /Od /D WIN32 /D WIN64 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt ..\Maslov.cpp ..\Modularity_CPU.cpp ..\Timer.cpp
+         Timer.cpp
+         Modularity_CPU.cpp
+     1>..\Modularity_CPU.cpp(228): warning C4244: “参数”: 从“__int64”转换到“unsigned int”，可能丢失数据
+         Maslov.cpp
+     1>..\Maslov.cpp(20): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+         正在生成代码...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Programming\BNAplatform\BNAPlatform-win64-cuda7.0-20150413\src\x64\Debug\CUmodularity.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\lib\x64" cudart.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Programming\BNAplatform\BNAPlatform-win64-cuda7.0-20150413\src\x64\Debug\CUmodularity.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Programming\BNAplatform\BNAPlatform-win64-cuda7.0-20150413\src\x64\Debug\CUmodularity.lib" /MACHINE:X64 x64\Debug\modularity_GPU.cu.obj
+         x64\Debug\Maslov.obj
+         x64\Debug\Modularity_CPU.obj
+         x64\Debug\Timer.obj
+     1>modularity_GPU.cu.obj : error LNK2019: 无法解析的外部符号 cublasCreate_v2，该符号在函数 "double __cdecl Lead_Vector_GPU(int *,int *,int *,int,double,int *)" (?Lead_Vector_GPU@@YANPEAH00HN0@Z) 中被引用
+     1>modularity_GPU.cu.obj : error LNK2019: 无法解析的外部符号 cublasDestroy_v2，该符号在函数 "double __cdecl Lead_Vector_GPU(int *,int *,int *,int,double,int *)" (?Lead_Vector_GPU@@YANPEAH00HN0@Z) 中被引用
+     1>modularity_GPU.cu.obj : error LNK2019: 无法解析的外部符号 cublasDnrm2_v2，该符号在函数 "double __cdecl Lead_Vector_GPU(int *,int *,int *,int,double,int *)" (?Lead_Vector_GPU@@YANPEAH00HN0@Z) 中被引用
+     1>modularity_GPU.cu.obj : error LNK2019: 无法解析的外部符号 cublasDdot_v2，该符号在函数 "double __cdecl Lead_Vector_GPU(int *,int *,int *,int,double,int *)" (?Lead_Vector_GPU@@YANPEAH00HN0@Z) 中被引用
+     1>modularity_GPU.cu.obj : error LNK2019: 无法解析的外部符号 cublasDscal_v2，该符号在函数 "double __cdecl Lead_Vector_GPU(int *,int *,int *,int,double,int *)" (?Lead_Vector_GPU@@YANPEAH00HN0@Z) 中被引用
+     1>modularity_GPU.cu.obj : error LNK2019: 无法解析的外部符号 cublasDaxpy_v2，该符号在函数 "bool __cdecl Sub_Partition_GPU(int *,int *,int *,int *,int,int,int *,int *,int *)" (?Sub_Partition_GPU@@YA_NPEAH000HH000@Z) 中被引用
+     1>modularity_GPU.cu.obj : error LNK2019: 无法解析的外部符号 cublasDcopy_v2，该符号在函数 "double __cdecl Lead_Vector_GPU(int *,int *,int *,int,double,int *)" (?Lead_Vector_GPU@@YANPEAH00HN0@Z) 中被引用
+     1>D:\Programming\BNAplatform\BNAPlatform-win64-cuda7.0-20150413\src\x64\Debug\CUmodularity.exe : fatal error LNK1120: 7 个无法解析的外部命令
+     1>已完成生成项目“D:\Programming\BNAplatform\BNAPlatform-win64-cuda7.0-20150413\src\Newman_Modularity_GPU\CUmodularity\CUmodularity\CUmodularity.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:17.75

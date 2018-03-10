@@ -1,0 +1,3 @@
+ 
+.\Degree.exe 
+@pause

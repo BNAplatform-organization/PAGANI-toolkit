@@ -1,0 +1,30 @@
+﻿生成启动时间为 2015/12/5 12:13:06。
+     1>项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Cp\Cp\Cp.vcxproj”在节点 3 上(Rebuild 个目标)。
+     1>_PrepareForClean:
+         正在删除文件“Release\Cp.lastbuildstate”。
+       InitializeBuildStatus:
+         正在创建“Release\Cp.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\common /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\common\Timer.cpp ..\..\Maslov\Maslov\Maslov.cpp Cp.cpp Cp_main.cpp
+         Timer.cpp
+         Maslov.cpp
+     1>..\..\Maslov\Maslov\Maslov.cpp(20): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+         Cp.cpp
+     1>Cp.cpp(111): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+         Cp_main.cpp
+       Link:
+         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Release\Cp.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Release\Cp.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Release\Cp.lib" /MACHINE:X86 /SAFESEH Release\Timer.obj
+         Release\Maslov.obj
+         Release\Cp.obj
+         Release\Cp_main.obj
+         正在生成代码
+         已完成代码的生成
+         Cp.vcxproj -> E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Release\Cp.exe
+       FinalizeBuildStatus:
+         正在删除文件“Release\Cp.unsuccessfulbuild”。
+         正在对“Release\Cp.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-win64-cuda7.0-20151118\src\Cp\Cp\Cp.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:48.48

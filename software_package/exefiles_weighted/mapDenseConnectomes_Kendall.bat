@@ -1,0 +1,1 @@
+.\CuCorMat-sca-kendall.exe E:\project\data\4mm E:\project\data\BNU_data_S2_proto-4mm\mask.nii 0.2 n s 1.5 1 0.5 
