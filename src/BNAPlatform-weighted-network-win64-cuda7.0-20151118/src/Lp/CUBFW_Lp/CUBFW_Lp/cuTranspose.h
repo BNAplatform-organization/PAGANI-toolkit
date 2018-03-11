@@ -1,1 +1,0 @@
-void cuTranspose(float * dst, float * src, int size);
