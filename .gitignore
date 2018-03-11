@@ -3,6 +3,7 @@
 *.sdf
 *.ipch
 x64/*
+.vs/*
 
 # Compiled Object files
 *.slo
