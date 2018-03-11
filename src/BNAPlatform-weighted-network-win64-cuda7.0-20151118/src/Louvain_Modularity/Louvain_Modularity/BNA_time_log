@@ -1,0 +1,11 @@
+Modularity(+maslov)	D:\Programming\testdata\fMRI\G0001_25218_spa1.000%_cor0.510_weighted.csrCPU	kernel time	98.9876s
+Modularity(+maslov)	D:\Programming\testdata\fMRI\G0002_25218_spa1.000%_cor0.490_weighted.csrCPU	kernel time	84.7506s
+Modularity(+maslov)	D:\Programming\testdata\fMRI\K0001_25218_spa1.000%_cor0.559_weighted.csrCPU	kernel time	67.5374s
+Modularity(+maslov)	D:\Programming\testdata\fMRI\K0002_25218_spa1.000%_cor0.432_weighted.csrCPU	kernel time	41.5909s
+Modularity(+maslov)	D:\Programming\testdata\fMRI\L0001_25218_spa1.000%_cor0.698_weighted.csrCPU	kernel time	116.862s
+Modularity(+maslov)	D:\Programming\testdata\fMRI\L0002_25218_spa1.000%_cor0.541_weighted.csrCPU	kernel time	82.4836s
+Modularity(+maslov)	E:\BNAlauncher\test_new\weighted\N0001_25218_spa1.000%_cor0.504_weighted.csrCPU	kernel time	77.7397s
+Modularity(+maslov)	E:\BNAlauncher\test_new\weighted\N0001_25218_spa5.000%_cor0.332_weighted.csrCPU	kernel time	77.3299s
+Modularity(+maslov)	E:\BNAlauncher\test_new\paper\weighted\N0001_25218_spa1.000%_cor0.504_weighted.csrCPU	kernel time	47.1865s
+Modularity(+maslov)	E:\BNAlauncher\test_new\paper\weighted\N0001_25218_spa2.000%_cor0.433_weighted.csrCPU	kernel time	57.8658s
+Modularity(+maslov)	E:\BNAlauncher\test_new\paper\weighted\N0001_25218_spa3.000%_cor0.389_weighted.csrCPU	kernel time	66.5942s
