@@ -5,6 +5,7 @@
 # include "Timer.h"
 # include <stdlib.h>
 # include <cstring>
+#include "data_type.h"
 # include "dirent.h"
 # include "Maslov.h"
 using namespace std;
@@ -23,8 +24,8 @@ using namespace std;
 
 
 // Forward Declaration
-double Cp_1(int * C, int * R, float * V ,float * Cp, int N);
-double Cp_2(int * C, int * R, float * V ,float * Cp, int N);
+double Cp_1(C_type * C, R_type * R, V_type * V, float * Cp, int N);
+double Cp_2(C_type * C, R_type * R, V_type * V, float * Cp, int N);
 //void Maslov_weighted_1(int * R_dst, int * C_dst, int * R_src, int * C_src, int Rlength, int Clength);
 
 int main(int argc, char * argv[])
@@ -88,28 +89,26 @@ int main(int argc, char * argv[])
 	}
 
 	bool global=false,nodal=false,gamma=false;
-		//string argv3(argv[3]);
-		char* S[]={"g","n","k","gn","gk","nk","gnk"};
-       for(int i=0;i<7;i++)
-{
-  if(strcmp(argv[4],S[i])==0)
-  {
-     switch(i)
-     {
-        case 0: global=true;break;
-		case 1: nodal=true;break;
-		case 2: gamma=true;break;
-		case 3:nodal=true;global=true;break;
-		case 4:global=true;gamma=true;break;
-		case 5:nodal=true;gamma=true;break;
-		case 6:global=true;nodal=true;gamma=true;break;
-		default:global=true;nodal=true;gamma=true;break;
-        
-     }
-	 break;
-  } 
-   
-}
+	//string argv3(argv[3]);
+	char* S[]={"g","n","k","gn","gk","nk","gnk"};
+    for(int i=0;i<7;i++)
+	{
+		if(strcmp(argv[4],S[i])==0)
+		{
+			switch(i)
+			{
+				case 0: global=true;break;
+				case 1: nodal=true;break;
+				case 2: gamma=true;break;
+				case 3:nodal=true;global=true;break;
+				case 4:global=true;gamma=true;break;
+				case 5:nodal=true;gamma=true;break;
+				case 6:global=true;nodal=true;gamma=true;break;
+				default:global=true;nodal=true;gamma=true;break;
+             }
+		break;
+		} 
+	}
 
 	for (int i = 0; i < FileNumber; i++)
 	{
@@ -120,16 +119,17 @@ int main(int argc, char * argv[])
 		{	cout<<"Can't open\t"<<a.c_str()<<endl;	return 0;}
 
 		// Read x.csr
-		int Rlength = 0, Clength = 0, Clength1=0;
+		unsigned int Rlength = 0;
+		R_type Clength = 0, Vlength = 0;
 		fin.read((char*)&Rlength, sizeof(int));
-		int * R = new int [Rlength];
-		fin.read((char*)R, sizeof(int) * Rlength);
-		fin.read((char*)&Clength, sizeof(int));
-		int * C = new int [Clength];
-		fin.read((char*)C, sizeof(int) * Clength);
-		fin.read((char*)&Clength1, sizeof(int));
-		float * V = new float [Clength];
-		fin.read((char*)V, sizeof(float) * Clength);
+		R_type * R = new R_type[Rlength];
+		fin.read((char*)R, sizeof(R_type) * Rlength);
+		fin.read((char*)&Clength, sizeof(R_type));
+		C_type * C = new C_type[Clength];
+		fin.read((char*)C, sizeof(C_type) * Clength);
+		fin.read((char*)&Vlength, sizeof(R_type));
+		V_type * V = new V_type[Vlength];
+		fin.read((char*)V, sizeof(V_type) * Clength);
 		fin.close();
 		int N = Rlength - 1;
 
@@ -155,21 +155,21 @@ int main(int argc, char * argv[])
 		// Parse file name
 		ofstream fout;
 		string X_cp_mas = a.substr(0, a.find_last_of('.')).append("_cp.txt");
-		int * R_dst = new int [Rlength];
-		int * C_dst = new int [Clength];
-		float * V_dst = new float [Clength];
+		R_type * R_dst = new R_type[Rlength];
+		C_type * C_dst = new C_type[Clength];
+		float * V_dst = new float[Clength];
 	/*	bool both=false;
 		if(*argv[4]=='b')
 			both=true;
 		if(*argv[4]=='n'||both)  {*/
 		if(nodal==true)
 		{
-		string X_cp = a.substr(0, a.find_last_of('.')).append("_cp.nm");
-		cout<<"Save Clustering Coefficient for each node as "<<X_cp.c_str()<<endl;
-		fout.open(X_cp.c_str(), ios::binary|ios::out);
-		fout.write((char*)&N, sizeof(int));
-		fout.write((char*)Cp_result, sizeof(float) * N);
-		fout.close();
+			string X_cp = a.substr(0, a.find_last_of('.')).append("_cp.nm");
+			cout<<"Save Clustering Coefficient for each node as "<<X_cp.c_str()<<endl;
+			fout.open(X_cp.c_str(), ios::binary|ios::out);
+			fout.write((char*)&N, sizeof(int));
+			fout.write((char*)Cp_result, sizeof(float) * N);
+			fout.close();
 		}
 		//}
 		// Analysis for random networks

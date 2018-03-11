@@ -157,8 +157,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\common\Timer.cpp" />
-    <ClCompile Include="Cp_1.cpp" />
-    <ClCompile Include="Cp_2.cpp" />
+    <ClCompile Include="Cp_1_NoG.cpp" />
+    <ClCompile Include="Cp_2_NoG.cpp" />
     <ClCompile Include="Cp_main.cpp" />
     <ClCompile Include="Maslov.cpp" />
   </ItemGroup>

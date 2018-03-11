@@ -24,10 +24,10 @@
     <ClCompile Include="Maslov.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Cp_2.cpp">
+    <ClCompile Include="Cp_1_NoG.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Cp_1.cpp">
+    <ClCompile Include="Cp_2_NoG.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
