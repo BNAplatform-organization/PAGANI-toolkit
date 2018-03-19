@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 *.sdf
+*.opensdf
 *.ipch
 x64/
 *.iobj
