@@ -55,6 +55,41 @@ public:
 		}
 	}
 
+	HybridMap(int *R, int *C, size_t N, size_t Clength, double loadfactor_inv = 2.0) :
+		num_vertices(N), index_(vector<u_int>(N, N)), loadfactor_inv_(loadfactor_inv)
+	{
+		u_int idx = 0;
+		size_t hashmap_size = Clength;
+		for (size_t i = 0; i < N; i++)
+		{
+			int deg = R[i + 1] - R[i];
+			if (deg*loadfactor_inv_*sizeof(_ULonglong) >((N - 1) / 8 + 1)){
+				index_[i] = idx++;
+				hashmap_size -= deg;
+			}
+		}
+		hashmap_ = new HashGraph(hashmap_size, loadfactor_inv_);
+		size_t bitmap_size = ((size_t)idx*N - 1) / 8 + 1;
+		bitmap_ = new BitMap(bitmap_size);
+		for (size_t i = 0; i < N; i++)
+		{
+			if (index_[i] != N){
+				for (size_t j = R[i]; j < R[i + 1]; j++)
+					bitmap_->bitmapSet(index_[i] * N + C[j]);
+			}
+			else{
+				for (size_t j = R[i]; j < R[i + 1]; j++){
+					if (C[j] > i && index_[C[j]] == N){
+						_ULonglong key = GetKey(i, C[j]);
+						if (!hashmap_->Insert(key)) {
+							cout << "hashtable insert failure!";
+						}
+					}
+				}
+			}
+		}
+	}
+
 	~HybridMap(){
 		if (hashmap_ != nullptr)
 			delete hashmap_;

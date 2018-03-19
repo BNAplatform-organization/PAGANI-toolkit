@@ -6,6 +6,7 @@
 # include <cstring>
 # include <ctime>
 # include "dirent.h"
+# include "data_type.h"
 using namespace std;
 
 typedef float real__t;
@@ -66,25 +67,29 @@ int main(int argc, char * argv[])
 		{	cout<<"Can't open\t"<<a.c_str()<<endl;	return 0;}
 
 		// Read x.csr
-		int Rlength = 0, Clength = 0, Vlength = 0;
+		unsigned int Rlength = 0;
+		R_type Clength = 0, Vlength = 0;
 		fin.read((char*)&Rlength, sizeof(int));
-		int * R = new int [Rlength];
-		fin.read((char*)R, sizeof(int) * Rlength);
-		fin.read((char*)& Clength, sizeof(int));
-		int * C = new int [Clength];
-		fin.read((char*)C, sizeof(int) * Clength);
-		fin.read((char*)& Vlength, sizeof(int));
-		real__t * V = new real__t[Vlength];
-		fin.read((char*)V, sizeof(real__t) * Vlength);
+		R_type * R = new R_type[Rlength];
+		fin.read((char*)R, sizeof(R_type) * Rlength);
+		fin.read((char*)&Clength, sizeof(R_type));
+		C_type * C = new C_type[Clength];
+		fin.read((char*)C, sizeof(C_type) * Clength);
+		fin.read((char*)&Vlength, sizeof(R_type));
+		V_type * V = new V_type[Vlength];
+		fin.read((char*)V, sizeof(V_type) * Clength);
 		fin.close();
 		int N = Rlength - 1;
-
+				
 		clock_t time = clock();
 		float *Degree = new float [N];
 		memset(Degree,0,sizeof(float)*N);
-		for (int k = 0; k < N; k++)
-			for(int ii = R[k]; ii<R[k+1]; ii++)
-				Degree[k] += V[ii];
+		for (C_type i = 0; i < N; i++) {
+			double deg = 0;
+			for (size_t j = R[i]; j < R[i + 1]; j++)
+				deg += V[j];
+			Degree[i] = deg;
+		}
 		
 		time = clock() - time;
 		cout<<"Elapsed time: "<<time<<" ms. "<<endl;

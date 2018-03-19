@@ -1,0 +1,1 @@
+void BFW_CUDA_ph2(float * dst_ij, float * src_ik, float * src_kj, int block_size);

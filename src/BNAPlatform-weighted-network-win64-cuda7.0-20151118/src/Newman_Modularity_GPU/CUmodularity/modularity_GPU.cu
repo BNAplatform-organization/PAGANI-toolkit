@@ -1,4 +1,4 @@
-#include <stdlib.h>
+Ôªø#include <stdlib.h>
 #include <stdio.h>
 #include <iomanip>
 #include <memory.h>
@@ -9,391 +9,1015 @@
 #include "modularity_GPU.cuh"
 #include <cmath>
 #include <time.h> 
-#include "cublas_v2.h"
+#include <thrust/device_vector.h>
+#include <thrust/reduce.h>
+#include <thrust/fill.h>
+#include <thrust/extrema.h>
+#include <math_constants.h>
+//#include <cublas_v2.h>
+//#include <cusparse.h>
 using namespace std;
+//
+//void Maslov(int * R_dst, int * C_dst, int * R_src, int * C_src, int Rlength, int Clength);
+//
+//#define RANDOM_V0
+//
+//extern long long N, Ntemp;
+//extern double * v, *vv; 
+//extern double * v0, * verr; 
+//extern	double * sumBG;
+//extern long long seed;
+//
+typedef  unsigned int u_int;
+// set some parameters
 
-void Maslov(int * R_dst, int * C_dst, int * R_src, int * C_src, int Rlength, int Clength);
+extern const int MAX_ITER;			// The maximum iteration times in the power method
+extern const double BETA_Adjust;		// An optional parameter for quicker convergence. Its effect is uncertain
+extern const double Epsilon;	// If |x - x0| < Epsilon, quit iteraion 
+extern const double LAMBDA;		// if labmda > LAMBDA, initiate the division
+extern const double DQ_MIN;
+extern const int MIN_GROUP;			// The minimum nodes of an allowed module 
 
-#define RANDOM_V0
-
-extern long long N, Ntemp;
-extern double * v, *vv; 
-extern double * v0, * verr; 
-extern	double * sumBG;
-extern long long seed;
-
-const int MAX_ITER=10000 ;			// The maximum iteration times in the power method
-const int ITERNUMBER=500;
-const double BETA_Adjust = 0;		// An optional parameter for quicker convergence. Its effect is uncertain
-const double Epsilon = 0.000001;	// If |x - x0| < Epsilon, quit iteraion 
-const double LAMBDA = 0.01;		// if labmda > LAMBDA, initiate the division
-const int MIN_GROUP = 1;			// The minimum nodes of an allowed module 
 extern ofstream fout;	
 
 const int threadnumx = 16;
 const int threadnumy = 16;
 const int  threadnum = 256;
-const int blocknum    = 48;
-int* d_AD_init;
-int* d_AD;
-int* d_r; 
-int* d_c;
-int* d_orir;
-double* d_u;
-double* d_u0;
-double* d_uu;
-double * d_sumBG;
-double * d_norm;
-//bool* d_G;
-double * temp_result;
-double * d_vector;
-double * d_vector1;
-double * d_vector2;
-double *d_k;
-double *d_orik;
+const int blocknum    = 96;
+//int* d_AD_init;
+//int* d_AD;
+//int* d_r; 
+//int* d_c;
+//int* d_orir;
+//double* d_u;
+//double* d_u0;
+//double* d_uu;
+//double * d_sumBG;
+//double * d_norm;
+////bool* d_G;
+//double * temp_result;
+//double * d_vector;
+//double * d_vector1;
+//double * d_vector2;
+//double *d_k;
+//double *d_orik;
+//
+//void Partition(int * R, int * C, int * Result);
+//bool Sub_Partition(int * OriR, int * OriC, int * R, int * C, int M, long long innerM, int * Result, int * Max_Result,int * AD);
+//double Lead_Vector(int * OriR, int * R, int * C, int M, double * sumBG1, double beta, int *AD, double *v, double *vv);
+//
 
-float *Vf;
-float *d_Vf;
+cusparseHandle_t s_handle=0;
+cusparseMatDescr_t s_descr=0;
+cublasHandle_t handle;
 
-void Partition(int * R, int * C, int * Result);
-bool Sub_Partition(int * OriR, int * OriC, int * R, int * C, int M, long long innerM, int * Result, int * Max_Result,int * AD);
-double Lead_Vector(int * OriR, int * R, int * C, int M, double * sumBG1, double beta, int *AD, double *v, double *vv);
+double Lead_Vector(int N, int * R, int * C, float *V, double *K,  double * sumBG, double m, double beta, double *u);
+double calculate_dQ(signed char *S, int N, int * R, int * C, float *V, double *K, double *sumBG, double m);
+double fine_tune_S(double dQ, int N, int * R, int * C, float * V, double * K, double m, signed char *S);
+double qmax(int N, double *Qit, char *indSub, int *imax);
+template <class Type> double VectorNorm(Type * x, int N);
 
-__global__ void init_AD(long N, int *AD)
+__global__ void init_du(int N, double *d_u)
 {
 	int tid = blockDim.x*blockIdx.x+threadIdx.x;
-	for (int i = tid; i<N; i+=blockDim.x*gridDim.x)
-		AD[i] = i;
+	int i;
+	for (i = tid; i < N; i+=blockDim.x*gridDim.x)
+		d_u[i] = (1.0 * i) / (N-1);
 }
 
-__global__ void cal_k_kernel(long N, int *AD,int *d_OriR, double *d_K )
-{		
-	int offset;
-	const int blockid   = blockIdx.x;
-	const int threadid = threadIdx.x;
-	
-	for(offset=(blockid/2)*threadnum*2+threadid*2+blockid%2; offset<N; offset+=blockDim.x*gridDim.x )
-		d_K[offset]= (double)(d_OriR[AD[offset]+1]-d_OriR[AD[offset]]);
-}
-
-__global__ void sum_kj_kernel(long N, double *d_K ,double *sum_kj)
-{	__shared__ int sum[threadnum];
-	int temp=0;
-	int offset;
-   const int threadid =blockIdx.x*blockDim.x + threadIdx.x;
-	
-	//for(offset=(blockid/2)*threadnum*2+threadid*2+blockid%2; offset<N; offset+=blockDim.x*gridDim.x )
-		// temp+= dG[offset]*(d_R[offset+1]-d_R[offset]);
-	//for (offset=blockid*threadnum; offset+threadid<N; offset+=blockDim.x*gridDim.x ) 
-	 	//  temp +=dG[offset+threadid]*(d_R[offset + threadid+1]-d_R[offset + threadid]);	 		
-	
-	for(offset=threadid; offset<N; offset+=blockDim.x*gridDim.x)
-	{
-		temp+=(int)d_K[offset] ;
-	}
-	sum[threadIdx.x]=temp;
-	syncthreads();
-	
-	for(offset=1;offset+threadIdx.x<threadnum;offset*=2){
-			if (threadIdx.x%(2*offset)==0)  sum[threadIdx.x]+=sum[threadIdx.x+offset] ;
-			syncthreads();
-	}
-	if(threadIdx.x==0)
-	  sum_kj[blockIdx.x]=(double) sum[threadIdx.x];
-}
-
-__global__ void sum_kernel(int size, double *data, double scale)		   //Ω´“ª–©«∞√Ê≤Ÿ◊˜÷–”√ ˜–ŒΩ·ππœ‡º”√ø∏ˆblockµƒΩ·π˚«Û∫Õ°£
-{	
-	__shared__ double sum[blocknum];
-	int offset;
-	sum[threadIdx.x]=data[threadIdx.x];
-	syncthreads();
-	
-	for(offset=1;offset+threadIdx.x<blocknum; offset*=2){
-		if (threadIdx.x%(2*offset)==0)  sum[threadIdx.x]+=sum[threadIdx.x+offset] ;
-		syncthreads();
-	}
-	if(threadIdx.x==0)
-	    data[0]=sum[0]*scale; 
-}
-//ammend:Vf represents the values of nonzero in sparse matrix stored in csr format
-__global__ void spmv_one_thread(long N, long M, double *result, int *R, int *C, double *vv, double *dk, double vk, double *d_sum, double beta, double *v0, float *d_Vf)	   //º∆À„Ai*v0,   √ø16∏ˆthreadsº∆À„“ª––
+__global__ void sign_eigv(int N, double *d_eigv)
 {
-	__shared__ int R_shared[threadnum+1];
-
-	double temp1=0;
-	int offset;  
-	
-	for (offset=blockIdx.x*threadnum+threadIdx.x;offset<N; offset+=gridDim.x*blockDim.x)
-	{
-		R_shared[threadIdx.x+1] = R[offset+1];
-		if(threadIdx.x==0) R_shared[threadIdx.x]=R[offset] ;
-		syncthreads();	 
-		temp1 =0 ;
-		for(int i=R_shared[threadIdx.x]; i<R_shared[threadIdx.x+1];i++)
-		{		
-			temp1+=vv[C[i]]*d_Vf[i];		//ammend	
-		}		
-		temp1-=vk/(2*M)*dk[offset]+(d_sum[offset]-beta)*v0[offset];
-		result[offset]=temp1 ;
-			//syncthreads();
-	}		
+	int tid = blockDim.x*blockIdx.x+threadIdx.x;
+	int i;
+	double temp = 0;
+	for (i = tid; i<N; i+=blockDim.x*gridDim.x)
+	{	
+		temp = ((d_eigv[i] >= 0) ? 1.0 : -1.0);
+		syncthreads();
+		d_eigv[i] = temp;
+	}
 }
 
- __global__ void vvplus (long N, double *result, double *v0, double alpha, double *v1, double beta)    //º∆À„œÚ¡øº”∑®
+//
+//__global__ void cal_k_kernel(long N, int *AD,int *d_OriR, double *d_K )
+//{		
+//	int offset;
+//	const int blockid   = blockIdx.x;
+//	const int threadid = threadIdx.x;
+//	
+//	for(offset=(blockid/2)*threadnum*2+threadid*2+blockid%2; offset<N; offset+=blockDim.x*gridDim.x )
+//		d_K[offset]= (double)(d_OriR[AD[offset]+1]-d_OriR[AD[offset]]);
+//}
+//
+//__global__ void sum_kj_kernel(long N, double *d_K ,double *sum_kj)
+//{	__shared__ int sum[threadnum];
+//	int temp=0;
+//	int offset;
+//   const int threadid =blockIdx.x*blockDim.x + threadIdx.x;
+//	
+//	//for(offset=(blockid/2)*threadnum*2+threadid*2+blockid%2; offset<N; offset+=blockDim.x*gridDim.x )
+//		// temp+= dG[offset]*(d_R[offset+1]-d_R[offset]);
+//	//for (offset=blockid*threadnum; offset+threadid<N; offset+=blockDim.x*gridDim.x ) 
+//	 	//  temp +=dG[offset+threadid]*(d_R[offset + threadid+1]-d_R[offset + threadid]);	 		
+//	
+//	for(offset=threadid; offset<N; offset+=blockDim.x*gridDim.x)
+//	{
+//		temp+=(int)d_K[offset] ;
+//	}
+//	sum[threadIdx.x]=temp;
+//	syncthreads();
+//	
+//	for(offset=1;offset+threadIdx.x<threadnum;offset*=2){
+//			if (threadIdx.x%(2*offset)==0)  sum[threadIdx.x]+=sum[threadIdx.x+offset] ;
+//			syncthreads();
+//	}
+//	if(threadIdx.x==0)
+//	  sum_kj[blockIdx.x]=(double) sum[threadIdx.x];
+//}
+//
+//__global__ void sum_kernel(int size, double *data, double scale)		   //Â∞Ü‰∏Ä‰∫õÂâçÈù¢Êìç‰Ωú‰∏≠Áî®Ê†ëÂΩ¢ÁªìÊûÑÁõ∏Âä†ÊØè‰∏™blockÁöÑÁªìÊûúÊ±ÇÂíå„ÄÇ
+//{	
+//	__shared__ double sum[blocknum];
+//	int offset;
+//	sum[threadIdx.x]=data[threadIdx.x];
+//	syncthreads();
+//	
+//	for(offset=1;offset+threadIdx.x<blocknum; offset*=2){
+//		if (threadIdx.x%(2*offset)==0)  sum[threadIdx.x]+=sum[threadIdx.x+offset] ;
+//		syncthreads();
+//	}
+//	if(threadIdx.x==0)
+//	    data[0]=sum[0]*scale; 
+//}
+//
+//__global__ void spmv_one_thread(long N, long M, double *result, int *R, int *C, double *vv, double *dk, double vk, double *d_sum, double beta, double *v0)	   //ËÆ°ÁÆóAi*v0,   ÊØè16‰∏™threadsËÆ°ÁÆó‰∏ÄË°å
+//{
+//	__shared__ int R_shared[threadnum+1];
+//
+//	double temp1=0;
+//	int offset;  
+//	
+//	for (offset=blockIdx.x*threadnum+threadIdx.x;offset<N; offset+=gridDim.x*blockDim.x)
+//	{
+//		R_shared[threadIdx.x+1] = R[offset+1];
+//		if(threadIdx.x==0) R_shared[threadIdx.x]=R[offset] ;
+//		syncthreads();	 
+//		temp1 =0 ;
+//		for(int i=R_shared[threadIdx.x]; i<R_shared[threadIdx.x+1];i++)
+//		{		
+//			temp1+=vv[C[i]];			
+//		}		
+//		temp1-=vk/(2*M)*dk[offset]+(d_sum[offset]-beta)*v0[offset];
+//		result[offset]=temp1 ;
+//			//syncthreads();
+//	}		
+//}
+//
+__global__ void vvdot_subtr (long N, double *result_vector, double *vx1, double *vx2, double *vy)    //ËÆ°ÁÆóÂêëÈáèÂä†Ê≥ï
  {
 	 const int blockid   = blockIdx.x;
 	 const int threadid  = threadIdx.x;
 	 int offset;  	 
-	 for(offset=threadid+blockid*threadnum; offset<N; offset+=threadnum*gridDim.x)
-		 result[offset]=(alpha*v0[offset]+beta*v1[offset]);
- }
- 
- __global__ void sumBG_kernel (double *sumBG, double *d_orik, double *d_k, int *AD,long N, double innerMd2M)    //º∆À„œÚ¡øº”∑®
- {
-	 //sumBG[i] = R[i+1] - R[i] - (OriR[AD[i]+1] - OriR[AD[i]]) * (double)innerM / 2 / M;
-	 const int blockid   = blockIdx.x;
-	 const int threadid  = threadIdx.x;
-	 int offset;  	 
-	 for(offset=threadid+blockid*threadnum; offset<N; offset+=threadnum*gridDim.x)
-	 {
-		sumBG[offset] = d_k[offset] - (d_orik[AD[offset]]) * innerMd2M;
-	 }
- }
- 
- __global__ void cal_VV_kernel ( long Ntemp, long N, int *AD, double *vv, double *v)
- {
-	 const int blockid   = blockIdx.x;
-	 const int threadid  = threadIdx.x;
-	 int offset;
-	 for(offset=threadid+blockid*threadnum; offset<Ntemp; offset+=threadnum*gridDim.x)
-		 vv[AD[offset]] = v[offset];
+	 for(offset=threadid+blockid*blockDim.x; offset < N; offset+=blockDim.x*gridDim.x)
+		 result_vector[offset] = vx1[offset] * vx2[offset] - vy[offset];
  }
 
- __global__ void calc_vector (long N, double *result, double *dk, double vk2m, double *d_sum, double beta, double *v0)	   //º∆À„ ( v_k/2/M * (R[i+1] - R[i])+(sumBG1[i] - beta) * v0[i])£¨
- {		
-	 const int blockid   = blockIdx.x;
-	 const int threadid = threadIdx.x;
-	 int offset;
-	 double temp=0;
-	 
-	 for(offset=threadnum*blockid+threadid; offset<N; offset+=threadnum*gridDim.x)
-	 {	
-		  temp=vk2m*dk[offset]+(d_sum[offset]-beta)*v0[offset];
-		  result[offset]=temp;
-	 }
-  }
+__global__ void calculate_du (int N, double alpha, double beta, double *d_u, double *d_K, double *d_sumBG, double *d_u0)
+{
+	int tid = blockDim.x*blockIdx.x+threadIdx.x;
+	int i;
+	double temp;
+	// d_u = d_u - alpha*K - (sumBG+beta).*u0
+	for (i = tid; i<N; i+=blockDim.x*gridDim.x)
+	{
+		temp = d_u[i];
+		syncthreads();
+		temp -= alpha * d_K[i];
+		syncthreads();
+		temp -= (d_sumBG[i]+beta)*d_u0[i];		
+		syncthreads();
+		
+		d_u[i] = temp ;
+	}
+}
 
- /*__global__ void  Norm2_ph1(long N, double *norm,  double *v, bool *dG)	 //«ÛœÚ¡øµƒ∂˛∑∂ ˝£¨≈‰∫œsum_kernel µ√µΩ◊Ó÷’Ω·π˚
- {
-	 __shared__  double temp[threadnum];
-	 const int blockid   = blockIdx.x;
-	 const int threadid = threadIdx.x;
-	 double temp1=0;
-	 int offset;
+__global__ void calculate_Qit (int N, double Q, double *d_Qit, double *d_temp_vector, double *d_K, double *d_S, double m, char *d_indSub)
+{
+	int tid = blockDim.x*blockIdx.x+threadIdx.x;
+	double temp = 0, ki = 0, si = 0;
+	char f = 0;
+	// 
+	for (int i = tid; i<N; i+=blockDim.x*gridDim.x)
+	{
+		f = d_indSub[i];
+		if (f)
+		{
+			temp = d_temp_vector[i];
+			//syncthreads();
+			ki = d_K[i];
+			//syncthreads();
+			si = d_S[i];
+			temp = temp*si +  ki*ki/m;
+			//syncthreads();
+			temp = Q - 4 * temp ;
+			d_Qit[i] = (temp >= 0 ? temp : 0);
+			//d_Qit[i] = temp;
+		}
+		else 
+			d_Qit[i] = 0;
 
-	 for(offset=blockid*threadnum+threadid; offset<N; offset+=threadnum*gridDim.x)
-		 temp1+=dG[offset]? v[offset]*v[offset] : 0;
-	 temp[threadid]=temp1;
-	 syncthreads();
+	}
+}
 
-	 for(offset=1;offset+threadid<threadnum;offset*=2){
-		 if (threadid%(2*offset)==0)  temp[threadid]+=temp[threadid+offset] ;
-		 syncthreads();
-	 }
-	 if (threadid==0)
-		 norm[blockid] = temp[threadid];  	 
- }
- __global__ void Norm2_ph2(long N,  double norm, double *v)						  //Ω´œÚ¡øπÈ“ªªØ£¨»ÙŒ™¡„œÚ¡ø£¨‘Ú√ø∏ˆ‘™Àÿ≥˝“‘1£¨±£≥÷≤ª±‰°£
- {	 	 
-	 for (int offset = threadIdx.x+blockIdx.x*threadnum; offset<N ; offset+= threadnum*gridDim.x  )
-		 v[offset]/=(norm? (norm) : 1);  
- } */
+__global__ void update_array(long imax, double *d_Sit)
+{
+	d_Sit[imax] = d_Sit[imax];
+	//indSub[imax] = CUDART_NAN_F; //at risk
+}
+// 
+// __global__ void sumBG_kernel (double *sumBG, double *d_orik, double *d_k, int *AD,long N, double innerMd2M)    //ËÆ°ÁÆóÂêëÈáèÂä†Ê≥ï
+// {
+//	 //sumBG[i] = R[i+1] - R[i] - (OriR[AD[i]+1] - OriR[AD[i]]) * (double)innerM / 2 / M;
+//	 const int blockid   = blockIdx.x;
+//	 const int threadid  = threadIdx.x;
+//	 int offset;  	 
+//	 for(offset=threadid+blockid*threadnum; offset<N; offset+=threadnum*gridDim.x)
+//	 {
+//		sumBG[offset] = d_k[offset] - (d_orik[AD[offset]]) * innerMd2M;
+//	 }
+// }
+// 
+// __global__ void cal_VV_kernel ( long Ntemp, long N, int *AD, double *vv, double *v)
+// {
+//	 const int blockid   = blockIdx.x;
+//	 const int threadid  = threadIdx.x;
+//	 int offset;
+//	 for(offset=threadid+blockid*threadnum; offset<Ntemp; offset+=threadnum*gridDim.x)
+//		 vv[AD[offset]] = v[offset];
+// }
+//
+// __global__ void calc_vector (long N, double *result, double *dk, double vk2m, double *d_sum, double beta, double *v0)	   //ËÆ°ÁÆó ( v_k/2/M * (R[i+1] - R[i])+(sumBG1[i] - beta) * v0[i])Ôºå
+// {		
+//	 const int blockid   = blockIdx.x;
+//	 const int threadid = threadIdx.x;
+//	 int offset;
+//	 double temp=0;
+//	 
+//	 for(offset=threadnum*blockid+threadid; offset<N; offset+=threadnum*gridDim.x)
+//	 {	
+//		  temp=vk2m*dk[offset]+(d_sum[offset]-beta)*v0[offset];
+//		  result[offset]=temp;
+//	 }
+//  }
+//
+// /*__global__ void  Norm2_ph1(long N, double *norm,  double *v, bool *dG)	 //Ê±ÇÂêëÈáèÁöÑ‰∫åËåÉÊï∞ÔºåÈÖçÂêàsum_kernel ÂæóÂà∞ÊúÄÁªàÁªìÊûú
+// {
+//	 __shared__  double temp[threadnum];
+//	 const int blockid   = blockIdx.x;
+//	 const int threadid = threadIdx.x;
+//	 double temp1=0;
+//	 int offset;
+//
+//	 for(offset=blockid*threadnum+threadid; offset<N; offset+=threadnum*gridDim.x)
+//		 temp1+=dG[offset]? v[offset]*v[offset] : 0;
+//	 temp[threadid]=temp1;
+//	 syncthreads();
+//
+//	 for(offset=1;offset+threadid<threadnum;offset*=2){
+//		 if (threadid%(2*offset)==0)  temp[threadid]+=temp[threadid+offset] ;
+//		 syncthreads();
+//	 }
+//	 if (threadid==0)
+//		 norm[blockid] = temp[threadid];  	 
+// }
+// __global__ void Norm2_ph2(long N,  double norm, double *v)						  //Â∞ÜÂêëÈáèÂΩí‰∏ÄÂåñÔºåËã•‰∏∫Èõ∂ÂêëÈáèÔºåÂàôÊØè‰∏™ÂÖÉÁ¥†Èô§‰ª•1Ôºå‰øùÊåÅ‰∏çÂèò„ÄÇ
+// {	 	 
+//	 for (int offset = threadIdx.x+blockIdx.x*threadnum; offset<N ; offset+= threadnum*gridDim.x  )
+//		 v[offset]/=(norm? (norm) : 1);  
+// } */
+//
+//
+//
+//
+//
+//
+//
+///* 
+//This function returns the norm of the input vector x[G].
+//G is the logic subscriber and N is the matrix dimension.
+//*/
+//
+//
+void cudaDevice_check()
+{
+	int devID;
+	cudaDeviceProp deviceProps;
+	devID = findCudaDevice();
+	// get number of SMs on this GPU
+	checkCudaErrors(cudaGetDeviceProperties(&deviceProps, devID));
+}
+
+double Lead_Vector_GPU(int N, int nnz, int *d_R, int *d_C, double *d_V, double *d_K, double *d_sumBG, double m, double beta, double *d_u)
+{
+	int i = 0, j = 0;
+	
+	// Initialize d_u. Two methods are optional. Define RANDOM_V0 if you want to use random starting vector
+	init_du<<<blocknum,threadnum>>>(N, d_u);
+//#ifdef RANDOM_V0
+//	srand(time(0));
+//	//srand(2016);
+//	u[0] = 1;                        //normalized;
+//	for (i = 1; i < N; i++)
+//		u[i] = rand()*1.0f/RAND_MAX;
+//	
+//#else
+//	for (i = 0; i < N; i++)
+//		u[i] = 1.0f*i/(N-1);
+//#endif
+	
+	double *d_u0;
+	checkCudaErrors( cudaMalloc( (void**) &d_u0, sizeof(double) * (N)));
+	//double err1 = 1, err2 = 1;
+	double err = 1;
+	u_int ITER = 0;
+	double uNorm = 0, uNorm0 = 0;
+	double u_k;
+	double temp1;
+	double alpha = 1.0;
+	double cublasbeta = 0;
+	double *K = new double [N];
+	double *sumBG = new double [N];
+	checkCudaErrors( cudaMemcpy(K, d_K, sizeof(double)*N, cudaMemcpyDeviceToHost));
+	checkCudaErrors( cudaMemcpy(sumBG, d_sumBG, sizeof(double)*N, cudaMemcpyDeviceToHost));
+	
+	//double *u = new double [N];
+	//double *u0 = new double [N];
+
+	while (err > Epsilon && ITER < MAX_ITER)
+	{
+		//for (i = 0; i < N; i++)
+		//	v0[i] =  v[i];
+		//checkCudaErrors( cudaMemcpy(d_u, u,sizeof(double)*N, cudaMemcpyHostToDevice));
+		checkCudaErrors( cudaMemcpy(d_u0,d_u,sizeof(double)*N, cudaMemcpyDeviceToDevice));
+		
+		// The dot product of u_k = k'*u, 
+		u_k = 0;
+		checkCublasErrors( cublasDdot (handle, N, d_u0, 1, d_K, 1, &u_k), "Ddot err in  u*k"); 
+		//for (i = 0; i < N; i++)
+		//	u_k += u0[i] * (K[i]);
+		//cout<<"u_k = "<<u_k<<endl;
+		
+		// Do the matrix-vector multiplication
+		alpha = 1.0;
+		checkCusparseErrors( cusparseDcsrmv(s_handle,CUSPARSE_OPERATION_NON_TRANSPOSE, N, N, nnz, &alpha, s_descr, d_V, d_R, d_C, d_u0, &cublasbeta, d_u),
+		"Dcsrmv err in calculate lead_vector");
+		
+		//checkCublasErrors (cublasDaxpy(handle, N, &alpha, d_K, 1, d_u, 1), "Daxpy err in calculate lead_vector");
+		
+		
+		//checkCudaErrors( cudaMemcpy(u,d_u,sizeof(double)*N, cudaMemcpyDeviceToHost));
+		alpha = u_k/m;
+		calculate_du<<<blocknum,threadnum>>>(N, alpha, beta, d_u, d_K, d_sumBG, d_u0);
+		
+		
+		/*for (i = 0; i < N; i++)
+		{
+			temp1 = 0;
+			for (j = R[i]; j < R[i+1]; j++)
+				temp1 += V[j] * u0[C[j]];
+			temp1 -= u_k / m * (K[i]) + (sumBG[i] + beta) * u0[i];
+			u[i] = temp1;
+		}*/
+		
+		//ofstream debugfile;
+		//debugfile.open("debug_u",ios::binary|ios::out);
+		//debugfile.write((char *)u, N*sizeof(double));
+		//debugfile.close();
+		
+		int idx;
+		//double *x = new double [N];
+		//checkCudaErrors( cudaMemcpy(d_u, u, sizeof(double)*N, cudaMemcpyHostToDevice));
+		checkCublasErrors(cublasIdamax(handle, N, d_u, 1, &idx),"amax err in calculating lead_vector!\n");
+		checkCudaErrors( cudaMemcpy(&uNorm,d_u+idx-1,sizeof(double), cudaMemcpyDeviceToHost));
+		//uNorm = VectorNorm<double>(x, N);
+		
+		// Decide whether converge, using infinity norm
+		err = fabs(uNorm-uNorm0);
+		//cout<<uNorm<<" - "<<uNorm0<<" residual: "<<err<<endl;
+		uNorm0 = uNorm;
+		alpha = 1.0/uNorm;
+		checkCublasErrors( cublasDscal(handle, N, &alpha, d_u, 1),"Dscal err!\n");
+		//for (i = 0; i < N; i++)
+		//	u[i] = u[i] / uNorm ;
+				
+		ITER++;
+	}
+	//delete []u0;
+	//delete []u;
+	cout<<"Iterations:\t"<<ITER<<'\t'<<"residual:\t"<<err<<'\t';
+	fout<<"Iterations:\t"<<ITER<<'\t'<<"residual:\t"<<err<<'\t';
+	cudaFree(d_u0);
+	//delete []u0;
+	//u0 = NULL;
+	// return the eigenvalue
+	//u_int max_index = 0;
+	//u[0] = G[0] ? v[0] : 0;
+	//for (i = 0; i < N; i++)
+	//	if (fabs(u[i]) > fabs(u[max_index]))
+	//		max_index = i;
+	//cout<<uNorm<<endl;
+	return (uNorm);
+}
 
 
 
 
-
-
+//	long long i = 0, j = 0;
+//	/*double *k = new double [Ntemp];
+//	for (int p=0; p<Ntemp; p++)
+//	{
+//		k[p] = p;
+//	}*/
+//	// Initialize v. Two methods are optional. Define RANDOM_V0 if you want to use random starting vector
+//#ifdef RANDOM_V0
+//	//srand(time(0));
+//	srand(seed);
+//	for (i = 0; i < Ntemp; i++){
+//		v[i] = AD[i];
+//		//if(i<20) cout<<v[i]<<endl;
+//	}	 
+//	for (i = 0; i < N; i++){
+//		vv[i] = 0;
+//		//if(i<20) cout<<v[i]<<endl;
+//	}
+//#else
+//	for (i = 0; i < N && !G[i]; i++)
+//#endif
+//	cudaError_t cudaStat;
+//	cublasStatus_t stat;
+//	cublasHandle_t handle;
+//	stat = cublasCreate(&handle) ;
+//	checkCudaErrors( cudaMemset (d_u, 0, sizeof(double) * (Ntemp)));
+//	checkCudaErrors( cudaMemcpy( d_u, v, sizeof(double) * Ntemp , cudaMemcpyHostToDevice) );
+//	checkCudaErrors( cudaMemcpy( d_uu, vv, sizeof(double) * N , cudaMemcpyHostToDevice) );
+//	if (stat != CUBLAS_STATUS_SUCCESS)
+//		return stat;
+//
+//	double err1 = 1, err2 = 1;
+//	int ITER = 0;
+//	double vNorm = 0;
+//	double temp2= -1;
+//	double temp1=0;
+//	//double *norm_v= new double ;
+//	//double *check_du= new double [N];
+//    double v_k;
+//	
+//	//int blocknum_spmv = N*HALF_WARP/threadnum+1;
+//
+//	//spmv_kernel<<<blocknum_spmv, threadnum>>>((long) N, d_r, d_c, d_G, d_u, d_u0);
+//	dim3 blocknum_spmv ( Ntemp/threadnumy+(Ntemp%threadnumy?1:0) );
+//	dim3 threadn(threadnumx,threadnumy);
+//	//cal_k_kernel<<<6,threadnum>>>((long) Ntemp, d_AD, d_orir, d_k);
+//
+//	while (err1 > Epsilon &&  err2 > Epsilon && ITER < MAX_ITER)
+//	{	  		
+//		
+//	   cublasDcopy(handle, (int) Ntemp, d_u, 1 ,d_u0, 1 );
+//	   //ËøôÈáåÈúÄË¶ÅËÆ°ÁÆóvvÔºÅ
+//	   cal_VV_kernel<<<blocknum,threadnum>>>((long) Ntemp, (long) N, d_AD, d_uu, d_u);
+//	   
+//	   cublasDdot (handle, Ntemp, d_u0, 1, d_k, 1, &v_k);
+//	   //calc_vector<<<blocknum, threadnum>>>((long) Ntemp, d_vector, d_k, v_k/(2*M), d_sumBG, beta, d_u0);
+//	  /* checkCudaErrors( cudaMemcpy( vvector, d_vector, sizeof(double) * (Ntemp), cudaMemcpyDeviceToHost) );
+//	   for (int ii = 0;ii < Ntemp;ii++)
+//	   {
+//		   cout<<"vector["<<ii<<"] = "<<vvector[ii]<<endl;
+//	   }*/
+//  		spmv_one_thread<<<blocknum , threadnum>>>((long)Ntemp, (long) M, d_u, d_r, d_c, d_uu, d_k, v_k, d_sumBG, beta, d_u0) ;
+//		/*checkCudaErrors( cudaMemcpy( v, d_u, sizeof(double) * Ntemp , cudaMemcpyDeviceToHost) ); 
+//	  for (int ii = 0;ii < Ntemp;ii++)
+//	   {
+//		   cout<<"v["<<ii<<"] = "<<v[ii]<<endl;
+//	   }*/
+//		//cublasDaxpy(handle, (int) Ntemp, &temp2, d_vector, 1, d_u, 1);
+//		//checkCudaErrors( cudaMemcpy( v, d_u, sizeof(double) * (Ntemp), cudaMemcpyDeviceToHost) );
+//	   /*for(int ii=0;ii<Ntemp;ii++)
+//	   {
+//			if (v[ii]!=0)
+//				cout<<"v["<<ii<<"] = "<<v[ii]<<endl;
+//	   }*/
+//	   
+//	    cublasDnrm2(handle, Ntemp, d_u, 1, &vNorm);
+//		temp1=1/vNorm;
+//		cublasDscal (handle, (int) Ntemp, &temp1, d_u, 1);   //Normalize v, v[i] = v[i]/vNorm
+//	
+//		vvplus<<<blocknum, threadnum>>>((long) Ntemp, d_vector, d_u, 1.0, d_u0, -1.0);
+//	    cublasDnrm2(handle, Ntemp, d_vector, 1, &err1);
+//		vvplus<<<blocknum, threadnum>>>((long) Ntemp, d_vector, d_u, 1.0, d_u0, 1.0);
+//		cublasDnrm2(handle, Ntemp, d_vector, 1, &err2);
+//				 
+//		ITER++;
+//	}	 
+//	//system("pause");
+//	cout<<"Iterations:\t"<<ITER<<'\t'<<"residual:\t"<<min(err1, err2)<<'\t';
+//	fout<<"Iterations:\t"<<ITER<<'\t'<<"residual:\t"<<min(err1, err2)<<'\t';
+//	
+//	checkCudaErrors( cudaMemcpy( v, d_u, sizeof(double) * Ntemp , cudaMemcpyDeviceToHost) ); 
+//	checkCudaErrors( cudaMemcpy(v0,d_u0, sizeof(double) * Ntemp,  cudaMemcpyDeviceToHost) );
+//	cublasDestroy(handle);
+//	long long max_index = 0;
+//	for (i = 0; i < Ntemp; i++)
+//		if (fabs(v[i]) > fabs(v[max_index]))
+//			max_index = i;
+//	return (v[max_index] * v0[max_index] > 0) ? vNorm: -vNorm;
+//}
+//
+//
+//
 
 /* 
-This function returns the norm of the input vector x[G].
-G is the logic subscriber and N is the matrix dimension.
+This funtion calculates dQ for each round to decide whether to split the current submodule.
+It returns a double variable dQ.
 */
-
-
-double Lead_Vector_GPU(int * OriR, int *R, int *C,  int M, double beta, int *AD)
+double calculate_dQ_GPU(double *d_S, int N, int nnz, int *d_R, int *d_C, double *d_V, double *d_K, double *d_sumBG, double m)
 {
-	long long i = 0, j = 0;
-	/*double *k = new double [Ntemp];
-	for (int p=0; p<Ntemp; p++)
-	{
-		k[p] = p;
-	}*/
-	// Initialize v. Two methods are optional. Define RANDOM_V0 if you want to use random starting vector
-#ifdef RANDOM_V0
-	//srand(time(0));
-	srand(seed);
-	for (i = 0; i < Ntemp; i++){
-		v[i] = AD[i];
-		//if(i<20) cout<<v[i]<<endl;
-	}	 
-	for (i = 0; i < N; i++){
-		vv[i] = 0;
-		//if(i<20) cout<<v[i]<<endl;
-	}
-#else
-	for (i = 0; i < N && !G[i]; i++)
-#endif
-	cudaError_t cudaStat;
-	cublasStatus_t stat;
-	cublasHandle_t handle;
-	stat = cublasCreate(&handle) ;
-	checkCudaErrors( cudaMemset (d_u, 0, sizeof(double) * (Ntemp)));
-	checkCudaErrors( cudaMemcpy( d_u, v, sizeof(double) * Ntemp , cudaMemcpyHostToDevice) );
-	checkCudaErrors( cudaMemcpy( d_uu, vv, sizeof(double) * N , cudaMemcpyHostToDevice) );
-	if (stat != CUBLAS_STATUS_SUCCESS)
-		return stat;
-
-	double err1 = 1, err2 = 1;
-	int ITER = 0;
-	double vNorm = 0;
-	double temp2= -1;
-	double temp1=0;
-	//double *norm_v= new double ;
-	//double *check_du= new double [N];
-    double v_k;
-	
-	//int blocknum_spmv = N*HALF_WARP/threadnum+1;
-
-	//spmv_kernel<<<blocknum_spmv, threadnum>>>((long) N, d_r, d_c, d_G, d_u, d_u0);
-	dim3 blocknum_spmv ( Ntemp/threadnumy+(Ntemp%threadnumy?1:0) );
-	dim3 threadn(threadnumx,threadnumy);
-	//cal_k_kernel<<<6,threadnum>>>((long) Ntemp, d_AD, d_orir, d_k);
-
-	while (err1 > Epsilon &&  err2 > Epsilon && ITER < MAX_ITER)
-	{	  		
+	double dQ = 0;
+	//double * x = new double [N];
+	int i,j;
+	double temp;
+	double k_s = 0;
 		
-	   cublasDcopy(handle, (int) Ntemp, d_u, 1 ,d_u0, 1 );
-	   //’‚¿Ô–Ë“™º∆À„vv£°
-	   cal_VV_kernel<<<blocknum,threadnum>>>((long) Ntemp, (long) N, d_AD, d_uu, d_u);
-	   
-	   cublasDdot (handle, Ntemp, d_u0, 1, d_k, 1, &v_k);
-	   //calc_vector<<<blocknum, threadnum>>>((long) Ntemp, d_vector, d_k, v_k/(2*M), d_sumBG, beta, d_u0);
-	  /* checkCudaErrors( cudaMemcpy( vvector, d_vector, sizeof(double) * (Ntemp), cudaMemcpyDeviceToHost) );
-	   for (int ii = 0;ii < Ntemp;ii++)
-	   {
-		   cout<<"vector["<<ii<<"] = "<<vvector[ii]<<endl;
-	   }*/
-	   spmv_one_thread<<<blocknum , threadnum>>>((long)Ntemp, (long) M, d_u, d_r, d_c, d_uu, d_k, v_k, d_sumBG, beta, d_u0, d_Vf) ;
-		/*checkCudaErrors( cudaMemcpy( v, d_u, sizeof(double) * Ntemp , cudaMemcpyDeviceToHost) ); 
-	  for (int ii = 0;ii < Ntemp;ii++)
-	   {
-		   cout<<"v["<<ii<<"] = "<<v[ii]<<endl;
-	   }*/
-		//cublasDaxpy(handle, (int) Ntemp, &temp2, d_vector, 1, d_u, 1);
-		//checkCudaErrors( cudaMemcpy( v, d_u, sizeof(double) * (Ntemp), cudaMemcpyDeviceToHost) );
-	   /*for(int ii=0;ii<Ntemp;ii++)
-	   {
-			if (v[ii]!=0)
-				cout<<"v["<<ii<<"] = "<<v[ii]<<endl;
-	   }*/
-	   
-	    cublasDnrm2(handle, Ntemp, d_u, 1, &vNorm);
-		temp1=1/vNorm;
-		cublasDscal (handle, (int) Ntemp, &temp1, d_u, 1);   //Normalize v, v[i] = v[i]/vNorm
+	// x = S'*Bsub*S = S'*(Bsub*S) = S'*[(Asparse-k*k'/m)*S]
+
+	checkCublasErrors( cublasDdot (handle, N, d_S, 1, d_K, 1, &k_s), "Ddot err in  calculate dQ function"); 
+	/*for (i = 0; i < N; i++)
+			k_s += S[i] * K[i];*/
 	
-		vvplus<<<blocknum, threadnum>>>((long) Ntemp, d_vector, d_u, 1.0, d_u0, -1.0);
-	    cublasDnrm2(handle, Ntemp, d_vector, 1, &err1);
-		vvplus<<<blocknum, threadnum>>>((long) Ntemp, d_vector, d_u, 1.0, d_u0, 1.0);
-		cublasDnrm2(handle, Ntemp, d_vector, 1, &err2);
-				 
-		ITER++;
-	}	 
-	//system("pause");
-	cout<<"Iterations:\t"<<ITER<<'\t'<<"residual:\t"<<min(err1, err2)<<'\t';
-	fout<<"Iterations:\t"<<ITER<<'\t'<<"residual:\t"<<min(err1, err2)<<'\t';
+	double alpha = 1.0, beta = 0;
+	double *d_temp_vector;
+	checkCudaErrors( cudaMalloc( (void**) &d_temp_vector, sizeof(double) * N ));
 	
-	checkCudaErrors( cudaMemcpy( v, d_u, sizeof(double) * Ntemp , cudaMemcpyDeviceToHost) ); 
-	checkCudaErrors( cudaMemcpy(v0,d_u0, sizeof(double) * Ntemp,  cudaMemcpyDeviceToHost) );
-	cublasDestroy(handle);
-	long long max_index = 0;
-	for (i = 0; i < Ntemp; i++)
-		if (fabs(v[i]) > fabs(v[max_index]))
-			max_index = i;
-	return (v[max_index] * v0[max_index] > 0) ? vNorm: -vNorm;
+	checkCusparseErrors(cusparseDcsrmv(s_handle,CUSPARSE_OPERATION_NON_TRANSPOSE, N, N, nnz, &alpha, s_descr, d_V, d_R, d_C, d_S, &beta, d_temp_vector),
+		"Dcsrmv err in calculate dQ function");
+	
+	
+	/*double *temp_vector = new double [N];
+	checkCudaErrors( cudaMemcpy( temp_vector, d_temp_vector, sizeof(double) * N, cudaMemcpyDeviceToHost ));
+	for (i = 0; i < N; i++)
+	{
+		if (i<10)
+			cout<<temp_vector[i]<<endl;
+		dQ += temp_vector[i];
+	}*/
+
+	vvdot_subtr <<<blocknum,threadnum>>> (N, d_temp_vector, d_S, d_temp_vector, d_sumBG); //d_S.*temp_vector - d_sumBG
+	
+	thrust::device_ptr<double> d_tpvector(d_temp_vector);
+	dQ = thrust::reduce(d_tpvector, d_tpvector+N, (double) 0, thrust::plus<double>());
+	//checkCublasErrors ( cublasDasum(handle, N, d_temp_vector, 1, &dQ), "cublas sum dQ error!"); //asum is the sum of absolute value;
+	
+	
+	/*for (i = 0; i < N; i++)
+		{
+			temp = 0;
+			for (j = R[i]; j < R[i+1]; j++)
+				temp += V[j] * S[C[j]];			
+			dQ += S[i] * temp - sumBG[i];
+		}*/
+	
+	dQ -= k_s*k_s/m;
+
+	cudaFree(d_temp_vector);
+
+	//delete []x;
+	return (dQ);
 }
 
-
-
-bool Sub_Partition_GPU(int * OriR, int * OriC, int * R, int * C, int M, int innerM, int * Result, int * Max_Result,int * AD)
+double fine_tune_S_GPU(double dQ, int N, int nnz, int * d_R, int * d_C, double * d_V, double * d_K, double m, double *d_S)
 {
-	//double *v = new double [Ntemp];
-	//double *vv = new double [Ntemp];
-	long long i = 0, j = 0;
-	long long temp1,temp2;
-    double *sumBG1= new double [Ntemp];
-	cublasStatus_t stat;
-	cublasHandle_t handle;
-	stat = cublasCreate(&handle) ;
-	if (stat != CUBLAS_STATUS_SUCCESS)
-		return stat;
-	//dim3 blocknum_sumBG(  Ntemp/threadnumy+(Ntemp%threadnumy?1:0) ) ;
-	//dim3 threadn(threadnumx,threadnumy);
-	checkCudaErrors( cudaMemset (d_sumBG, 0, sizeof(double) * (Ntemp)));
-	//sum_kj_kernel <<<blocknum, threadnum>>> ((long) N,  d_k, temp_result);
-	//sum_kernel<<<1,blocknum>>>(blocknum, temp_result, 1); 
-	/*for (i = 0; i < Ntemp; i++)
+	
+	
+	//signed char *Sit = new signed char [N];
+	double *d_Sit;
+	checkCudaErrors( cudaMalloc( (void**) &d_Sit, sizeof(double) * (N)));
+	checkCudaErrors( cudaMemcpy( d_Sit, d_S, sizeof(double) * N, cudaMemcpyDeviceToDevice)) ;
+	thrust::device_ptr<double> dev_Sit(d_Sit);
+	thrust::device_ptr<double> dev_S(d_S);
+	//memcpy(Sit,S,sizeof(signed char)*N);
+	//signed char *S_Si = new signed char [N];
+	
+	double *d_Qit; // = new double [N];
+	checkCudaErrors( cudaMalloc( (void**) &d_Qit, sizeof(double) * (N)));
+	checkCudaErrors(cudaMemset(d_Qit,0,sizeof(double)*N));
+	thrust::device_ptr<double> dev_Qit(d_Qit);
+
+	char *d_indSub;
+	checkCudaErrors( cudaMalloc( (void**) &d_indSub, sizeof(char) * (N)));
+	thrust::device_ptr<char> dev_indSub(d_indSub);
+	thrust::fill(dev_indSub,dev_indSub+N,TRUE);
+	//fill(indSub,indSub+N,1); 
+
+	
+	double k_s = 0;
+	int i = 0,j = 0;
+	int imax = 0;
+	int ITER = 0;
+	double Q = dQ;
+	double Qmax = dQ;
+	double alpha = 0;
+	//bool flag = TRUE;
+	double *d_temp_vector;
+	checkCudaErrors( cudaMalloc( (void**) &d_temp_vector, sizeof(double) * N ));
+
+	//double *Qit = new double [N];
+	//double *Sit = new double [N];
+	//bool copy_S_flag = false;
+	while (ITER<N)
 	{
-		sumBG[i] = 0;
-		sumBG[i] = R[i+1] - R[i] - (OriR[AD[i]+1] - OriR[AD[i]]) * (double)innerM / 2 / M;
-	}*/
-	cal_k_kernel<<<blocknum,threadnum>>>((long) Ntemp, d_AD_init, d_r, d_sumBG);
-	cal_k_kernel<<<blocknum,threadnum>>>((long) Ntemp, d_AD, d_orir, d_k);
-	double innerMd2M = 0.0 - (double) innerM/2/M;
-	cublasDaxpy(handle, (int) Ntemp, &innerMd2M, d_k, 1, d_sumBG, 1);
-	//sumBG_kernel<<< blocknum, threadnum >>>(d_sumBG, d_orik, d_k, d_AD, (long) Ntemp, (double)innerM/2/M);
-	//checkCudaErrors( cudaMemcpy( sumBG1, d_sumBG, sizeof(double)*(Ntemp), cudaMemcpyDeviceToHost)) ;
-	//checkCudaErrors(cudaMemcpy( d_sumBG, sumBG, sizeof(double)*(Ntemp), cudaMemcpyHostToDevice)) ;
-	//checkCudaErrors( cudaMemcpy( sumBG, d_sumBG, sizeof(double)*(Ntemp), cudaMemcpyDeviceToHost)) ;
-	//cout<<"innerM = "<<innerM;
-	/*for(int ii=0;ii<Ntemp;ii++)
-	{
-		if ((sumBG1[ii]-sumBG[ii])>Epsilon || sumBG1[ii]-sumBG[ii]<-Epsilon)
-			cout<<"sumBG["<<ii<<"] = "<<sumBG[ii]<<" sumBG1["<<ii<<"] = "<<sumBG1[ii]<<endl;
-    }*/
+		//////////////////////////////////////////////////////////
+		//calculate Qit[]=dQ - 4 *(Sit').*( Bsub-diag(Bsub) )*Sit
+		checkCublasErrors( cublasDdot (handle, N, d_Sit, 1, d_K, 1, &k_s), "Ddot err in fine_tune_S function");
+		alpha = 1.0;
+		double beta = 0;
+		checkCusparseErrors(cusparseDcsrmv(s_handle,CUSPARSE_OPERATION_NON_TRANSPOSE, N, N, nnz, &alpha, s_descr, d_V, d_R, d_C, d_Sit, &beta, d_temp_vector),
+		"Dcsrmv err in fine_tune_S function");
+		alpha = -1.0*k_s/m;
+		//cublasDaxpy(cublasHandle_t handle, int n, const double *alpha, const double *x, int incx, double *y, int incy)
+
+
+		checkCublasErrors(cublasDaxpy(handle, N, &alpha, d_K, 1, d_temp_vector, 1),"Daxpy err in fine_tune_S function");
+		
+		calculate_Qit<<<blocknum,threadnum>>>(N, Qmax, d_Qit, d_temp_vector, d_K, d_Sit, m, d_indSub);
+		
+		//checkCudaErrors( cudaMemcpy( Qit, d_Qit, sizeof(double) * N, cudaMemcpyDeviceToHost)) ;
+		
+		//for (i = 0; i < N; i++)
+		//{
+		//	if (indSub[i] == 0)
+		//		continue;
+
+			//for (j = 0; j < N; j++)
+			//	S_Si[j] = Sit[j]*Sit[i];
+
+			//Sit[k] = -Sit[k];
+			//S_Si[i] = 0;
+			//k_s = 0;
+			
+					
+
+			//temp = 0;
+			//for (j = R[i]; j < R[i+1]; j++)
+			//	temp += S_Si[C[j]] * V[j];			
+			////	Qit[k] += S[i] * temp + K[i]*K[i]/m;
+			////}
+			//for (j = 0; j < N; j++)
+			//	temp -= S_Si[j]*K[i]*K[j]/m;
+			//Qit[i] = Qmax - 4*temp;
+			
+			//cout<<Qit[k]<<'\t';
+			////////////////////////////////////////////////////
+			//Sit[k] = -Sit[k];
+		//}
+
+		//for (i = 0; i < N; i++)
+		//	Qit[i] *= indSub[i];
+		
+		//Qmax = qmax(N, Qit, indSub, &imax);
+		
+		cublasIdamax(handle, N, d_Qit, 1, &imax); 
+		imax = imax-1;
+		Qmax = dev_Qit[imax];
+		
+		/*thrust::device_ptr<double> max_ptr = thrust::max_element(dev_Qit, dev_Qit + N);
+		imax = &max_ptr[0] - &dev_Qit[0];
+		Qmax = max_ptr[0];*/
+		
+		//cout<<"Qmax = "<<Qmax<<"\t imax = "<<imax<<endl;
+		
+		if (dev_indSub[imax])
+			dev_indSub[imax] = 0;
+		else
+			break;
+			//cout<<"indSub break flag!"<<endl;
+		
+		//if (Qmax > Q)
+		//{
+		//	Q = Qmax;
+		//	copy_S_flag = true;
+		//	//continue;						
+		//}
+		//else if (copy_S_flag)
+		//{
+		//	copy_S_flag = false;
+		//	checkCudaErrors( cudaMemcpy(d_S, d_Sit, sizeof(double)*N, cudaMemcpyDeviceToDevice));			
+		//}
+				
+		dev_Sit[imax] = -1.0*dev_Sit[imax];
+		
+		if (Qmax > Q)
+		{
+			Q = Qmax;
+			dev_S[imax] = dev_Sit[imax];
+		}
+		else
+			break;
+
+		ITER++;
+	}
+	cout<<"\nFine tune ITER: "<<ITER<<endl;
+	//if (copy_S_flag)
+	//	checkCudaErrors( cudaMemcpy(d_S, d_Sit, sizeof(double)*N, cudaMemcpyDeviceToDevice));
+
+	cudaFree(d_temp_vector);
+	cudaFree(d_Qit);
+	cudaFree(d_Sit);
+	cudaFree(d_indSub);
+	//delete []Sit;
+	//delete []Qit;
+	//delete []indSub;
+	cout<<"fine tune Q: "<<Q<<endl;
+	return Q;
+}
+
+//bool Sub_Partition_GPU(int N, int * ind, int * R, int * C, float *V, double *K, double *sumBG, double m, int * Result, int * Num_module)
+//{
+//	int devID;
+//	cudaDeviceProp deviceProps;
+//	devID = findCudaDevice();
+//	// get number of SMs on this GPU
+//	checkCudaErrors(cudaGetDeviceProperties(&deviceProps, devID));
+//	
+//	checkCublasErrors(cublasCreate(&handle), "Create cublas handle err!\n");
+//	checkCusparseErrors( cusparseCreate(&s_handle), "Create cusparse handle err!\n" );
+//	checkCusparseErrors(cusparseCreateMatDescr(&s_descr), "CreateMatDescr err!\n"); 
+//	cusparseSetMatType(s_descr,CUSPARSE_MATRIX_TYPE_GENERAL);
+//    cusparseSetMatIndexBase(s_descr,CUSPARSE_INDEX_BASE_ZERO); 
+//
+//	int i,j;
+//	int nnz = R[N]-R[0];
+//	double *Vd = new double [nnz];
+//	for (i = 0; i < nnz; i++)
+//		Vd[i] = (double) V[i];
+//	
+//	int *d_R, *d_C;
+//	double *d_V;
+//	double *d_K, *d_sumBG;
+//
+//	checkCudaErrors( cudaMalloc( (void**) &d_R, sizeof(int) * (N + 1)));
+//	checkCudaErrors( cudaMalloc( (void**) &d_C, sizeof(int) * (R[N]-R[0])));
+//	checkCudaErrors( cudaMalloc( (void**) &d_V, sizeof(double) * (N)));
+//	checkCudaErrors( cudaMalloc( (void**) &d_sumBG, sizeof(double) * (N)));
+//	checkCudaErrors( cudaMalloc( (void**) &d_K, sizeof(double) * (N)));
+//	
+//	checkCudaErrors( cudaMemcpy( d_R, R, sizeof(int) * (N + 1), cudaMemcpyHostToDevice)) ;
+//	checkCudaErrors( cudaMemcpy( d_C, C, sizeof(int) * R[N], cudaMemcpyHostToDevice)) ;
+//	checkCudaErrors( cudaMemcpy( d_V, Vd, sizeof(double) * R[N], cudaMemcpyHostToDevice)) ;
+//	checkCudaErrors( cudaMemcpy( d_K, K, sizeof(double) * N, cudaMemcpyHostToDevice)) ;
+//	checkCudaErrors( cudaMemcpy( d_sumBG, sumBG, sizeof(double) * N, cudaMemcpyHostToDevice)) ;
+//
+//	double * d_eigv;
+//	checkCudaErrors( cudaMalloc( (void**) &d_eigv, sizeof(double) * N));
+//	
+//	double lambda = 0;
+//	lambda = Lead_Vector_GPU(N, nnz, d_R, d_C, d_V, d_K,  d_sumBG, m, BETA_Adjust, d_eigv);
+//	//lambda = Lead_Vector(N, R, C, V, K,  sumBG, m, BETA_Adjust, eigv);
+//	lambda += BETA_Adjust;
+//	// If lambda < 0, calucate the leading eigenvalue for  B - lambda * I
+//	if (lambda < 0)
+//		lambda += Lead_Vector_GPU(N, nnz, d_R, d_C, d_V, d_K,  d_sumBG, m, lambda, d_eigv);
+//		//lambda += Lead_Vector(N, R, C, V, K,  sumBG, m, lambda, eigv);
+//	cout<<"Eigen Value: "<<lambda<<'\t';
+//	fout<<"Eigen Value: "<<lambda<<'\t';
+//
+//	// Decide whether this round of partition is successful 
+//	int subN = 0, subP = 0;
+//	
+//	/*for (i = 0; i < N; i++)
+//	{
+//		subP += (eigv[i] >= 0);  		
+//		subN += (eigv[i] < 0);	 		
+//		eigv[i] = ((eigv[i] >= 0) ? 1 : -1);
+//		S[i] = ((eigv[i] >= 0) ? 1 : -1);
+//	}*/
+//	
+//	
+//	
+//
+//	sign_eigv<<<blocknum,threadnum>>>(N,d_eigv);
+//	double S_sum = 0;
+//	//stat = cublasDasum(handle, N, d_eigv, 1, &S_sum);  //asum sum of absolute value;
+//	//if (stat != CUBLAS_STATUS_SUCCESS)
+//	//	return stat;
+//	
+//	subP = (N + S_sum)/2;
+//	subN = (N - S_sum)/2;
+//	cout<<"subP: "<<subP<<endl;
+//	cout<<"subN: "<<subN<<endl;
+//	if (subP+subN != N)
+//	{
+//		cout<<"S allocation error!";
+//		system("pause");
+//	}
+//
+//	//calculate dQ;
+//	double dQ = 0;
+//
+//	dQ = calculate_dQ_GPU(d_eigv, N, nnz, d_R, d_C, d_V, d_K, d_sumBG, m);
+//	cout<< "dQ = "<<dQ<<endl;
+//	if (dQ>DQ_MIN)  //fine tune results 
+//	{
+//		 dQ = fine_tune_S_GPU(dQ, N, nnz, d_R, d_C, d_V, d_K, m, d_eigv);	
+//	}
+//	subP = 0;
+//	subN = 0;
+//	
+//	/*for (i = 0; i < N; i++)
+//	{
+//		subP += (S[i] >= 0);  		
+//		subN += (S[i] < 0);	 		
+//	}*/
+//
+//	checkCublasErrors( cublasDasum(handle, N, d_eigv, 1, &S_sum), "sum S err in sub_partition!");
+//		
+//	subP = (N + S_sum)/2;
+//	subN = (N - S_sum)/2;
+//
+//	dQ = calculate_dQ_GPU(d_eigv, N, nnz, d_R, d_C, d_V, d_K, d_sumBG, m);
+//	cout<< "after fine tune, dQ = "<<dQ<<endl;
+//	
+//	bool isSplit = (dQ > DQ_MIN && subP > MIN_GROUP && subN > MIN_GROUP);
+//
+//	cout<<"Divide?: "<<isSplit<<'\t';
+//	fout<<"Divide?: "<<isSplit<<'\t';
+//	// If not divided, return; otherwise update Result and Max_Result
+//	double *S = new double [N];
+//	if (isSplit)
+//	{
+//		checkCudaErrors( cudaMemcpy( S, d_eigv, sizeof(double) * N, cudaMemcpyDeviceToHost)) ;
+//		(*Num_module) += 1;
+//		if (subP>subN)
+//			for (i = 0; i < N; i++)
+//				Result[ind[i]] = ((S[i] >= 0 ) ? Result[ind[i]] : (*Num_module));
+//		else
+//			for (i = 0; i < N; i++)
+//				Result[ind[i]] = ((S[i] < 0 ) ? Result[ind[i]] : (*Num_module));
+//	}
+//	
+//	delete []S;
+//	cublasDestroy(handle);
+//
+//
+//	delete []Vd;
+//	checkCudaErrors(cudaFree(d_eigv));
+//	
+//	checkCudaErrors(cudaFree(d_R));
+//	checkCudaErrors(cudaFree(d_C));
+//	checkCudaErrors(cudaFree(d_V));
+//	checkCudaErrors(cudaFree(d_sumBG));
+//	checkCudaErrors(cudaFree(d_K));
+//	return isSplit;
+//}
+
+bool Sub_Partition_GPU_test(int N, int * ind, int * R, int * C, float *V, double *K, double *sumBG, double m, int * Result, int * Num_module)
+{
+		
+	checkCublasErrors(cublasCreate(&handle), "Create cublas handle err!\n");
+	checkCusparseErrors( cusparseCreate(&s_handle), "Create cusparse handle err in calculate dQ function" );
+	checkCusparseErrors(cusparseCreateMatDescr(&s_descr), "CreateMatDescr err in calculate dQ function"); 
+	cusparseSetMatType(s_descr,CUSPARSE_MATRIX_TYPE_GENERAL);
+    cusparseSetMatIndexBase(s_descr,CUSPARSE_INDEX_BASE_ZERO); 
+
+	int i,j;
+	int nnz = R[N]-R[0];
+	double *Vd = new double [nnz];
+	for (i = 0; i < nnz; i++)
+		Vd[i] = (double) V[i];
+	
+	int *d_R, *d_C;
+	double *d_V;
+	double *d_K, *d_sumBG;
+
+	checkCudaErrors( cudaMalloc( (void**) &d_R, sizeof(int) * (N + 1)));
+	checkCudaErrors( cudaMalloc( (void**) &d_C, sizeof(int) * nnz));
+	checkCudaErrors( cudaMalloc( (void**) &d_V, sizeof(double) * nnz));
+	checkCudaErrors( cudaMalloc( (void**) &d_sumBG, sizeof(double) * (N)));
+	checkCudaErrors( cudaMalloc( (void**) &d_K, sizeof(double) * (N)));
+	
+	checkCudaErrors( cudaMemcpy( d_R, R, sizeof(int) * (N + 1), cudaMemcpyHostToDevice)) ;
+	checkCudaErrors( cudaMemcpy( d_C, C, sizeof(int) * nnz, cudaMemcpyHostToDevice)) ;
+	checkCudaErrors( cudaMemcpy( d_V, Vd, sizeof(double) * nnz, cudaMemcpyHostToDevice)) ;
+	checkCudaErrors( cudaMemcpy( d_K, K, sizeof(double) * N, cudaMemcpyHostToDevice)) ;
+	checkCudaErrors( cudaMemcpy( d_sumBG, sumBG, sizeof(double) * N, cudaMemcpyHostToDevice)) ;
+
+	double * d_eigv;
+	checkCudaErrors( cudaMalloc( (void**) &d_eigv, sizeof(double) * N));
+	
+	double * eigv = new double [N];
+	//signed char *S = new signed char [N];
 	double lambda = 0;
-	lambda = Lead_Vector_GPU(OriR, R, C, M, 0, AD);
-	lambda -= BETA_Adjust;
+	lambda = Lead_Vector_GPU(N, nnz, d_R, d_C, d_V, d_K,  d_sumBG, m, BETA_Adjust, d_eigv);
+	//lambda = Lead_Vector(N, R, C, V, K,  sumBG, m, BETA_Adjust, eigv);
+	lambda += BETA_Adjust;
 	// If lambda < 0, calucate the leading eigenvalue for  B - lambda * I
-	if (lambda < (-1.0)*LAMBDA)
-		//lambda += Lead_Vector_GPU(  M,  G, -lambda);
-		lambda += Lead_Vector_GPU(OriR, R, C, M, -lambda, AD);
-		//lambda = Lead_Vector(R, C, M, sumBG, G, -lambda);
+	if (lambda < 0)
+		lambda += Lead_Vector_GPU(N, nnz, d_R, d_C, d_V, d_K,  d_sumBG, m, lambda, d_eigv);
+		//lambda += Lead_Vector(N, R, C, V, K,  sumBG, m, lambda, eigv);
+		
 	cout<<"Eigen Value: "<<lambda<<'\t';
 	fout<<"Eigen Value: "<<lambda<<'\t';
 
 	// Decide whether this round of partition is successful 
-	long long subN = 0, subP = 0;
-	for (i = 0; i < Ntemp; i++)
-	{
-		subP += (v[i] > 0);
-		subN += (v[i] <= 0);
-	}
-	bool Issub = (lambda > LAMBDA && subP > MIN_GROUP && subN > MIN_GROUP);
+	int subN = 0, subP = 0;
+		
+	sign_eigv<<<blocknum,threadnum>>>(N,d_eigv);
+	double S_sum = 0;
+	thrust::device_ptr<double> dev_ptr(d_eigv);
+	S_sum = thrust::reduce(dev_ptr, dev_ptr+N, (double) 0, thrust::plus<double>());
+	
+	subP = (N + S_sum)/2;
+	subN = (N - S_sum)/2;
 
-	cout<<"Divide?: "<<Issub<<"\t\n";
-	fout<<"Divide?: "<<Issub<<"\t\n";
+	cout<<"subP: "<<subP<<endl;
+	cout<<"subN: "<<subN<<endl;
+
+	
+	if (subP+subN != N)
+	{
+		cout<<"S allocation error!";
+		system("pause");
+	}
+	//calculate dQ;
+	double dQ = 0;
+	//checkCudaErrors( cudaMemcpy( d_eigv, eigv, sizeof(double) * N, cudaMemcpyHostToDevice)) ;
+	dQ = calculate_dQ_GPU(d_eigv, N, nnz, d_R, d_C, d_V, d_K, d_sumBG, m);
+	cout<< "dQ = "<<dQ<<endl;
+	//dQ = calculate_dQ(S, N, R, C, V, K, sumBG, m);
+	//cout<< "dQ = "<<dQ<<endl;
+	
+	/////////////////////////////////////////////////////////////////////
+	//                        fine tune results                        //
+	if (dQ>DQ_MIN)  
+	{
+		 dQ = fine_tune_S_GPU(dQ, N, nnz, d_R, d_C, d_V, d_K, m, d_eigv);	
+	}
+			
+	//dQ = calculate_dQ_GPU(d_eigv, N, nnz, d_R, d_C, d_V, d_K, d_sumBG, m);
+	cout<< "after fine tune, dQ = "<<dQ<<endl;
+
+	S_sum = thrust::reduce(dev_ptr, dev_ptr+N, (double) 0, thrust::plus<double>());
+	subP = (N + S_sum)/2;
+	subN = (N - S_sum)/2;
+	cout<<"subP: "<<subP<<endl;
+	cout<<"subN: "<<subN<<endl;
+	////////////////////////////////////////////////////////////////////////
+
+
+	bool isSplit = (dQ > DQ_MIN && subP > MIN_GROUP && subN > MIN_GROUP);
+
+	cout<<"Divide?: "<<isSplit<<'\t';
+	fout<<"Divide?: "<<isSplit<<'\t';
 	// If not divided, return; otherwise update Result and Max_Result
-	if (!Issub)
-		return 0;
-	for (i = 0; i < Ntemp; i++)
-		Result[AD[i]] = *Max_Result + 1 + (v[i] * (subP - subN + 0.5) <= 0);
-	// notice: this is wrong  Result[i] = *Max_Result + 1 + (v[i] * (subP - subN) >= 0);
-	(*Max_Result) += 2;
-	//delete []v;
-	//delete []vv;
-	return Issub;
+	/*double *S = new double [N];
+	if (isSplit)
+	{
+		checkCudaErrors( cudaMemcpy( S, d_eigv, sizeof(double) * N, cudaMemcpyDeviceToHost)) ;
+		(*Num_module) += 1;
+		if (subP>subN)
+			for (i = 0; i < N; i++)
+				Result[ind[i]] = ((S[i] >= 0 ) ? Result[ind[i]] : (*Num_module));
+		else
+			for (i = 0; i < N; i++)
+				Result[ind[i]] = ((S[i] < 0 ) ? Result[ind[i]] : (*Num_module));
+	}
+	
+	delete []S;
+	cublasDestroy(handle);*/
+
+	if (isSplit)
+	{
+		checkCudaErrors( cudaMemcpy( eigv, d_eigv, sizeof(double) * N, cudaMemcpyDeviceToHost)) ;
+		(*Num_module) += 1;
+		if (subP>subN)
+			for (i = 0; i < N; i++)
+				Result[ind[i]] = ((eigv[i] >= 0 ) ? Result[ind[i]] : (*Num_module));
+		else
+			for (i = 0; i < N; i++)
+				Result[ind[i]] = ((eigv[i] < 0 ) ? Result[ind[i]] : (*Num_module));
+	}
+	//delete []S;
+	delete []eigv;
+	delete []Vd;
+	
+	checkCudaErrors(cudaFree(d_eigv));
+	
+	checkCudaErrors(cudaFree(d_R));
+	checkCudaErrors(cudaFree(d_C));
+	checkCudaErrors(cudaFree(d_V));
+	checkCudaErrors(cudaFree(d_sumBG));
+	checkCudaErrors(cudaFree(d_K));
+	cublasDestroy(handle) ;
+	cusparseDestroy(s_handle) ;
+	return isSplit;
 }
 
 
@@ -402,323 +1026,193 @@ This function does the partition, no return value.
 R and C represent the adjacency matrix in CSR format.
 Result stores the partition results.
 */
-void Partition_GPU(int * R, int * C, int * Result)
-{   
-	int devID;
-	cudaDeviceProp deviceProps;
-	devID = findCudaDevice();
-	// get number of SMs on this GPU
-	checkCudaErrors(cudaGetDeviceProperties(&deviceProps, devID));
-	//printf("CUDA device [%s] has %d Multi-Processors\n", deviceProps.name, deviceProps.multiProcessorCount);
-   
-
-	
-	Setup(0);
-	Start(0);
-	int M = (R[N] - R[0]) / 2;			// The total Number connection in the network
-	int Round = 0;						// The iteration round
-	int Max_Result = 0;					// Maximum index of modules
-	int Module_Num = 1;					// Used for adjust module index.
-	bool Issub;							// Return by function Sub_Partition()
-	bool * G = new bool [N];			// G[i] = 1 if node i is involved in this round of partition
-	memset(Result, 0, sizeof(int) * N);
-	int * Adjust_Result = new int [N];	// Map the results to consecutive intergers starting from 1 
-	int Index = 1;						// Used in the adjusted results, starting from 1, increase by 1 at each successful division
-	int * NewRow = new int [N+1];
-	int * NewCol = new int [R[N]];
-	int * Index_Result = new int [N];  // Used for matching the order number for every round partition
-	long long i = 0, j = 0;
-	int NumG = 0;						//
-	long long innerM = 2*M;
-	int Newtemp1 = 0;
-	int	Newtemp2 = 0;
-	while (Round <= Max_Result)	   //???????
-	{
-		innerM =2*M;
-		NumG = 0;
-		for (int i = 0; i < N; i++)
-		{
-			G[i] = (Result[i] == Round); 
-			if (G[i])
-			{
-				Index_Result[NumG] = i;
-				NumG ++;				// G[i] = 1 if node i is involved in this round
-				continue;
-			}
-			innerM -= R[i+1] - R[i];
-		}
-		//Select all the involved node to form new row and col
-		Newtemp1 = 0;
-		Newtemp2 = 0;
-		NewRow[Newtemp2] = Newtemp1;
-		Newtemp2++;
-		for(int i = 0;i < N; i++)
-		{
-			if(!G[i])
-				continue;
-			for (int j = R[i];j < R[i+1];j++)
-			{
-				if(!G[C[j]])
-					continue;
-				NewCol[Newtemp1] = C[j];
-				Newtemp1++;
-			}
-			NewRow[Newtemp2] = Newtemp1;
-			Newtemp2++;
-		}
-		Ntemp = Newtemp2 - 1;
-		//main part of the partition
-		checkCudaErrors( cudaMemcpy( d_r, NewRow, sizeof(int) * (N + 1), cudaMemcpyHostToDevice)) ;
-		checkCudaErrors( cudaMemcpy( d_c, NewCol, sizeof(int) * (2*M), cudaMemcpyHostToDevice)) ;
-		checkCudaErrors( cudaMemcpy( d_AD, Index_Result, sizeof(int) * (N), cudaMemcpyHostToDevice)) ;
-		if (NumG)						 
-		{
-			cout<<"\nRound:\t"<<Round<<'\t';
-			cout<<"number of nodes:\t"<<NumG<<'\t';
-			fout<<"\nRound:\t"<<Round<<'\t';
-			fout.flush();
-			fout<<"number of nodes:\t"<<NumG<<'\t';	
-			Setup(1);
-			Start(1);
-			if (NumG>25000)
-				Issub = Sub_Partition_GPU(R,C,NewRow, NewCol, M, innerM, Result, &Max_Result, Index_Result);
-			else
-				Issub = Sub_Partition(R,C,NewRow, NewCol, M, innerM, Result, &Max_Result, Index_Result);
-										// call Sub_Partition() for this round of division
-			Stop(1);
-			cout<<"sub_partition time:   "<<GetElapsedTime(1)<<"s"<<endl;
-			fout<<"sub_partition time:   "<<GetElapsedTime(1)<<"s"<<endl;
-
-			if (!Issub)					// If divided, record the adjusted result
-				Adjust_Result[Round] = Index++;
-			Module_Num += Issub;		// Update the total number modules 
-		}
-		Round++;
-	}
-	Stop(0);
-
-	// calculate Q
-	double Q = 0;
-	for (i = 0; i < N; i++)
-		for (j = R[i]; j < R[i+1]; j++)
-			Q += 1.0 * (Result[i] == Result[C[j]]);
-	for (i = 0; i < N; i++)
-		for (j = 0; j < N; j++)
-			Q -= 1.0 * (Result[i] == Result[j]) * (R[i+1]-R[i]) * (R[j+1]-R[j]) / 2 / M;
-
-	Q /= 2 * M;
-
-	cout<<"\nNumber of Modules: "<<Module_Num<<",\tQ="<<Q<<endl;
-	fout<<"\nNumber of Modules: "<<Module_Num<<",\tQ="<<Q<<endl;
-	cout<<"Elapsed time:   "<<GetElapsedTime(0)<<"s"<<endl;
-	fout<<"Elapsed time:   "<<GetElapsedTime(0)<<"s"<<endl;
-
-	// Adjust the results
-	for (i = 0; i < N; i++)	
-		Result[i] = Adjust_Result[Result[i]];
-	delete []Adjust_Result;
-	delete []G;
-	delete []Index_Result;
-	delete []NewRow;
-	delete []NewCol;
-	return;
-}
-
-int main(int argc, char * argv[])
-{
-	ofstream flog("BNA_time_log", ios::app);
-	clock_t total_time = clock();
-	if (argc != 3) 
-	{
-		cerr<<"Input format: .\\Modularity.exe dir_for_csr num_of_random_networks \nFor example: .\\Modularity_CPU.exe d:\\data 10"<<endl;
-		exit(1);	
-	}
-
-	DIR *dp;
-	struct dirent *dirp;
-	if (NULL == (dp = opendir(argv[1])))
-	{
-		printf("can't open %s", argv[1]);
-		exit (1);
-	}
-	int FileNumber = 0;
-	string filenametmp;
-	while((dirp = readdir(dp)) != NULL)
-	{
-		filenametmp = string(dirp->d_name);
-
-		if (filenametmp.find_last_of('.') == -1)
-			continue;
-		if(filenametmp.length()>4 && filenametmp.substr(filenametmp.find_last_of('.'),4).compare(".csr") == 0 && filenametmp.size() - filenametmp.find_last_of('.') - 1 == 3)
-		{
-			FileNumber++;
-		}
-	}
-	cout<<FileNumber<<" files to be processed."<<endl;
-
-	closedir(dp);
-	string *filename = new string[FileNumber];
-	dp = opendir(argv[1]);
-	long long i = 0;
-	while((dirp = readdir(dp)) != NULL)
-	{
-		filenametmp = string(dirp->d_name);
-		if (filenametmp.find_last_of('.') == -1)
-			continue;
-		if(filenametmp.length()>4 && filenametmp.substr(filenametmp.find_last_of('.'),4).compare(".csr") == 0 && filenametmp.size() - filenametmp.find_last_of('.') - 1 == 3)
-		{
-			filename[i++] = filenametmp;
-		}
-	}
-
-	int max_iso_n = 0;
-	for (int i = 0; i < FileNumber; i++)
-	{
-		string a = string(argv[1]).append("\\").append(filename[i]);
-		cout<<"\nModular analysis for "<<a.c_str()<<" ..."<<endl;
-		ifstream fin(a.c_str(), ios_base::binary);
-		if (!fin.good())
-		{	cout<<"Can't open\t"<<a.c_str()<<endl;	return 0;}
-		// Read x.csr
-		int Rlength = 0, Clength = 0, Vlength=0;
-		fin.read((char*)&Rlength, sizeof(int));
-		int * R = new int [Rlength];
-		fin.read((char*)R, sizeof(int) * Rlength);
-		fin.read((char*)&Clength, sizeof(int));
-		int * C = new int [Clength];
-		fin.read((char*)C, sizeof(int) * Clength);
-		fin.read((char*)&Vlength, sizeof(int));
-		if (Vlength!=Clength)
-			cout<<"Your csr file "<<a.c_str()<< "is damaged!"<<endl;
-		Vf = new float [Vlength];
-		fin.read((char*)Vf, sizeof(float) * Clength);
-		fin.close();
-		N = Rlength - 1;
-
-		int isolated_n = 0;
-		for (int j = 0; j < N; j++)
-			if (R[j]==R[j+1])
-				isolated_n++;
-		if (isolated_n > max_iso_n)
-			max_iso_n = isolated_n;
-
-		// allocate buffers used in the iteration
-		v = new double [N];
-		v0 = new double [N];
-		vv = new double [N];
-		verr = new double [N];
-		sumBG = new double [N];
-		// allocate the result buffer and call Partition()
-		int * Modu_Result = new int [N];	
-
-		// Parse file name
-		string X_modu = a.substr(0, a.find_last_of('.') ).append("_modu.nm");
-		string X_cp_mas = a.substr(0, a.find_last_of('.')).append("_modu.txt");
-		fout.open(X_cp_mas.c_str(), ios::out);	// Open the log file
-
-		checkCudaErrors( cudaMalloc( (void**) &d_AD, sizeof(int) * (N)));
-		checkCudaErrors( cudaMalloc( (void**) &d_AD_init, sizeof(int) * (N)));
-		checkCudaErrors( cudaMalloc( (void**) &d_orir, sizeof(int) * (N + 1)));
-		checkCudaErrors( cudaMalloc( (void**) &d_r, sizeof(int) * (N + 1)));
-		checkCudaErrors( cudaMalloc( (void**) &d_c, sizeof(int) * (R[N]-R[0])));
-		checkCudaErrors( cudaMalloc( (void**) &d_u, sizeof(double) * (N)));
-		checkCudaErrors( cudaMalloc( (void**) &d_uu, sizeof(double) * (N)));
-		checkCudaErrors( cudaMalloc( (void**) &d_u0, sizeof(double) * (N)));
-		checkCudaErrors( cudaMalloc( (void**) &d_sumBG, sizeof(double) * (N)));
-		checkCudaErrors( cudaMalloc( (void**) &d_k, sizeof(double) * (N)));
-		checkCudaErrors( cudaMalloc( (void**) &d_orik, sizeof(double) * (N)));
-		checkCudaErrors( cudaMalloc( (void**) &d_vector, sizeof(double) * N));
-		checkCudaErrors( cudaMalloc( (void**) &d_Vf, sizeof(double) * Vlength));
-		
-	// copy host memory to device
-		checkCudaErrors( cudaMemcpy( d_orir, R, sizeof(int) * (N + 1), cudaMemcpyHostToDevice)) ;
-		checkCudaErrors( cudaMemcpy( d_Vf, Vf, sizeof(float) * Vlength, cudaMemcpyHostToDevice)) ;
-		init_AD<<<blocknum,threadnum>>>((long) N, d_AD_init);
-		cal_k_kernel<<<blocknum,threadnum>>>((long) N, d_AD_init, d_orir, d_orik);
-		//double *k= new double [N];
-		//checkCudaErrors( cudaMemcpy( k, d_orik, sizeof(double) * (N), cudaMemcpyDeviceToHost)) ;
-		//for (int x=0; x < N; x++)
-		//	if ((R[x+1]-R[x]-k[x])!=0) cout<<"k["<<x<<"] = "<<R[x+1]-R[x]<<"  ;  " <<k[x] <<endl;  
-
-
-		seed=time(NULL);
-        Setup(0);
-		Start(0);
-		//Partition(R, C, Modu_Result);
-		Partition_GPU(R, C, Modu_Result);
-		Stop(0);
-		flog<<"Modularity\t"<<a.c_str()<<"CPU\tkernel time\t"<<GetElapsedTime(0)<<"s"<<endl;
-
-		cout<<"Save partition results as "<<X_modu.c_str()<<endl;
-		ofstream fresult;
-		fresult.open(X_modu.c_str(), ios::binary|ios::out);
-		fresult.write((char*)&N, sizeof(int));
-		
-		float * fModu_Result = new float [N];
-		for (int ii = 0; ii < N; ii++)
-			fModu_Result[ii] = (float) Modu_Result[ii];
-		
-		fresult.write((char*)fModu_Result, sizeof(float) * N);
-		fresult.close();
-		delete [] fModu_Result;
-
-		// Analysis for random networks
-		int Maslov_num = atoi(argv[2]);
-		cout<<"Modular analysis for random networks..."<<endl;
-
-		int * R_dst = new int [Rlength];
-		int * C_dst = new int [Clength];
-		Setup(0);
-		Start(0);
-		for (long long l = 0; l < Maslov_num; l++)
-		{
-			Maslov(R_dst, C_dst, R, C, Rlength, Clength);
-			checkCudaErrors( cudaMemcpy( d_r, R_dst, sizeof(int) * (N + 1), cudaMemcpyHostToDevice)) ;
-			checkCudaErrors( cudaMemcpy( d_c, C_dst, sizeof(int) * ((R_dst[N]-R_dst[0])), cudaMemcpyHostToDevice)) ;
-			cal_k_kernel<<<6,threadnum>>>((long) N, d_AD, d_r, d_k);
-			
-			//Partition(R_dst, C_dst, Modu_Result);
-			Partition_GPU(R_dst, C_dst, Modu_Result);
-		}
-		Stop(0);
-		flog<<"Modularity\tRandom"<<"CPU\t(Maslov+kernel) time\t"<<GetElapsedTime(0)<<"s"<<endl;
-		// Clean up
-		fout.close();
-		delete []Modu_Result;
-		delete []sumBG;
-		delete []verr;
-		delete []v0;
-		delete []vv;
-		delete []v;
-		delete []R;
-		delete []C;
-		delete []R_dst;
-		delete []C_dst;
-		checkCudaErrors(cudaFree(d_r));
-		checkCudaErrors(cudaFree(d_k));
-		checkCudaErrors(cudaFree(d_orik));
-		checkCudaErrors(cudaFree(d_c));
-		checkCudaErrors(cudaFree (d_u));
-		checkCudaErrors(cudaFree (d_uu));
-		checkCudaErrors(cudaFree (d_u0));
-		checkCudaErrors(cudaFree (d_sumBG));
-		//checkCudaErrors(cudaFree (d_G));
-		checkCudaErrors(cudaFree (temp_result));
-		checkCudaErrors(cudaFree (d_vector));
-		checkCudaErrors(cudaFree (d_vector1));
-		checkCudaErrors(cudaFree (d_vector2));	
-		checkCudaErrors(cudaFree (d_norm));
-		checkCudaErrors(cudaFree (d_AD));
-		checkCudaErrors(cudaFree (d_AD_init));
-	}
-	cout<<"==========================================================="<<endl;
-	total_time = clock() - total_time;
-	flog<<"Modularity\tCPU\ttotal time\t"<<1.0*total_time/1000<<"s"<<endl;
-	flog<<"seed="<<seed<<endl;
-	cout<<"max isolated voxel number: "<<max_iso_n;
-	flog<<endl;
-	flog.close();
-	//system("pause");
-	delete[]filename;
-	return 0;
-}	   
+//void Partition_GPU(long long N, int * R, int * C, float * V, int * Result)
+//{
+//	long long M = R[N];
+//	long long i = 0,j = 0;
+//	
+//	double * K;
+//	K = new double [N];
+//	double m = 0;
+//	memset(K, 0, sizeof(double)*N);
+//	for (i = 0; i < N; i++)
+//	{
+//		for (j = R[i]; j < R[i+1]; j++)
+//		{
+//			K[i]+= V[j];
+//		}
+//		m += K[i];
+//	}
+//	//double m_inv = 1.0/m;
+//	cout<<"check K: "<<K[0]<<'\t'<<K[N/2]<<'\t'<<K[N-1]<<endl; //check
+//	cout<<"check m: "<<m<<endl;
+//	//memset(Result, 0, sizeof(int) * N);
+//	fill(Result, Result+N, 1); //initialize Result
+//	//int * Adjust_Result = new int [N];   //can be optimized,old version bfs style
+//	int result_idx = 1;
+//	int Num_module = 1;
+//	int NumG = N;
+//	int * index = new int [N];
+//	
+//	int * ind = new int [N];            //later try to put in the loop, using NumG
+//	for (i = 0; i < N; i++)
+//		ind[i] = i;
+//	//int NumG = 0;
+//	int Round = 1;						// The iteration round
+//	//int Max_Result = 1;					// Maximum index of modules
+//	int * R_new = new int [N+1];
+//	memcpy(R_new, R, sizeof(int)*(N+1));
+//	int * C_new = new int [M];
+//	memcpy(C_new, C, sizeof(int)*(M));
+//	float *V_new = new float [M];
+//	memcpy(V_new,V,sizeof(float)*M);
+//	double *K_new = new double [N];
+//	memcpy(K_new, K, sizeof(double)*N);
+//	double *sumBG = new double [N];
+//	memset(sumBG, 0, sizeof(double)*N);
+//	
+//	bool isSplit;
+//	int ITER = 0;
+//	while (Round <= Num_module)
+//	{		
+//		/**********************************************************************************/
+//		/************************************ Partition ***********************************/
+//		if (NumG>1)
+//		{
+//			cout<<"\nRound:\t"<<Round<<'\t'<<"Iter:\t"<<ITER<<endl;
+//			cout<<"number of nodes:\t"<<NumG<<'\t';
+//			cout<<"number of non-zero elements:\t"<<R_new[NumG]<<'\t';
+//			cout<<"density of this submodule:\t"<<R_new[NumG]*1.0/( (double) NumG * NumG)<<'\t';
+//			fout<<"\nRound:\t"<<Round<<'\t';
+//			fout<<"number of nodes:\t"<<NumG<<'\t';
+//			fout.flush();
+//			
+//			Setup(1);
+//			Start(1);
+//			//isSplit = Sub_Partition(NumG, ind, R_new, C_new, V_new, K_new, sumBG, m, Result, &Num_module); //if split, Num_module+1;
+//			isSplit = Sub_Partition_GPU_test(NumG, ind, R_new, C_new, V_new, K_new, sumBG, m, Result, &Num_module); //if split, Num_module+1;
+//			Stop(1);
+//			
+//			cout<<"sub_partition time:   "<<GetElapsedTime(1)<<"s"<<endl;
+//			fout<<"sub_partition time:   "<<GetElapsedTime(1)<<"s"<<endl;
+//			//if (!isSplit)					// If divided, record the adjusted result
+//			//	Adjust_Result[Round] = result_idx++;
+//			//Num_module += isSplit;		// Update the total number modules , old version
+//		}
+//		if (!isSplit)
+//			Round++;
+//		/**********************************************************************************/
+//		/************************** Find the next sub_module ***************************/
+//		NumG = 0;
+//		fill(index, index+N, -1);
+//		for (i = 0; i < N; i++)
+//		{
+//			if (Result[i] == Round)
+//			{	
+//				ind[NumG] = i;
+//				index[i] = NumG++;   // index[i] >= 0 if node i is involved in this round
+//				//NumG ++;
+//			}				
+//		}
+//		if (!NumG)
+//		{
+//			cout<<"No voxel in the submodule next round";
+//			cout<<"iter: "<<ITER<<", and Num_module: "<<Num_module<<" should be equal.\n";
+//			continue;
+//		}
+//		int ii = 0;
+//		int jj = 0;
+//		R_new[0] = 0;
+//		for(i = 0;i < N; i++)
+//		{
+//			if(index[i] < 0)
+//				continue;
+//			K_new[ii] = K[i];                 
+//			for (j = R[i];j < R[i+1];j++)
+//			{
+//				if(index[C[j]] < 0)
+//					continue;
+//				C_new[jj] = index[C[j]];
+//				V_new[jj] = V[j];
+//				if(C_new[jj] > NumG)                      //check flag
+//					cout<<C_new[jj]<<'\t'<<C[j]<<"C_new exceed NumG!\n";				
+//				jj++;
+//			}
+//			R_new[++ii] = jj;			
+//		}
+//		if (ii!=NumG)    //check flag
+//			cout<<"sub module voxel# not match!";
+//
+//		//update R_new, C_new, V_new, and k (i.e., bsub);
+//		/**********************************************************************************/
+//		/******************************** diag(sum(bsub)) *********************************/
+//		double temp1 = 0, temp2 = 0;
+//		for (i = 0; i < NumG; i++)
+//				temp2 += (K_new[i]);
+//
+//		for (i = 0; i < NumG; i++)
+//		{
+//			//if (!G[i])
+//				//continue;
+//			//sumBG[i] = 0;
+//			temp1 = 0;
+//			for (j = R_new[i]; j < R_new[i+1]; j++)
+//				temp1 += V_new[j];			
+//			sumBG[i] = temp1 - K_new[i] * temp2 / m;
+//		}
+//		
+//		ITER++;
+//
+//		//ofstream debugfile;
+//		//ostringstream s1;
+//		//
+//		//s1<<"Round"<<Round<<"_Iter"<<ITER;
+//		////string debugfilename = "round";
+//		//debugfile.open(s1.str().append("_ind"),ios::binary|ios::out);
+//		//debugfile.write((char *)ind, NumG*sizeof(int));
+//		//debugfile.close();
+//		//int Rlength = NumG+1;
+//		//int Clength = R_new[NumG];
+//		//debugfile.open(s1.str().append("_csr"),ios::binary|ios::out);
+//		//debugfile.write((char *)&Rlength, sizeof(int));
+//		//debugfile.write((char *)R_new, Rlength*sizeof(int));
+//		//debugfile.write((char *)&Clength, sizeof(int));
+//		//debugfile.write((char *)C_new, R_new[NumG]*sizeof(int));
+//		//debugfile.write((char *)&Clength, sizeof(int));
+//		//debugfile.write((char *)V_new, R_new[NumG]*sizeof(float));
+//		//debugfile.close();
+//		//debugfile.open(s1.str().append("_k"),ios::binary|ios::out);
+//		//debugfile.write((char *)K_new, NumG*sizeof(double));
+//		//debugfile.close();
+//		//debugfile.open(s1.str().append("_diag"),ios::binary|ios::out);
+//		//debugfile.write((char *)sumBG, NumG*sizeof(double));
+//		//debugfile.close();
+//
+//		
+//	}
+//	
+//	double Q = 0;
+//	for (i = 0; i < N; i++)
+//		for (j = R[i]; j < R[i+1]; j++)
+//			Q += V[j] * (Result[i] == Result[C[j]]);
+//	for (i = 0; i < N; i++)
+//		for (j = 0; j < N; j++)
+//			Q -= (Result[i] == Result[j]) * (K[i]) * (K[j]) /m;
+//	Q = Q / m;
+//
+//	cout<<"\nNumber of Modules: "<<Num_module<<",\tQ="<<Q<<endl;
+//	fout<<"\nNumber of Modules: "<<Num_module<<",\tQ="<<Q<<endl;
+//
+//	//for (i = 0; i < N; i++)	
+//	//	Result[i] = Adjust_Result[Result[i]];
+//	
+//	//delete []Adjust_Result;
+//	delete []R_new;
+//	delete []C_new;
+//	delete []V_new;
+//	delete []K_new;
+//	delete []K;
+//	delete []sumBG;
+//	delete []ind;
+//	delete []index;
+//}

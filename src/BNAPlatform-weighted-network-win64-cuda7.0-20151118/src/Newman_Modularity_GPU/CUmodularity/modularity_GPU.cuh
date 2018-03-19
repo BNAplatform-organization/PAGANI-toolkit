@@ -1,7 +1,11 @@
+#ifndef MODULARITY_GPU_CUH
+#define MODULARITY_GPU_CUH
 #include <iostream>
 #include <ctime>
 #include <cuda_runtime.h>
 #include <cuda.h>
+#include <cublas_v2.h>
+#include <cusparse.h>
 #include "device_functions.h"
 #include "Timer.h"
 using namespace std;
@@ -34,6 +38,27 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 	}
 }
 
+#define checkCublasErrors(stat, msg)  __checkCublasErrors (stat, msg)
+
+inline void __checkCublasErrors(cublasStatus_t stat, const char *errormsg)
+{
+	if(CUBLAS_STATUS_SUCCESS != stat)
+	{
+		fprintf(stderr, " cublas error %d. %s\n", (int)stat, errormsg );
+		exit(-1);        
+	}
+}
+
+#define checkCusparseErrors(stat, msg)  __checkCusparseErrors (stat, msg)
+
+inline void __checkCusparseErrors(cusparseStatus_t stat, const char *errormsg)
+{
+	if(CUSPARSE_STATUS_SUCCESS != stat)
+	{
+		fprintf(stderr, " cublas error %d. %s\n", (int)stat, errormsg );
+		exit(-1);        
+	}
+}
 
 // Initialization code to find the best CUDA Device
 inline int findCudaDevice()
@@ -48,3 +73,4 @@ inline int findCudaDevice()
 }
 // end of CUDA Helper Functions
 
+#endif

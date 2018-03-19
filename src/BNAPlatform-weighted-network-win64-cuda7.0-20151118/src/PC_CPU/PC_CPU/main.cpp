@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include "dirent.h"
+#include "data_type.h"
 #include <list>
 using namespace std;
 
@@ -67,18 +68,20 @@ int main(int argc, char* argv[])
 			return 0;
 		}
 
-		int NumVertex;
+		// Read x.csr
+		
+		u_int NumVertex;
 		infile.read((char*)&NumVertex, sizeof(int));
-		int* EdgeIndex = new int[NumVertex];
-		infile.read((char*)EdgeIndex, sizeof(int) * NumVertex);
-		int NumEdges;
-		infile.read((char*)&NumEdges, sizeof(int));
-		int* EdgeTargets = new int[NumEdges];
-		infile.read((char*)EdgeTargets, sizeof(int) * NumEdges);
-		int Vlength;
-		infile.read((char*)&Vlength, sizeof(int));
-		float * V = new float [Vlength];
-		infile.read((char*)V, sizeof(float) * Vlength);
+		R_type* EdgeIndex = new R_type[NumVertex];
+		infile.read((char*)EdgeIndex, sizeof(R_type) * NumVertex);
+		R_type NumEdges;
+		infile.read((char*)&NumEdges, sizeof(R_type));
+		C_type* EdgeTargets = new C_type[NumEdges];
+		infile.read((char*)EdgeTargets, sizeof(C_type) * NumEdges);
+		R_type Vlength;
+		infile.read((char*)&Vlength, sizeof(R_type));
+		V_type * V = new V_type[Vlength];
+		infile.read((char*)V, sizeof(V_type) * Vlength);
 		infile.close();
 
 
@@ -88,7 +91,7 @@ int main(int argc, char* argv[])
 			cout << fileName_modu << " not found!" << endl;
 			continue;
 		}
-		infile.read((char*)&NumVertex, sizeof(int));
+		infile.read((char*)&NumVertex, sizeof(u_int));
 		float* module = new float[NumVertex];
 		infile.read((char*)module, sizeof(float) * NumVertex);
 		infile.close();

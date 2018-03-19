@@ -8,17 +8,18 @@
 #include "device_launch_parameters.h"  //同步函数的波浪线不管他了
 #include "device_functions.h"
 #include "dirent.h" 
+#include "data_type.h"
 #include <cmath>
 #include <time.h> 
 #include "Timer.h" 
-#include "cublas_v2.h"
-#include<cuda_runtime.h>
-#include "cusparse.h"
+#include <cublas_v2.h>
+#include <cuda_runtime.h>
+#include <cusparse.h>
 
 #define CLEANUP(s)   printf ("%s\n", s)   //cusparse的！每步完成之后都要free东西，等所有的变量都定义完后再看吧                           
 #define CUBLAS_ERROR_CHECK(sdata) if(CUBLAS_STATUS_SUCCESS!=sdata){printf("ERROR at:%s:%d\n",__FILE__,__LINE__);}//exit(-1);}  
-#pragma comment(lib,"cublas.lib")
-#pragma comment(lib,"cusparse.lib")
+//#pragma comment(lib,"cublas.lib")
+//#pragma comment(lib,"cusparse.lib")
 
  using namespace std;
 
@@ -52,7 +53,7 @@ __global__ void vvplus (long N, double *result, double *v0, double alpha, double
  }
 /**********函数功能：求对称、稀疏矩阵的特征向量中心度，参数依次分别为行偏移、列号、元素值、Ntemp*Ntemp*********************/
       
- double Lead_Vector_GPU(int *R, int *C, double *V, long Ntemp,double *ec)  //beta到底用不用考虑 ，beta，d_u0,d_uu关系乱了！！
+ double Lead_Vector_GPU(R_type *R, C_type *C, double *V, long Ntemp, double *ec)  //beta到底用不用考虑 ，beta，d_u0,d_uu关系乱了！！
 {
 	
 	//变量定义
@@ -108,7 +109,7 @@ __global__ void vvplus (long N, double *result, double *v0, double alpha, double
 	double temp1=0;
 
  //   double v_k;
-	//第一步  分配空间；初始化d_u（相当于迭代公式中的x[k]）；将矩阵的R,C传到GPU上
+	//first step: GPU memory allocation
 	cudaStat1= cudaMalloc( (void**) &d_v, sizeof(double) * (2*M));
 	cudaStat2= cudaMalloc( (void**) &d_r, sizeof(int) * (Ntemp + 1));
 	cudaStat3= cudaMalloc( (void**) &d_c, sizeof(int) *(2*M));
@@ -139,34 +140,29 @@ __global__ void vvplus (long N, double *result, double *v0, double alpha, double
         CLEANUP("Memcpy from Host to Device failed");
         return 1;
     }
-	//第二步：将元素值传到gpu;
+	//Second Step：send to gpu;
 	
-		cudaStat1 = cudaMemcpy(d_v, V, 
-                           (size_t)(2*M*sizeof(d_v[0])), 
+	cudaStat1 = cudaMemcpy(d_v, V, (size_t)(2*M*sizeof(d_v[0])), 
                            cudaMemcpyHostToDevice);
 	if (cudaStat1 != cudaSuccess) 
       {
         CLEANUP("Memcpy from Host to Device failed");
     }
-	
-	                                         //wocao求最大值都免了！！！！        //soga!是前后一致！！！！！下文用的是二范数
-	//第三步：循环;<1>Y(k) = X(k)/║ X(k)║∞;<2>X(k+1) = AY(k) k=0,1,2,…;<3>判断：当k充分大时，或当║ X(k)- X(k+1)║ <ε时，跳出循环;<4>结果：Y(k)≈V1,max |Xj(k)| ≈ λ1 ,1≤j≤n为x(k)的第j个分量
+		                                         
+	//third step：power method
 	while (err1 > Epsilon &&  err2 > Epsilon && ITER < MAX_ITER)
 	{	  		
-        //3.1先把d_u赋给d_u0
+        //3.1 d_u -> d_u0
 		cublasDcopy(handle, (int) Ntemp, d_u, 1 ,d_u0, 1 );
-        //3.2循环第一步 归一化	   
-		cublasDnrm2(handle, Ntemp, d_u, 1, &vNorm);            //思想：不管除以哪种范数，最后的向量收敛，计算结果一定是相同的！
-		temp1=1/vNorm;                                          //du除以du的范数，目的是为了防止精度损失，用哪种范数都行,验证过了是2范数
-		cublasDscal (handle, (int) Ntemp, &temp1, d_u, 1);   //Normalize v, v[i] = v[i]/vNorm 哦！这个是v【i】除上它自己的范数，归一化。      
-	    
-	
-		//注意上一个费时间，优化时把他优化掉
-		//3.3循环第二步 矩阵向量相乘
+        //3.2 normalization	   
+		cublasDnrm2(handle, Ntemp, d_u, 1, &vNorm);            
+		temp1=1/vNorm;                                         
+		cublasDscal (handle, (int) Ntemp, &temp1, d_u, 1);       
+	    	
+		//3.3 matrix vector multiplication
 		status= cusparseDcsrmv(cushandle,  transA,  Ntemp,  Ntemp,  2*M, 
-
-		&alpha_mv,  descrA,  d_v,  d_r,      //因为这儿d_v要求必须double 所以前面都得改成double？
-		d_c,  d_u,  &beta_mv,  y);
+							   &alpha_mv,  descrA,  d_v,  d_r,      
+							   d_c,  d_u,  &beta_mv,  y);
 		if (status != CUSPARSE_STATUS_SUCCESS) 
 		{ 
 			CLEANUP("Matrix-vector multiplication failed");
@@ -179,15 +175,15 @@ __global__ void vvplus (long N, double *result, double *v0, double alpha, double
         {
 		   CLEANUP("Memcpy from Device to Device failed");
 		}
-       //3.4 判断
+       //3.4 calculate the convergence
 		vvplus<<<blocknum, threadnum>>>((long) Ntemp, d_vector, d_u, 1.0, d_u0, -1.0);
-	    cublasDnrm2(handle, Ntemp, d_vector, 1, &err1);   //xk-x（k-1）的范数
+	    cublasDnrm2(handle, Ntemp, d_vector, 1, &err1);   
 		vvplus<<<blocknum, threadnum>>>((long) Ntemp, d_vector, d_u, 1.0, d_u0, 1.0);
-		cublasDnrm2(handle, Ntemp, d_vector, 1, &err2);   //xk+x（k-1）的范数                    //这些是收敛条件，重要的参考资料是百度百科
+		cublasDnrm2(handle, Ntemp, d_vector, 1, &err2);   
 				 
 		ITER++;
 	}	 
-	cudaStat1= cudaMemcpy(ec,d_u, sizeof(double) * Ntemp,  cudaMemcpyDeviceToHost) ;//这里是最终的输出了！
+	cudaStat1= cudaMemcpy(ec,d_u, sizeof(double) * Ntemp,  cudaMemcpyDeviceToHost) ;//finall output！
 	if (cudaStat1 != cudaSuccess) 
     {
         CLEANUP("Memcpy from Device to Host failed");
@@ -196,7 +192,7 @@ __global__ void vvplus (long N, double *result, double *v0, double alpha, double
 	cout<<"Iterations:\t"<<ITER<<'\t'<<"residual:\t"<<min(err1, err2)<<'\t'<<"eigenvalue:\t"<<vNorm<<'\t';
 //	fout<<"Iterations:\t"<<ITER<<'\t'<<"residual:\t"<<min(err1, err2)<<'\t';
 	
-	//第四步:释放内存，并求最大值
+	//Fourth step: release the memory
 	cublasDestroy(handle);
 	cudaFree(y);
 	cudaFree(d_r);
@@ -272,7 +268,24 @@ int main(int argc, char * argv[]){
 		{	cout<<"Can't open\t"<<a.c_str()<<endl;	return 0;}
 
 		// Read x.csr
-		int Rlength = 0, Clength = 0, Vlength=0;
+		unsigned int Rlength = 0;
+		R_type Clength = 0, Vlength = 0;
+		fin.read((char*)&Rlength, sizeof(int));
+		R_type * R = new R_type[Rlength];
+		fin.read((char*)R, sizeof(R_type) * Rlength);
+		fin.read((char*)&Clength, sizeof(R_type));
+		C_type * C = new C_type[Clength];
+		fin.read((char*)C, sizeof(C_type) * Clength);
+		fin.read((char*)&Vlength, sizeof(R_type));
+		if (Vlength != Clength)
+			cout << "Your csr file " << a.c_str() << "is damaged!" << endl;
+		V_type * Vf = new V_type[Vlength];
+		fin.read((char*)Vf, sizeof(V_type) * Clength);
+		fin.close();
+		int N = Rlength - 1;
+
+		// Read x.csr
+		/*int Rlength = 0, Clength = 0, Vlength=0;
 		fin.read((char*)&Rlength, sizeof(int));
 		int * R = new int [Rlength];
 		fin.read((char*)R, sizeof(int) * Rlength);
@@ -285,7 +298,7 @@ int main(int argc, char * argv[]){
 		float * Vf = new float [Vlength];
 		fin.read((char*)Vf, sizeof(float) * Clength);
 		fin.close();
-		int N = Rlength - 1;
+		int N = Rlength - 1;*/
 		//step 2：use leading_vector function
 		
 		//float *V=NULL;
@@ -295,6 +308,7 @@ int main(int argc, char * argv[]){
 		double *V = new double [Vlength];
 		for(int k = 0; k < Vlength; k++)
 			V[k] = (double) Vf[k];
+		delete[]Vf;
 
 		double *ec = new double [N];
 		double  x=Lead_Vector_GPU(R, C, V, N,ec);
@@ -315,10 +329,10 @@ int main(int argc, char * argv[]){
 			ec_f[k] = (float) ec[k];
 			//cout<<v[k]<<"    "<<vf[k]<<endl;   //debug
 		}
-		fout.write((char*)ec_f, sizeof(float) * N);  //保存矩阵的eigenvector centrality
+		fout.write((char*)ec_f, sizeof(float) * N);  //save results of eigenvector centrality
 				
 
-		//fout.write((char*)&x, sizeof(float));           //保存矩阵的eigenvalue
+		//fout.write((char*)&x, sizeof(float));           //save the first eigenvalue
 		fout.close();
 		//fout.open(X_ec_mas.c_str(),ios::trunc); //ios::trunc表示在打开文件前将文件清空,由于是写入,文件不存在则创建
 		//fout<<"the eigenvector centrality for each node is "<<endl;
@@ -326,7 +340,11 @@ int main(int argc, char * argv[]){
 		fout.open(X_ec_mas.c_str(), ios::out);
 		fout<<setprecision(6)<<x<<endl;
 		fout.close();
-				
+		delete[]R;
+		delete[]C;
+		delete[]V;
+		delete[]ec;
+		delete[]ec_f;
 
-}
+	}
 }

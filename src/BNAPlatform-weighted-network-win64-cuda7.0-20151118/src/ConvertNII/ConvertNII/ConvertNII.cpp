@@ -24,7 +24,6 @@ int main(int argc, char * argv[])
 		exit(1);	
 	}
 
-
 	DIR *dp;
 	struct dirent *dirp;
 	if (NULL == (dp = opendir(argv[1])))

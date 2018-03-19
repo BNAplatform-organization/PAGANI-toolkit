@@ -1,27 +1,20 @@
-﻿生成启动时间为 2015/12/30 11:42:52。
-     1>项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\SmallWorldProperty\SmallWorldProperty.vcxproj”在节点 3 上(Rebuild 个目标)。
-     1>_PrepareForClean:
-         正在删除文件“Release\SmallWorldProperty.lastbuildstate”。
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(346,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-       InitializeBuildStatus:
-         正在创建“Release\SmallWorldProperty.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
-       ClCompile:
-         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\..\common /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Release\SmallWorldProperty.pch" /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+﻿Build started 2018/3/19 20:43:56.
+     1>Project "C:\Users\xzzz\Documents\GitHub\PAGANI-toolkit\src\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\SmallWorldProperty\SmallWorldProperty.vcxproj" on node 2 (Rebuild target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(364,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\..\..\common /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Release\SmallWorldProperty.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
          stdafx.cpp
-         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\..\common /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\SmallWorldProperty.pch" /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt SmallWorldProperty.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\..\..\common /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\SmallWorldProperty.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SmallWorldProperty.cpp
          SmallWorldProperty.cpp
-     1>SmallWorldProperty.cpp(116): warning C4805: “==”: 在操作中将类型“char”与类型“bool”混合不安全
+     1>SmallWorldProperty.cpp(116): warning C4805: '==' : unsafe mix of type 'char' and type 'bool' in operation
        Link:
-         E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\SmallWorldProperty.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\..\bin\SmallWorldProperty.pdb" /SUBSYSTEM:CONSOLE,"5.01" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\SmallWorldProperty.lib" /MACHINE:X86 /SAFESEH Release\SmallWorldProperty.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\bin\SmallWorldProperty.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\..\bin\SmallWorldProperty.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\bin\SmallWorldProperty.lib" /MACHINE:X86 /SAFESEH Release\SmallWorldProperty.obj
          Release\stdafx.obj
-         正在生成代码
-         已完成代码的生成
-         SmallWorldProperty.vcxproj -> E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\SmallWorldProperty\..\..\bin\SmallWorldProperty.exe
-       FinalizeBuildStatus:
-         正在删除文件“Release\SmallWorldProperty.unsuccessfulbuild”。
-         正在对“Release\SmallWorldProperty.lastbuildstate”执行 Touch 任务。
-     1>已完成生成项目“E:\cudaintergrated\cuda_test_project\cuda_newest\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\SmallWorldProperty\SmallWorldProperty.vcxproj”(Rebuild 个目标)的操作。
+         Generating code
+         Finished generating code
+         SmallWorldProperty.vcxproj -> C:\Users\xzzz\Documents\GitHub\PAGANI-toolkit\src\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\SmallWorldProperty\..\..\bin\SmallWorldProperty.exe
+     1>Done Building Project "C:\Users\xzzz\Documents\GitHub\PAGANI-toolkit\src\BNAPlatform-weighted-network-win64-cuda7.0-20151118\src\SmallWorldProperty\SmallWorldProperty.vcxproj" (Rebuild target(s)).
 
-生成成功。
+Build succeeded.
 
-已用时间 00:00:04.74
+Time Elapsed 00:00:03.66
