@@ -6,6 +6,10 @@ x64/
 *.iobj
 *.pdb
 *.db
+*.suo
+Debug/
+Release/
+
 
 # Compiled Object files
 *.slo
