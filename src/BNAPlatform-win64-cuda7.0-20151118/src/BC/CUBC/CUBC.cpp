@@ -50,7 +50,7 @@ void CUBC(float *BC, int * row, int * col, int numVertices, int numEdges)
 	#endif
 	cout <<endl<< maxgrid<<endl;
 
-	int grid = min(128, maxgrid);
+	int grid = (128<maxgrid ? 128 : maxgrid);
 	if (grid > 8)
 		grid -= grid%8;
 	else if (grid > 4)

@@ -6,6 +6,7 @@
 # include <cstring>
 # include <ctime>
 # include "dirent.h"
+# include "data_type.h"
 using namespace std;
 
 
@@ -69,10 +70,10 @@ int main(int argc, char * argv[])
 		{	cout<<"Can't open\t"<<a.c_str()<<endl;	return 0;}
 
 		// Read x.csr
-		int Rlength = 0, Clength = 0;
+		unsigned int Rlength = 0, Clength = 0;
 		fin.read((char*)&Rlength, sizeof(int));
-		int * R = new int [Rlength];
-		fin.read((char*)R, sizeof(int) * Rlength);
+		R_type * R = new R_type [Rlength];
+		fin.read((char*)R, sizeof(R_type) * Rlength);
 		//fin.read((char*)&Clength, sizeof(int));
 		//int * C = new int [Clength];
 		//fin.read((char*)C, sizeof(int) * Clength);
@@ -84,7 +85,7 @@ int main(int argc, char * argv[])
 		float *Degree = new float [N];
 		for (int k = 0; k < N; k++)
 		{
-			Degree[k] = (float) R[k+1] - R[k];
+			Degree[k] = R[k+1] - R[k];
 			if(Degree[k]==0)
 				isolated_n++;
 		}

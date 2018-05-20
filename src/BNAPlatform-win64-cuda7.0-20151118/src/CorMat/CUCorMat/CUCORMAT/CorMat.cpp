@@ -5,10 +5,11 @@
 #include <ctime>
 #include <cmath>
 #include <iomanip>
-#include "dirent.h"
 #include <iostream>
 #include <fstream>
 #include <stack>
+#include "dirent.h"
+#include "data_type.h"
 
 using namespace std;
 
@@ -28,7 +29,7 @@ int CorMat_gpu(real__t * Cormat, real__t * BOLD, int N, int L, int Batch_size);
 long long FormFullGraph(bool * adjacent, real__t * Cormat, int N, real__t threshold);
 real__t FormFullGraph_s(bool * adjacent, real__t * Cormat, int N, long long threshold);
 void post_block (real__t * Cormat, real__t * Cormat_blocked, int dim, int block_size,bool fishtran_flag);
-void FormCSRGraph(int * R, int * C, bool * adjacent, int N);
+void FormCSRGraph(R_type * R, C_type * C, bool * adjacent, int N);
 long long find_max(real__t *Cormat, long long M1);
 real__t select_GPU(real__t *Cormat, long long M1, long long k);
 
@@ -180,10 +181,10 @@ int main(int argc, char * argv[])
 	r_thresh[0] = r_thresh[min_idx];
 	r_thresh[min_idx] = temp;
 	// CSR format
-	int Rlength = N + 1;
-	long long Clength;
-	int * R = new int[Rlength];
-	int * C;
+	unsigned int Rlength = N + 1;
+	R_type Clength;
+	R_type * R = new R_type[Rlength];
+	C_type * C;
 	
 	//process, do not average
 	if (argv[3][0] == 'n' || argv[3][0] == 'N' || argv[3][0] == 'b' || argv[3][0] == 'B' )
@@ -317,7 +318,7 @@ int main(int argc, char * argv[])
 				time = clock() - time;
 						cout<<"time for forming full graph (ms):\t" <<time<<endl;
 				//if (k == 0)
-					C = new int [Clength];
+					C = new C_type [Clength];
 	
 				// form csr graph
 				//time = clock();
@@ -336,9 +337,9 @@ int main(int argc, char * argv[])
 				cout<<"generating "<<Outfilename.c_str()<< "..."<<endl;
 				fout.open(Outfilename.c_str(), ios::binary | ios::out);
 				fout.write((char*)&Rlength, sizeof(int));
-				fout.write((char*)R, sizeof(int) * Rlength);
-				fout.write((char*)&Clength, sizeof(int));
-				fout.write((char*)C, sizeof(int) * Clength);
+				fout.write((char*)R, sizeof(R_type) * Rlength);
+				fout.write((char*)&Clength, sizeof(R_type));
+				fout.write((char*)C, sizeof(C_type) * Clength);
 				fout.close();
 
 				delete []C;	
@@ -564,7 +565,7 @@ int main(int argc, char * argv[])
 				cout<<"time for forming full graph (ms):\t" <<time<<endl;
 				
 				//if (k == 0)
-				C = new int [Clength];
+				C = new C_type [Clength];
 
 				//form csr graph
 				time = clock();
@@ -579,9 +580,9 @@ int main(int argc, char * argv[])
 				cout<<"generating "<<Outfilename.c_str()<< "..."<<endl;
 				fout.open(Outfilename.c_str(), ios::binary | ios::out);
 				fout.write((char*)&Rlength, sizeof(int));
-				fout.write((char*)R, sizeof(int) * Rlength);
-				fout.write((char*)&Clength, sizeof(int));
-				fout.write((char*)C, sizeof(int) * Clength);
+				fout.write((char*)R, sizeof(R_type) * Rlength);
+				fout.write((char*)&Clength, sizeof(R_type));
+				fout.write((char*)C, sizeof(C_type) * Clength);
 				fout.close();
 
 				delete []C;
@@ -836,23 +837,17 @@ void post_block (real__t * Cormat, real__t * Cormat_blocked, int N, int block_si
 				index ++;
 			}
 }
-void FormCSRGraph(int * R, int * C, bool * adjacent, int N)
+void FormCSRGraph(R_type * R, C_type * C, bool * adjacent, int N)
 {
-
-	int count = 0;
-	long long Cindex = 0;
+	R_type Cindex = 0;
 	R[0] = 0;
-	for(int i = 0; i < N; i++)
-	{
-		for(int j = 0; j < N; j++)
-		{
-			if(adjacent[(long long)i*N+j])
-			{
-				count ++;
+	for(int i = 0; i < N; i++){
+		for(int j = 0; j < N; j++){
+			if(adjacent[(long long)i*N+j]){
 				C[Cindex++] = j;
 			}
 		}
-		R[i+1] = count;
+		R[i+1] = Cindex;
 	} 
 }
 

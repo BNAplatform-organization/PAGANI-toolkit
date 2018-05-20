@@ -21,10 +21,10 @@
     <ClCompile Include="Cp_main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Maslov\Maslov\Maslov.cpp">
+    <ClCompile Include="..\..\common\Timer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\common\Timer.cpp">
+    <ClCompile Include="Maslov.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

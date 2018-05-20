@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="APSP_BFS.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\common\Timer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -27,10 +24,8 @@
     <ClCompile Include="Maslov.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="APSP_BFS.h">
+    <ClCompile Include="APSP_BFS.cpp">
       <Filter>源文件</Filter>
-    </ClInclude>
+    </ClCompile>
   </ItemGroup>
 </Project>

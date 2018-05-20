@@ -2,28 +2,16 @@
 # include <iomanip>
 # include <fstream>
 # include <memory.h>
-# include "Timer.h"
 # include <stdlib.h>
 # include <cstring>
 # include "dirent.h"
+# include "Timer.h"
+# include "data_type.h"
 using namespace std;
 
-// This struct is used for passing parameters to different threads
-struct Cp_ARG
-{
-	int id;
-	bool ** G;			// The network
-	int * C;			
-	int * R;			// R and C represents the network in CSR format
-	int N;				// The size of the network
-	double * Cpsum;		
-	float * Cp;
-};
-
-
 // Forward Declaration
-double Cp(int * C, int * R, float * Cp, int N);
-void Maslov(int * R_dst, int * C_dst, int * R_src, int * C_src, int Rlength, int Clength);
+double Cp(C_type * C, R_type * R, float * Cp, int N);
+void Maslov(R_type * R_dst, C_type * C_dst, R_type * R_src, C_type * C_src, unsigned int Rlength, R_type Clength);
 
 int main(int argc, char * argv[])
 {
@@ -74,27 +62,22 @@ int main(int argc, char * argv[])
 
 	bool global=false,nodal=false,gamma=false;
 		//string argv3(argv[3]);
-		char* S[]={"g","n","k","gn","gk","nk","gnk"};
-       for(int i=0;i<7;i++)
-{
-  if(strcmp(argv[3],S[i])==0)
-  {
-     switch(i)
-     {
-        case 0: global=true;break;
-		case 1: nodal=true;break;
-		case 2: gamma=true;break;
-		case 3:nodal=true;global=true;break;
-		case 4:global=true;gamma=true;break;
-		case 5:nodal=true;gamma=true;break;
-		case 6:global=true;nodal=true;gamma=true;break;
-		default:global=true;nodal=true;gamma=true;break;
-        
-     }
-	 break;
-  } 
-   
-}
+	char* S[]={"g","n","k","gn","gk","nk","gnk"};
+    for(int i=0;i<7;i++) {
+		if(strcmp(argv[3],S[i])==0){
+		    switch(i){
+		        case 0: global=true;break;
+				case 1: nodal=true;break;
+				case 2: gamma=true;break;
+				case 3:nodal=true;global=true;break;
+				case 4:global=true;gamma=true;break;
+				case 5:nodal=true;gamma=true;break;
+				case 6:global=true;nodal=true;gamma=true;break;
+				default:global=true;nodal=true;gamma=true;break;
+		    }
+			break;
+		} 
+	}
 
 	for (int i = 0; i < FileNumber; i++)
 	{
@@ -105,13 +88,14 @@ int main(int argc, char * argv[])
 		{	cout<<"Can't open\t"<<a.c_str()<<endl;	return 0;}
 
 		// Read x.csr
-		int Rlength = 0, Clength = 0;
+		unsigned int Rlength = 0;
+		R_type Clength = 0;
 		fin.read((char*)&Rlength, sizeof(int));
-		int * R = new int [Rlength];
-		fin.read((char*)R, sizeof(int) * Rlength);
-		fin.read((char*)&Clength, sizeof(int));
-		int * C = new int [Clength];
-		fin.read((char*)C, sizeof(int) * Clength);
+		R_type * R = new R_type [Rlength];
+		fin.read((char*)R, sizeof(R_type) * Rlength);
+		fin.read((char*)&Clength, sizeof(R_type));
+		C_type * C = new C_type[Clength];
+		fin.read((char*)C, sizeof(C_type) * Clength);
 		fin.close();
 		int N = Rlength - 1;
 
@@ -148,8 +132,8 @@ int main(int argc, char * argv[])
 		}
 	//	}
 		// Analysis for random networks
-		int * R_dst = new int [Rlength];
-		int * C_dst = new int [Clength];
+		R_type * R_dst = new R_type[Rlength];
+		C_type * C_dst = new C_type[Clength];
 	//	if(*argv[3] == 'g'||both)  {
 		int Maslov_num = atoi(argv[2]);
 		ofstream fout;

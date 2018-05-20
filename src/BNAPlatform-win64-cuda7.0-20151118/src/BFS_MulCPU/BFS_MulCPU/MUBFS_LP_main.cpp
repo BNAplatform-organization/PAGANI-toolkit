@@ -8,10 +8,11 @@
 #include <iomanip>
 #include "dirent.h"
 #include "Timer.h"
+#include "data_type.h"
 
 using namespace std;
-void Maslov(int * R_dst, int * C_dst, int * R_src, int * C_src, int Rlength, int Clength);
-double APSP_BFS(float *APSP_output, int * row, int * col, const int numVertices);
+void Maslov(R_type * R_dst, C_type * C_dst, R_type * R_src, C_type * C_src, unsigned int Rlength, R_type Clength);
+double APSP_BFS(R_type * row, C_type * col, const unsigned int numVertices);
 float *Li_result;
 
 int main(int argc, char** argv) 
@@ -73,10 +74,10 @@ int main(int argc, char** argv)
 		string a = string(argv[1]).append("\\").append(filename[i]);
 		cout<<"\ncalculating Lp for "<<a.c_str()<<" ..."<<endl;
 
-		int numVertices;	// Network vertices number
-		int numEdges;	//Network egdes number
-		int *row = NULL;	// Cormat CSR row
-		int *col = NULL;	// Cormat CSR col
+		unsigned int numVertices;	// Network vertices number
+		R_type numEdges;	//Network egdes number
+		R_type *row = NULL;	// Cormat CSR row
+		C_type *col = NULL;	// Cormat CSR col
 		
 		ifstream fCSR(a.c_str(), ios::binary);
 		if(!fCSR.good())
@@ -86,30 +87,25 @@ int main(int argc, char** argv)
 		}
 		fCSR.read((char *)&numVertices, sizeof(int));
 		numVertices = numVertices - 1;	
-		row = new int[numVertices+1];	// Cormat CSR row
-		fCSR.read((char*)row, sizeof(int)*(numVertices + 1));
-		fCSR.read((char *)&numEdges, sizeof(int));
-		col = new int[numEdges];	// Cormat CSR col
-		fCSR.read((char*)col, sizeof(int)*numEdges);
+		row = new R_type[numVertices+1];	// Cormat CSR row
+		fCSR.read((char*)row, sizeof(R_type)*(numVertices + 1));
+		fCSR.read((char *)&numEdges, sizeof(R_type));
+		col = new C_type[numEdges];	// Cormat CSR col
+		fCSR.read((char*)col, sizeof(C_type)*numEdges);
 		fCSR.close();
-		float *APSP_output=new float[(long long)numVertices*numVertices];
 		Li_result = new float[numVertices];
 		Setup(0);
 		Start(0);
-		Lp[0]=APSP_BFS(APSP_output,row,col,numVertices);
+		Lp[0]=APSP_BFS(row,col,numVertices);
 		//Lp[0] = CUBFS_Lp(row, col, numVertices, numEdges);
 		Stop(0);
-
-		delete []APSP_output;
-		
-		
+				
 		string X_eff = a.substr(0, a.find_last_of('.') ).append("_eff.nm");
 		ofstream fout;
-		int Rlength = numVertices + 1;
-		int Clength = numEdges; 
-		int * R_dst = new int [Rlength];
-		int * C_dst = new int [Clength];
-		float * Mas_APSP_output=new float[(long long)numVertices*numVertices];
+		unsigned int Rlength = numVertices + 1;
+		R_type Clength = numEdges; 
+		R_type * R_dst = new R_type [Rlength];
+		C_type * C_dst = new C_type [Clength];
 		bool both=false;
 		if(*argv[3]=='b')
 			both=true;
@@ -132,7 +128,7 @@ int main(int argc, char** argv)
 		for (int l = 0; l < Nrandom; l++)
 		{
 			Maslov(R_dst, C_dst, row, col, Rlength, Clength);
-			Lp[l+1] = APSP_BFS(Mas_APSP_output,R_dst,C_dst,numVertices);
+			Lp[l+1] = APSP_BFS(R_dst,C_dst,numVertices);
 		}
 		Stop(0);
 		
@@ -147,7 +143,6 @@ int main(int argc, char** argv)
 		fLp.close();
 		cout<<"Save Lp for the brain network and random networks as "<<Lpoutfile.c_str()<<endl;
 		}
-		delete [] Mas_APSP_output;
 		delete []R_dst;
 		delete []C_dst;
 		delete []row;
