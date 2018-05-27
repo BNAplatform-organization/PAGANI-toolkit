@@ -10,7 +10,7 @@ x64/
 *.suo
 Debug/
 Release/
-
+higher-resolution network constructions/
 
 # Compiled Object files
 *.slo
