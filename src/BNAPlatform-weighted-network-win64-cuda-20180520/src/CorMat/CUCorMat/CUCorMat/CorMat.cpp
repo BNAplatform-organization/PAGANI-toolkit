@@ -3,16 +3,21 @@
 #include <memory.h>
 #include <string.h>
 #include <ctime>
+#include <vector>
 #include <cmath>
 #include <iomanip>
-#include "dirent.h"
 #include <iostream>
 #include <fstream>
 #include <stack>
+#include "data_type.h"
+#include "dirent.h"
+#include "shlwapi.h" 
+#pragma comment(lib,"shlwapi.lib")
 using namespace std;
 
 typedef float real__t;
 typedef unsigned int uint__t;
+#define argc_min 7
 
 #define ep 1e-6
 const int HdrLen = 352;
@@ -28,7 +33,7 @@ int CorMat_gpu(real__t * Cormat, real__t * BOLD, int N, int L, int Batch_size);
 long long FormFullGraph(bool * adjacent, real__t * Cormat, int N, real__t threshold);
 real__t FormFullGraph_s(bool * adjacent, real__t * Cormat, int N, long long threshold);
 void post_block (real__t * Cormat, real__t * Cormat_blocked, int dim, int block_size,bool fishtran_flag);
-void FormCSRGraph(int * R, int * C, real__t *V, bool * adjacent, int N , real__t *Cormat);
+void FormCSRGraph(R_type * R, C_type * C, V_type *V, bool * adjacent, int N , real__t *Cormat);
 long long find_max(real__t *Cormat, long long M1);
 real__t select_GPU(real__t *Cormat, long long M1, long long k);
 
@@ -51,56 +56,143 @@ real__t inv_fishertrans(real__t z)
 int main(int argc, char * argv[])
 {
 	clock_t total_time = clock();
-	if (argc < 5) 
+	if (argc <= argc_min)
 	{
-		cerr<<"Input format: .\\CorMat.exe  Dir_for_BOLD  threshold_for_mask(0~1) to_average(y/n) threshold_type(r/s) threshold_for_correletaion_coefficient(s)(0~1)\n"
-			<<"For example: .\\CorMat.exe  d:\\BOLD  0.5 y r 0.2 0.25 0.3\n"<<endl;
-		exit(1);	
+		cerr << "Input format: .\\CorMat.exe  Dir_for_BOLD  Path_for_mask threshold_for_mask(0~1) to_average(yf/yn/bf/bn/n) to_save_cormatrix(y/n) threshold_type(r/s) threshold_for_corrval (0~1) or sparsity (0~100)\n"
+			<< "For example: .\\CorMat.exe  d:\\BOLD d:\\mask.nii 0.5 y n r 0.2 0.25 0.3\n" << endl;
+		exit(1);
 	}
 	int L, N = 0, i = 0, j = 0, k = 0, l = 0, total_size;
 	clock_t time;
 
+	/*************************************************************************************************/
+	/*                                 Search fMRI (nifti) files                                     */
+	/*************************************************************************************************/
 	DIR *dp;
 	struct dirent *dirp;
 	if (NULL == (dp = opendir(argv[1])))
 	{
 		printf("can't open %s", argv[1]);
-		exit (1);  
+		exit(1);
 	}
 	int FileNumber = 0;
 	string filenametmp;
-	while((dirp = readdir(dp)) != NULL)
+	while ((dirp = readdir(dp)) != NULL)
 	{
 		filenametmp = string(dirp->d_name);
 		//cout<<filenametmp.c_str()<<"!"<<endl;
 		if (filenametmp.find_last_of('.') == -1)
 			continue;
-		if(filenametmp.length()>4 && filenametmp.substr(filenametmp.find_last_of('.'),4).compare(".nii") == 0 && filenametmp.size() - filenametmp.find_last_of('.') - 1 == 3)
+		if (filenametmp.length()>4 && filenametmp.substr(filenametmp.find_last_of('.'), 4).compare(".nii") == 0 && filenametmp.size() - filenametmp.find_last_of('.') - 1 == 3)
 		{
-			if (filenametmp.compare("mask.nii")!=0)
+			if (filenametmp.compare("mask.nii") != 0)
 				FileNumber++;
 		}
 	}
-	cout<<FileNumber<<" file(s) to be processed."<<endl;
+	cout << FileNumber << " file(s) to be processed." << endl;
 
 	closedir(dp);
 	string *filename = new string[FileNumber];
 	dp = opendir(argv[1]);
 	i = 0;
-	while((dirp = readdir(dp)) != NULL)
+	while ((dirp = readdir(dp)) != NULL)
 	{
 		filenametmp = string(dirp->d_name);
 		//	cout<<"here";
 		if (filenametmp.find_last_of('.') == -1)
 			continue;
-		if(filenametmp.length()>4 && filenametmp.substr(filenametmp.find_last_of('.'),4).compare(".nii") == 0 && filenametmp.size() - filenametmp.find_last_of('.') - 1 == 3)
+		if (filenametmp.length()>4 && filenametmp.substr(filenametmp.find_last_of('.'), 4).compare(".nii") == 0 && filenametmp.size() - filenametmp.find_last_of('.') - 1 == 3)
 		{
-			if (filenametmp.compare("mask.nii")!=0)
+			if (filenametmp.compare("mask.nii") != 0)
 				filename[i++] = filenametmp;
 		}
 	}
 
-	real__t ProbCut = (real__t)atof(argv[2]);
+	/*************************************************************************************************/
+	/*                                 threshold strategy setup                                      */
+	/*************************************************************************************************/
+	int NumS = argc - argc_min;
+	real__t * r_thresh = new real__t[NumS];
+	real__t * s_thresh = new real__t[NumS];
+	if (argv[6][0] == 'r' || argv[6][0] == 'R')
+		for (i = 0; i < NumS; i++)
+			r_thresh[i] = (real__t)atof(argv[7 + i]);
+	else if (argv[6][0] == 's' || argv[6][0] == 'S')
+	{
+		rs_flag = false;
+		memset(r_thresh, 0, sizeof(real__t)*NumS);
+		for (i = 0; i < NumS; i++)
+			s_thresh[i] = (real__t)atof(argv[7 + i]);
+		cout << s_thresh[0];
+	}
+	else {
+		cout << "threshold type error! \nr for correlation threshold\ns for spasity threshold\n";
+		exit(1);
+	}
+
+	/*************************************************************************************************/
+	/*								Read Mask file, obtain mask_idx                                  */
+	/*************************************************************************************************/
+	real__t ProbCut = (real__t)atof(argv[3]);
+	string mask_file = string(argv[2]);
+	ifstream fin(mask_file.c_str(), ios_base::binary);
+	if (!fin.good())
+	{
+		cout << "Can't open\t" << mask_file.c_str() << endl;	return 0;
+	}
+	short hdr[HdrLen / 2];
+	fin.read((char*)hdr, HdrLen);
+	cout << "mask datatype : " << hdr[35] << "  " << hdr[36] << endl;
+	char mask_dt = hdr[35];
+	total_size = hdr[21] * hdr[22] * hdr[23];	// Total number of voxels
+	real__t * mask = new float[total_size];
+	if (mask_dt == 2)
+	{
+		unsigned char *mask_uc = new unsigned char[total_size];
+		fin.read((char *)mask_uc, sizeof(unsigned char) * total_size);
+		for (int vm = 0; vm<total_size; vm++)
+			mask[vm] = (float)mask_uc[vm];
+		delete[] mask_uc;
+	}
+	else if (mask_dt == 16)
+	{
+		fin.read((char *)mask, sizeof(float) * total_size);
+	}
+	else
+	{
+		cout << "mask data-type error, Only the type of unsigned char and float can be handled.\n";
+		system("pause");
+		return -1;
+	}
+	fin.close();
+
+	// Count the number of the valid voxels, and obtain mask_idx vector	
+	vector<int> mask_idx;
+	for (k = 0; k < total_size; k++)
+		if (mask[k] >= ProbCut)
+			mask_idx.push_back(k);
+	N = mask_idx.size();
+	cout << "Data size: " << hdr[21] << "x" << hdr[22] << "x" << hdr[23] << ", Grey voxel count: " << N << "." << endl;
+	//cant figure out logic. so reserve mask
+
+	/*************************************************************************************************/
+	/*					    Whether save entire cormat / average cormat                              */
+	/*************************************************************************************************/
+	if (argv[5][0] == 'y' || argv[5][0] == 'Y')
+	{
+		cormat_flag = true;
+	}
+	else if (argv[5][0] == 'N' || argv[5][0] == 'n')
+	{
+		cormat_flag = false;
+	}
+	else
+	{
+		cout << "to_save_cor_matrix type error! \ny to save the whole correlation matrix \nn to save only csr format of adjacency matrix\n";
+		exit(1);
+	}
+
+	/*real__t ProbCut = (real__t)atof(argv[2]);
 	int NumS = argc - 6;
 	real__t * r_thresh = new real__t [NumS];
 	real__t * s_thresh = new real__t [NumS];
@@ -117,61 +209,18 @@ int main(int argc, char * argv[])
 	else {
 		cout << "threshold type error! \nr for correlation threshold\ns for spasity threshold\n";
 		exit(1);
-	}
+	}*/
 
-	if(argv[4][0]=='y' || argv[4][0]=='Y')
-	{
-		cormat_flag = true;
-	}
-	else if (argv[4][0]=='N' || argv[4][0]=='n')
-	{
-		cormat_flag = false;
-	}
-	else
-	{
-		cout << "to_save_cor_matrix type error! \ny to save the whole correlation matrix \nn to save only csr format of adjacency matrix\n";
-		exit(1);
-	}
 
 	// read input files and parameters
 	if (argv[1][strlen(argv[1]) - 1] == '\\')
 		argv[1][strlen(argv[1]) - 1] = 0;
-	ifstream fin(string(argv[1]).append("\\mask.nii").c_str(), ios::binary);
-	if (!fin.good())
-	{	cout<<"Can't open\t"<<string(argv[1]).append("\\mask.nii").c_str()<<endl;	return 0;}
-	short hdr[HdrLen / 2];
-	fin.read((char*)hdr, HdrLen);
-	cout<<"mask datatype : "<< hdr[35]<<"  "<<hdr[36]<<endl;
-	mask_dt = hdr[35];
+	string str = string(argv[1]).append("\\").append("unweighted");
+	if (!PathIsDirectory(str.c_str()))
+	{
+		::CreateDirectory(str.c_str(), NULL);
+	}
 
-	total_size = hdr[21] * hdr[22] * hdr[23];	// Total number of voxels
-	
-	real__t * mask = new float [total_size];
-
-	if (mask_dt==2)
-	{
-		unsigned char *mask_uc = new unsigned char[total_size];
-		fin.read((char *) mask_uc, sizeof(unsigned char) * total_size);
-		for (int vm = 0; vm<total_size; vm++)
-			mask[vm] = (float) mask_uc[vm];
-		delete [] mask_uc;
-	}
-	else if(mask_dt==16)
-	{
-		fin.read((char *)mask, sizeof(float) * total_size);
-	}
-	else
-	{
-		cout<<"mask data-type error, Only the type of unsigned char and float can be handled.\n";
-		//system("pause");
-		return -1;
-	}
-	fin.close();
-	// Count the number of the valid voxels	
-	for (k = 0; k < total_size; k++)
-		N += (mask[k] >= ProbCut);	
-	cout<<"Data size: "<<hdr[21] <<"x"<<hdr[22]<<"x"<<hdr[23]  <<", Grey voxel count: "<<N<<"."<<endl;
-	// swap the largest threshold to the beginning
 	int min_idx = 0;
 	for (i = 0; i < NumS; i++)
 		if (r_thresh[i] < r_thresh[min_idx])
@@ -180,14 +229,14 @@ int main(int argc, char * argv[])
 	r_thresh[0] = r_thresh[min_idx];
 	r_thresh[min_idx] = temp;
 	// CSR format
-	int Rlength = N + 1;
-	long long Clength;
-	int * R = new int[Rlength];
-	int * C;
-	real__t *V;
+	unsigned int Rlength = N + 1;
+	R_type Clength;
+	R_type * R = new R_type[Rlength];
+	C_type * C;
+	V_type * V;
 	
 	//process, do not average
-	if (argv[3][0] == 'n' || argv[3][0] == 'N' || argv[3][0] == 'b' || argv[3][0] == 'B' )
+	if (argv[4][0] == 'n' || argv[4][0] == 'N' || argv[4][0] == 'b' || argv[4][0] == 'B' )
 		for (int i = 0; i < FileNumber; i++)
 		{
 			string a = string(argv[1]).append("\\").append(filename[i]);
@@ -296,6 +345,8 @@ int main(int argc, char * argv[])
 				cormat_file.write((char*)Cormat_gpu,sizeof(real__t)*M1);
 				cormat_file.close();
 			}
+			a = string(argv[1]).append("\\weighted\\");
+			a.append(filename[i]);
 
 			string Outfilename;
 			ofstream fout;
@@ -321,8 +372,8 @@ int main(int argc, char * argv[])
 				time = clock() - time;
 						cout<<"time for forming full graph (ms):\t" <<time<<endl;
 				//if (k == 0)
-					C = new int [Clength];
-					V = new real__t [Clength];
+					C = new C_type [Clength];
+					V = new V_type [Clength];
 				// form csr graph
 				//time = clock();
 				FormCSRGraph(R, C, V, adjacent, N, Cormat_gpu);
@@ -383,7 +434,7 @@ int main(int argc, char * argv[])
 			delete []BOLD;
 		}
 
-		if (argv[3][0] == 'y' || argv[3][0] == 'Y' || argv[3][0] == 'b' || argv[3][0] == 'B' )
+		if (argv[4][0] == 'y' || argv[4][0] == 'Y' || argv[4][0] == 'b' || argv[4][0] == 'B' )
 		{
 			// set some parameters 
 			int Batch_size = 1024 * 3;				// should not be smaller than 1024 !
@@ -464,9 +515,9 @@ int main(int argc, char * argv[])
 				time = clock() - time;
 				cout<<"GPU correlation time: "<<time<<"ms"<<endl;
 				
-				if (argv[3][1] == 'f' || argv[3][1] == 'F')
+				if (argv[4][1] == 'f' || argv[4][1] == 'F')
 					post_block(Cormat_gpu, Cormat_blocked, N, Batch_size,1);
-				else if (argv[3][1] == 'n' || argv[3][1] == 'N')
+				else if (argv[4][1] == 'n' || argv[4][1] == 'N')
 					post_block(Cormat_gpu, Cormat_blocked, N, Batch_size,0);
 			  /*
 				for (int i = 0; i < M1; i++)
@@ -543,6 +594,9 @@ int main(int argc, char * argv[])
 				cormat_file.write((char*)Cormat_gpu,sizeof(real__t)*M1);
 				cormat_file.close();
 			}
+			b = string(argv[1]).append("\\weighted\\");
+
+			OutCor = b.append("ave_").append(string(itoa(FileNumber, Graph_size, 10))).append("_").append(string(itoa(N, Graph_size, 10)));
 
 			string Outfilename;
 			ofstream fout;
@@ -574,8 +628,8 @@ int main(int argc, char * argv[])
 				cout<<"time for forming full graph (ms):\t" <<time<<endl;
 				
 				//if (k == 0)
-				C = new int [Clength];
-				V = new real__t [Clength];
+				C = new C_type [Clength];
+				V = new V_type [Clength];
 
 				//form csr graph
 				time = clock();
@@ -590,11 +644,11 @@ int main(int argc, char * argv[])
 				cout<<"generating "<<Outfilename.c_str()<< "..."<<endl;
 				fout.open(Outfilename.c_str(), ios::binary | ios::out);
 				fout.write((char*)&Rlength, sizeof(int));
-				fout.write((char*)R, sizeof(int) * Rlength);
-				fout.write((char*)&Clength, sizeof(int));
-				fout.write((char*)C, sizeof(int) * Clength);
-				fout.write((char*)&Clength, sizeof(int));
-				fout.write((char*)V, sizeof(real__t) * Clength);
+				fout.write((char*)R, sizeof(R_type) * Rlength);
+				fout.write((char*)&Clength, sizeof(R_type));
+				fout.write((char*)C, sizeof(C_type) * Clength);
+				fout.write((char*)&Clength, sizeof(R_type));
+				fout.write((char*)V, sizeof(V_type) * Clength);
 				fout.close();
 
 				delete []C;
@@ -850,7 +904,7 @@ void post_block (real__t * Cormat, real__t * Cormat_blocked, int N, int block_si
 			}
 }
 
-void FormCSRGraph(int * R, int * C, real__t *V, bool * adjacent, int N, real__t *Cormat)
+void FormCSRGraph(R_type * R, C_type * C, V_type *V, bool * adjacent, int N, real__t *Cormat)
 {
 
 	int count = 0;

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/new/correlation matrix">
+        <file alias="z-transformation">qrc/gif.gif</file>
+    </qresource>
+</RCC>
