@@ -1,4 +1,5 @@
 # Prerequisites
+*.user
 *.d
 *.sdf
 *.opensdf
