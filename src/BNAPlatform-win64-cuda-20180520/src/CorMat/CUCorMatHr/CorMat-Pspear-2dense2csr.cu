@@ -466,7 +466,7 @@ int CorMat_gpu(string OutCor, real__t * BOLD_t, const int &N, const int &N0, con
 		char sparsity[30];
 		sprintf(sparsity, "_spa%.3f%%_cor%.3f", spa, r_thresh[s]);
 		Outfilename = OutCor;
-		Outfilename.append(string(sparsity)).append("_weighted.csr");
+		Outfilename.append(string(sparsity)).append("_unweighted.csr");
 		ofstream fout;
 		cout<<"generating "<<Outfilename.c_str()<< "..."<<endl;
 		fout.open(Outfilename.c_str(), ios::binary | ios::out);

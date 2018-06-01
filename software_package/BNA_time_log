@@ -110,3 +110,25 @@ Degree	E:/data/testdata/unweighted\L0002_25218_pearson_spa0.100%_cor0.707_weight
 Degree	E:/data/testdata/unweighted\L0002_25218_pearson_spa0.200%_cor0.663_unweighted.csrCPU	kernel time	0s
 Degree	CPU	total time	0.097s
 
+Cp	E:/data/testdata/weighted\G0001_25218_pearson_spa0.100%_cor0.689_weighted.csrCPU	kernel time	0.234449s
+Cp	RandomCPU	(Maslov+kernel) time	5.70205e-007s
+Cp	E:/data/testdata/weighted\G0002_25218_pearson_spa0.100%_cor0.662_weighted.csrCPU	kernel time	0.164417s
+Cp	RandomCPU	(Maslov+kernel) time	8.55308e-007s
+Cp	E:/data/testdata/weighted\K0001_25218_pearson_spa0.100%_cor0.727_weighted.csrCPU	kernel time	0.179265s
+Cp	RandomCPU	(Maslov+kernel) time	5.70205e-007s
+Cp	E:/data/testdata/weighted\K0002_25218_pearson_spa0.100%_cor0.607_weighted.csrCPU	kernel time	0.225957s
+Cp	RandomCPU	(Maslov+kernel) time	5.70205e-007s
+Cp	E:/data/testdata/weighted\L0001_25218_pearson_spa0.100%_cor0.815_weighted.csrCPU	kernel time	0.252356s
+Cp	RandomCPU	(Maslov+kernel) time	5.70205e-007s
+Cp	E:/data/testdata/weighted\L0002_25218_pearson_spa0.100%_cor0.707_weighted.csrCPU	kernel time	0.225264s
+Cp	RandomCPU	(Maslov+kernel) time	5.70205e-007s
+Cp	CPU	total time	1.458s
+
+Degree	E:/data/testdata/weighted\G0001_25218_pearson_spa0.100%_cor0.689_weighted.csrCPU	kernel time	0s
+Degree	E:/data/testdata/weighted\G0002_25218_pearson_spa0.100%_cor0.662_weighted.csrCPU	kernel time	0.001s
+Degree	E:/data/testdata/weighted\K0001_25218_pearson_spa0.100%_cor0.727_weighted.csrCPU	kernel time	0.001s
+Degree	E:/data/testdata/weighted\K0002_25218_pearson_spa0.100%_cor0.607_weighted.csrCPU	kernel time	0s
+Degree	E:/data/testdata/weighted\L0001_25218_pearson_spa0.100%_cor0.815_weighted.csrCPU	kernel time	0.001s
+Degree	E:/data/testdata/weighted\L0002_25218_pearson_spa0.100%_cor0.707_weighted.csrCPU	kernel time	0.001s
+Degree	CPU	total time	0.097s
+
