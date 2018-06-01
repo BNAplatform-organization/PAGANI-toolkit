@@ -18,7 +18,6 @@ using namespace std;
 #define ep  1e-6  //third question
 
 typedef float real__t;
-typedef unsigned int uint__t;
 
 #define TOM(byteValue) (byteValue/1024/1024)
 extern void cusparseSafeCall(cusparseStatus_t err);
@@ -36,7 +35,7 @@ typedef struct cv
 const int thread_num = 1024;
 const int block_num = 30;
 
-void select(real__t *A,long long n,long long k);
+//void select(real__t *A,long long n,long long k);
 //void MatrixMultiplication(real__t * BOLD_t1, real__t * BOLD_t2,real__t * out,int Batch_size,int L);
 
 //void Thrust(vector <vector<ColumnValueInfo>>::iterator begin, real__t *out, int ii, int Batch_size, real__t r_thresh, real__t er);
@@ -125,10 +124,10 @@ int CorMat_gpu(string OutCor, real__t * BOLD_t, const int &N, const int &N0, con
 		return stat;
 	
 	/*          CPU variables        */
-	uint__t Overall_Num_Blocks = Num_Blocks * Num_Blocks;
-	uint__t **Column = new uint__t* [Overall_Num_Blocks];
+	u_int Overall_Num_Blocks = Num_Blocks * Num_Blocks;
+	u_int **Column = new u_int* [Overall_Num_Blocks];
 	real__t **Value = new real__t* [Overall_Num_Blocks];
-	uint__t **Rown = new uint__t* [Overall_Num_Blocks];
+	u_int **Rown = new u_int* [Overall_Num_Blocks];
 	//int *nnzOfEachBlock = new int [Overall_Num_Blocks];
 	R_type totalNonzero = 0;
 			
@@ -187,25 +186,25 @@ int CorMat_gpu(string OutCor, real__t * BOLD_t, const int &N, const int &N0, con
 			//if (ii!=jj)
 			//	nnzOfEachBlock[jj * Num_Blocks + ii] = nnzTotalDevHostPtr;
 			
-			Column[ii * Num_Blocks + jj] = new uint__t [nnzTotalDevHostPtr];
+			Column[ii * Num_Blocks + jj] = new u_int [nnzTotalDevHostPtr];
 			Value[ii * Num_Blocks + jj] = new real__t [nnzTotalDevHostPtr];
-			Rown[ii * Num_Blocks + jj] = new uint__t [Batch_size+1];
+			Rown[ii * Num_Blocks + jj] = new u_int [Batch_size+1];
 			if (ii!=jj)
 			{
-				Column[jj * Num_Blocks + ii] = new uint__t [nnzTotalDevHostPtr];
+				Column[jj * Num_Blocks + ii] = new u_int [nnzTotalDevHostPtr];
 				Value[jj * Num_Blocks + ii] = new real__t [nnzTotalDevHostPtr];
-				Rown[jj * Num_Blocks + ii] = new uint__t [Batch_size+1];
+				Rown[jj * Num_Blocks + ii] = new u_int [Batch_size+1];
 			}
 			if (nnzTotalDevHostPtr==0)
 			{
-				//Rown[ii * Num_Blocks + jj] = new uint__t [Batch_size+1];
+				//Rown[ii * Num_Blocks + jj] = new u_int [Batch_size+1];
 				for (int i = 0; i < (Batch_size + 1); i++)
 				{
 					Rown[ii * Num_Blocks + jj][i] = 0;
 				}
 				if (ii!=jj)
 				{
-					//Rown[jj * Num_Blocks + ii] = new uint__t [Batch_size+1];
+					//Rown[jj * Num_Blocks + ii] = new u_int [Batch_size+1];
 					for (int i = 0; i < (Batch_size + 1); i++)
 					{
 						Rown[jj * Num_Blocks + ii][i] = 0;
@@ -334,17 +333,17 @@ int CorMat_gpu(string OutCor, real__t * BOLD_t, const int &N, const int &N0, con
 	//first r_threshold
 	
 	//R_type Rcheck = 0;
-	/*for (uint__t ii = 0; ii < Num_Blocks; ii++)
+	/*for (u_int ii = 0; ii < Num_Blocks; ii++)
 	{
-		for (uint__t jj = 0; jj < Num_Blocks; jj++)
+		for (u_int jj = 0; jj < Num_Blocks; jj++)
 		{
 			Rcheck += Rown[ii*Num_Blocks+jj][Batch_size];
-			for (uint__t x = 0; x < Batch_size+1; x++)
+			for (u_int x = 0; x < Batch_size+1; x++)
 			{
 				Row[x+ii*Batch_size] += Rown[ii*Num_Blocks+jj][x];
 			}
 		}
-		for (uint__t y = ii*Batch_size+Batch_size+1; y < (Num_Blocks * Batch_size+1); y++)
+		for (u_int y = ii*Batch_size+Batch_size+1; y < (Num_Blocks * Batch_size+1); y++)
 		{
 			Row[y] = Row[Batch_size+ii*Batch_size];
 		}
@@ -370,7 +369,7 @@ int CorMat_gpu(string OutCor, real__t * BOLD_t, const int &N, const int &N0, con
 				if (Rown[ii*Num_Blocks+jj][i]==Rown[ii*Num_Blocks+jj][i+1])
 					continue;
 				else
-					for (uint__t j = Rown[ii*Num_Blocks+jj][i]; j < Rown[ii*Num_Blocks+jj][i+1]; j++)
+					for (u_int j = Rown[ii*Num_Blocks+jj][i]; j < Rown[ii*Num_Blocks+jj][i+1]; j++)
 					{
 						C.push_back(Column[ii*Num_Blocks+jj][j] + (C_type) jj*Batch_size);
 						V.push_back(Value[ii*Num_Blocks+jj][j]);						
@@ -422,7 +421,7 @@ int CorMat_gpu(string OutCor, real__t * BOLD_t, const int &N, const int &N0, con
 	char sparsity[30];
 	sprintf(sparsity, "_spa%.3f%%_cor%.3f", spa, r_thresh[0]); //joint strings
 	string Outfilename = OutCor;
-	Outfilename.append(string(sparsity)).append("_weighted.csr");
+	Outfilename.append(string(sparsity)).append("_unweighted.csr");
 	ofstream fout;
 	cout<<"generating "<<Outfilename.c_str()<< "..."<<endl;
 #ifndef multiblock
@@ -432,14 +431,14 @@ int CorMat_gpu(string OutCor, real__t * BOLD_t, const int &N, const int &N0, con
 		cout<<"create outfile unsuccessfully. error code:  "<<GetLastError()<<endl;
 		exit(false);
 	}	
-	uint__t Rlength = N+1;
-	fout.write((const char*)&Rlength, sizeof(uint__t));
+	u_int Rlength = N+1;
+	fout.write((const char*)&Rlength, sizeof(u_int));
 	fout.write((const char*)Row, sizeof(R_type)*Rlength);
 	R_type nnzlength = C.size();
 	fout.write((const char*)&nnzlength, sizeof(R_type));
 	fout.write((const char*)&C[0],sizeof(C_type)*nnzlength);
-	fout.write((const char*)&nnzlength, sizeof(R_type));
-	fout.write((const char*)&V[0],sizeof(V_type)*nnzlength);
+	//fout.write((const char*)&nnzlength, sizeof(R_type));
+	//fout.write((const char*)&V[0],sizeof(V_type)*nnzlength);
 #endif
 	cout<<"Transmition finished."<<endl;
 	//Other thresholds
@@ -476,13 +475,13 @@ int CorMat_gpu(string OutCor, real__t * BOLD_t, const int &N, const int &N0, con
 			cout<<"create outfile unsuccessfully. error code:  "<<GetLastError()<<endl;
 			exit(false);
 		}	
-		fout.write((const char*)&Rlength, sizeof(uint__t));
+		fout.write((const char*)&Rlength, sizeof(u_int));
 		fout.write((const char*)Row, sizeof(R_type)*Rlength);
 		nnzlength = Row[N];
 		fout.write((const char*)&nnzlength, sizeof(R_type));
 		fout.write((const char*)&C[0],sizeof(C_type)*nnzlength);
-		fout.write((const char*)&nnzlength, sizeof(R_type));
-		fout.write((const char*)&V[0],sizeof(V_type)*nnzlength);
+		//fout.write((const char*)&nnzlength, sizeof(R_type));
+		//fout.write((const char*)&V[0],sizeof(V_type)*nnzlength);
 #endif
 		cout<<"Transmition finished."<<endl;
 	}
